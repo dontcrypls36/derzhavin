@@ -1,0 +1,14 @@
+{
+   "/api/*": {
+     "target": "http://mobile.optvrn.ru:5050",
+     "secure": false,
+     "changeOrigin":true,
+     "logLevel": "debug"
+   },
+   "/images/*": {
+     "target": "http://mobile.optvrn.ru:5050",
+     "secure": false,
+     "changeOrigin":true,
+     "logLevel": "debug"
+   }
+ }

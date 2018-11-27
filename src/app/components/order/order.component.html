@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-lg-2"></div>
+  <div class="col-lg-2">Наименование</div>
+  <div class="col-lg-1">Сумма</div>
+  <div class="col-lg-2">Грузовых мест</div>
+  <div class="col-lg-2">Вес, кг</div>
+  <div class="col-lg-1">Заказ</div>
+</div>
+<div class="row" *ngFor="let item of preOrder.preOrderItems">
+  <div class="col-lg-2"></div>
+  <div class="col-lg-2">{{ item.good.description }}</div>
+  <div class="col-lg-1">{{ item.good.price }}</div>
+  <div class="col-lg-2">{{ item.quant }}</div>
+  <div class="col-lg-2">{{ item.quantPacking }}</div>
+  <div class="col-lg-1">{{ item.good.price * item.quant }}</div>
+  <div class="col-lg-1">Star</div>
+  <div class="col-lg-1"><button (click)="deleteItemFromBucket(item)">Delete</button></div>
+
+</div>

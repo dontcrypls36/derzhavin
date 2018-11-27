@@ -1,0 +1,26 @@
+<div class="row">
+      <span class="col-lg-3"></span>
+      <span class="col-lg-3">Наименование</span>
+      <span class="col-lg-1">Цена</span>
+      <span class="col-lg-1">Грузовых мест</span>
+      <span class="col-lg-1">Вес, кг</span>
+</div>
+<div *ngFor="let item of preOrderItems">
+  <div class="row" (click)="showItemDialog()">
+      <div class="col-lg-2"><img *ngIf="item.good.pictCount > 0" src= "{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.good.uuid + '/' + item.good.uuid + '_' + item.good.pictCount + '_t.jpg' }}"></div>
+      <div class="col-lg-3">{{ item.good.description }}</div>
+      <div class="col-lg-1">{{ item.good.price }}</div>
+      <div class="col-lg-2">
+        <button class="count-btn" (click)="changeQuantPacking(item, -1)">-</button>
+        <input type="number" class="quant" [value]="item.quantPacking"/>
+        <button class="count-btn" (click)="changeQuantPacking(item, 1)">+</button>
+      </div>
+      <div class="col-lg-2">
+        <button class="count-btn mr-1" (click)="changeQuant(item, -1)">-</button>
+        <input type="number" class="quant" [ngModel]="item.quant" (ngModelChange)="onQuantInputChange($event, item)"/>
+        <button class="count-btn" (click)="changeQuant(item, 1)">+</button>
+      </div>
+      <div class="col-lg-1"></div>
+      <div class="col-lg-1"><button class="backet" (click)="addItemToBucket(item)">В корзину</button></div>
+  </div>
+</div>

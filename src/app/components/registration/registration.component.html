@@ -1,0 +1,11 @@
+<div id="wrapper">
+  <form id="myForm">
+    <p>Укажите номер телефона на который будет</p>
+    <p>отправлен СМС с кодом</p>
+    <mat-form-field>
+      <input matInput class="form-control" type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="phoneNumber" (change)="onPhoneNumberChange() "placeholder="Ваш номер телефона"/>
+    </mat-form-field>
+    <button (click)="sendSms()">ПОЛУЧИТЬ SMS КОД</button>
+  </form>
+</div>
+<a href="good-list">Остатки товаров</a>
