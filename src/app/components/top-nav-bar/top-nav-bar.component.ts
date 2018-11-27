@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PreOrder } from '../../models/pre-order';
 import { Store } from '@ngrx/store';
+import { CategoryService } from '../../services/category.service';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-top-nav-bar',
@@ -11,8 +13,10 @@ export class TopNavBarComponent implements OnInit {
 
   preOrder: PreOrder;
   public orderItemCount = 0;
+  categories: Category[] = [];
 
-  constructor(private store: Store<PreOrder>) {
+  constructor(private store: Store<PreOrder>,
+    private categoryService: CategoryService) {
     this.store.dispatch({type: 'INIT_PRE_ORDER'});
    }
 
@@ -23,6 +27,9 @@ export class TopNavBarComponent implements OnInit {
       }
       this.preOrder = preOrder;
       this.orderItemCount = preOrder.preOrderItems.length;
+    });
+    this.categoryService.getCategories().subscribe(res => {
+      this.categories = res;
     });
   }
 }
