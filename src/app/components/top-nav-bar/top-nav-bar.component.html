@@ -1,8 +1,17 @@
 <header class="header">
-  <nav class="navbar">
+  <nav class="navbar fixed-top">
     <div class="container-fluid">
       <div class="col-lg-1">
         <a routerLink="good-list">Остатки товаров</a>
+      </div>
+      <div class="col-lg-1">
+        <button mat-icon-button [matMenuTriggerFor]="menu" id="menu">
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngFor="let category of categories">
+            <span [ngx-scroll-to]="category.descr" [ngx-scroll-to-duration]="0">{{ category.descr }}</span>
+          </button>
+        </mat-menu>
       </div>
       <div class="col-lg-4">
         <input id="search" type="text" placeholder="Поиск">

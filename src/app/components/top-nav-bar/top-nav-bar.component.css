@@ -2,3 +2,22 @@ nav.navbar {
     height: 60px;
     background-color: #850A0A;
 }
+
+#search {
+  width: 100%;
+  border-radius: 5px;  
+}
+
+#menu {
+    border-radius: 50%;
+    background-color: gray;
+    border-color: gray;
+    width: 35px;
+    height: 35px;
+}
+
+header {
+    position:relative;
+    z-index:999;
+    top:0;
+}

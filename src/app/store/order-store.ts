@@ -47,7 +47,7 @@ export class PreOrderEffects {
     initPreOrder: Observable<ActionWithPayload> = this.actions.pipe(
         ofType('INIT_PRE_ORDER'),
         mergeMap<ActionWithPayload, ActionWithPayload>(action => {
-            return this.orderService.getPreOrder().pipe(map(preOrder => {
+            return this.orderService.createPreOrder().pipe(map(preOrder => {
                 return { type: 'UPDATE', payload: preOrder };
             }));
         })

@@ -7,31 +7,41 @@ import { Observable, of } from 'rxjs';
 @Injectable()
 export class OrderService {
 
-  preOrder: PreOrder;
-
   constructor() { }
 
   addItemToOrder(item: PreOrderItem): Observable<PreOrder> {
-    this.preOrder.preOrderItems.push(item);
-    return of(this.preOrder);
+    const preOrder = JSON.parse(sessionStorage.getItem('preOrder'));
+    preOrder.preOrderItems.push(item);
+    sessionStorage.setItem('preOrder', JSON.stringify(preOrder));
+    return of(preOrder);
   }
 
   getOrderItems(): PreOrderItem[] {
-    return this.preOrder.preOrderItems;
+    const preOrder = JSON.parse(sessionStorage.getItem('preOrder'));
+    return preOrder.preOrderItems;
   }
 
   getPreOrder(): Observable<PreOrder> {
-    if (this.preOrder === undefined) {
-      this.preOrder = new PreOrder();
+    const preOrder = JSON.parse(sessionStorage.getItem('preOrder'));
+    return of(preOrder);
+  }
+
+  createPreOrder(): Observable<PreOrder> {
+    let preOrder = JSON.parse(sessionStorage.getItem('preOrder'));
+    if (preOrder === undefined || preOrder === null) {
+        preOrder = new PreOrder();
+        sessionStorage.setItem('preOrder', JSON.stringify(preOrder));
     }
-    return of(this.preOrder);
+    return of(preOrder);
   }
 
   deleteItemFromOrder(item: PreOrderItem): Observable<PreOrder> {
-    const index = this.preOrder.preOrderItems.indexOf(item);
+    const preOrder = JSON.parse(sessionStorage.getItem('preOrder'));
+    const index = preOrder.preOrderItems.indexOf(item);
     if (index > -1) {
-      this.preOrder.preOrderItems.splice(index, 1);
+      preOrder.preOrderItems.splice(index, 1);
+      sessionStorage.setItem('preOrder', JSON.stringify(preOrder));
     }
-    return of(this.preOrder);
+    return of(preOrder);
   }
 }

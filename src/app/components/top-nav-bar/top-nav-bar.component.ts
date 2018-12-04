@@ -32,4 +32,11 @@ export class TopNavBarComponent implements OnInit {
       this.categories = res;
     });
   }
+
+  onAnchorClick(tag: string) {
+    const x = document.querySelector('#' + tag);
+    if (x) {
+        x.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 }

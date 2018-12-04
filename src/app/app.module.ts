@@ -18,6 +18,10 @@ import { OrderService } from './services/order.service';
 import { StoreModule } from '@ngrx/store';
 import { itemCounterReducer, PreOrderEffects, preOrderReducer } from './store/order-store';
 import { EffectsModule } from '@ngrx/effects';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 const appRoutes: Routes = [
   { path: 'good-list', component: GoodListComponent },
@@ -40,7 +44,11 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     MatInputModule,
+    MatGridListModule,
+    MatMenuModule,
+    MatIconModule,
     BrowserAnimationsModule,
+    ScrollToModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only

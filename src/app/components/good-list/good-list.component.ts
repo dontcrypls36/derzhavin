@@ -4,6 +4,8 @@ import { PreOrderItem } from '../../models/pre-order-item';
 import { Store } from '@ngrx/store';
 import { PreOrder } from '../../models/pre-order';
 import { ActionWithPayload } from '../../store/order-store';
+import { Category } from '../../models/category';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-good-list',
@@ -15,8 +17,11 @@ export class GoodListComponent implements OnInit {
 
   public preOrderItems: PreOrderItem[] = [];
 
+  categories: Category[] = [];
+
   constructor(private goodService: GoodService,
-    private store: Store<PreOrder>) { }
+    private store: Store<PreOrder>,
+    private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.getRestOfGoods();
@@ -29,11 +34,25 @@ export class GoodListComponent implements OnInit {
           preOrderItem.good = good;
           this.preOrderItems.push(preOrderItem);
         }
+        this.getCategories();
       });
+  }
+
+  getCategories() {
+    this.categoryService.getCategories().subscribe(res => {
+      this.categories = res;
+    });
   }
 
   showItemDialog() {
 
+  }
+
+  filterGoodsByGroup(groupId: string): PreOrderItem[] {
+    let filtered = [];
+    filtered = this.preOrderItems.filter(
+       item => item.good.groupUuid === groupId);
+    return filtered;
   }
 
   changeQuantPacking(item: PreOrderItem, delta: number) {
