@@ -22,6 +22,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { MatButtonModule } from '@angular/material/button';
 
 const appRoutes: Routes = [
   { path: 'good-list', component: GoodListComponent },
@@ -47,6 +48,7 @@ const appRoutes: Routes = [
     MatGridListModule,
     MatMenuModule,
     MatIconModule,
+    MatButtonModule,
     BrowserAnimationsModule,
     ScrollToModule.forRoot(),
     RouterModule.forRoot(

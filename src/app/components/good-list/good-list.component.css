@@ -4,9 +4,10 @@
     height: 35px;
     border: 1px solid red;
     color: red; 
-    border-radius: 3px;
-    font-size: 2em;
+    border-radius: 5px;
     text-align: center;
+    font-size: 2rem; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
 }
 
 .backet {
@@ -18,7 +19,22 @@
     border-radius: 3px;
 }
 
+.sign {
+    position:relative;
+    top: -11px;
+    height:100%;
+}
+
 .container {
     /* height: 100%;
     overflow: auto; */
+}
+
+.quant {
+    width: 35px;
+    height: 35px;
+}
+
+.text-align-center {
+    text-align: center;
 }

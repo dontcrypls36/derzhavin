@@ -29,6 +29,7 @@
     "core-js": "^2.5.4",
     "corsproxy": "^1.5.0",
     "font-awesome": "^4.7.0",
+    "g": "^2.0.1",
     "material-icons": "^0.2.3",
     "primeicons": "^1.0.0",
     "primeng": "^7.0.0",
