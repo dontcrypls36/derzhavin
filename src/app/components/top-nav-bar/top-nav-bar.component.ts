@@ -13,6 +13,7 @@ export class TopNavBarComponent implements OnInit {
 
   preOrder: PreOrder;
   public orderItemCount = 0;
+  orderAmount = 0;
   categories: Category[] = [];
 
   constructor(private store: Store<PreOrder>,
@@ -26,7 +27,8 @@ export class TopNavBarComponent implements OnInit {
         return;
       }
       this.preOrder = preOrder;
-      this.orderItemCount = preOrder.preOrderItems.length;
+      this.orderItemCount = preOrder.itemCount;
+      this.orderAmount = preOrder.amount;
     });
     this.categoryService.getCategories().subscribe(res => {
       this.categories = res;
@@ -38,5 +40,13 @@ export class TopNavBarComponent implements OnInit {
     if (x) {
         x.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  }
+
+  calculateOrderAmount(): number {
+    let result = 0;
+    for (const item of this.preOrder.preOrderItems) {
+      result = result + item.good.price * item.quant;
+    }
+    return result;
   }
 }

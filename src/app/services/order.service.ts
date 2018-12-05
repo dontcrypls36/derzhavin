@@ -12,6 +12,8 @@ export class OrderService {
   addItemToOrder(item: PreOrderItem): Observable<PreOrder> {
     const preOrder = JSON.parse(sessionStorage.getItem('preOrder'));
     preOrder.preOrderItems.push(item);
+    preOrder.itemCount++;
+    preOrder.amount = preOrder.amount + item.good.price * item.quant;
     sessionStorage.setItem('preOrder', JSON.stringify(preOrder));
     return of(preOrder);
   }
@@ -40,6 +42,8 @@ export class OrderService {
     const index = preOrder.preOrderItems.indexOf(item);
     if (index > -1) {
       preOrder.preOrderItems.splice(index, 1);
+      preOrder.itemCount--;
+      preOrder.amount = preOrder.amount - item.good.price * item.quant;
       sessionStorage.setItem('preOrder', JSON.stringify(preOrder));
     }
     return of(preOrder);

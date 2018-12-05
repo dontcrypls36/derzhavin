@@ -16,8 +16,8 @@
       <div class="col-lg-4">
         <input id="search" type="text" placeholder="Поиск">
       </div>
-      <div class="col-lg-2"><a routerLink="order">{{ 'Корзина(' + orderItemCount + ')' }}</a></div>
-      <div class="col-lg-2">Личный кабинет</div>
+      <div class="col-lg-3"><a routerLink="order" class="order-link"><i class="fa fa-shopping-cart"></i><span class="order-span">{{ '  '+ orderItemCount + ' тов.  ' + (orderAmount | number : '1.2-2') + ' р.'}}</span></a></div>
+      <div class="col-lg-2"><a class="profile-link" routerLink="profile" routerLinkActive="router-link-active" ><i class="fa fa-address-card"></i></a></div>
     </div>
   </nav>
 </header>

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-60">
   <div *ngFor="let category of categories; let i = index;">
     <h1><a id="{{ category.descr }}" #destinationRef>{{ category.descr }}</a></h1>
     <div *ngFor="let group of category.groups">
@@ -19,7 +19,7 @@
           <div class="container">
             <div class="row">
               <div class="col-lg-3 text-align-center"><button (click)="changeQuantPacking(item, -1)" class="count-btn"><span class="sign">-</span></button></div>
-              <div class="col-lg-3 text-align-center"><input type="number" class="quant" [value]="item.quantPacking"/></div>
+              <div class="col-lg-4 text-align-center"><input type="text" class="quant" [value]="item.quantPacking" (change)="onQuantPackingInputChange($event, item)"/></div>
               <div class="col-lg-3 text-align-center"><button class="count-btn" (click)="changeQuantPacking(item, 1)"><span class="sign">+</span></button></div>
             </div>
           </div>
@@ -28,12 +28,12 @@
           <div class="container">
             <div class="row">
               <div class="col-lg-3 text-align-center"><button class="count-btn" (click)="changeQuant(item, -1)"><span class="sign">-</span></button></div>
-              <div class="col-lg-3 text-align-center"><input type="number" class="quant" [ngModel]="item.quant" (ngModelChange)="onQuantInputChange($event, item)"/></div>
+              <div class="col-lg-4 text-align-center"><input type="text" class="quant" [ngModel]="item.quant" (ngModelChange)="onQuantInputChange($event, item)"/></div>
               <div class="col-lg-3 text-align-center"><button class="count-btn" (click)="changeQuant(item, 1)"><span class="sign">+</span></button></div>
             </div>
           </div>
         </div>
-        <div class="col-lg-1"><button class="backet" (click)="addItemToBucket(item)">В корзину</button></div>
+        <div class="col-lg-1"><button class="btn" (click)="addItemToBucket(item)">В корзину</button></div>
     </div>
     </div>
     </div>

@@ -23,10 +23,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 
 const appRoutes: Routes = [
   { path: 'good-list', component: GoodListComponent },
-  { path: 'order', component: OrderComponent }
+  { path: 'order', component: OrderComponent },
+  { path: 'profile', component: LoginComponent }
 ];
 
 @NgModule({
@@ -49,6 +51,7 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
+    MatDividerModule,
     BrowserAnimationsModule,
     ScrollToModule.forRoot(),
     RouterModule.forRoot(

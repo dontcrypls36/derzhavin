@@ -21,3 +21,21 @@ header {
     z-index:999;
     top:0;
 }
+
+.profile-link {
+    color: gray;
+    font-size: 1.5em;
+}
+
+.order-link {
+    background-color: gray;
+    color: white;
+    border-radius: 5px;
+    font-size: 1.5em;
+    font-weight: 100;
+    text-decoration: none;
+}
+
+.order-span {
+    font-size: 0.8em;
+}

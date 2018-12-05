@@ -10,13 +10,9 @@
     cursor: pointer; /* Mouse pointer on hover */
 }
 
-.backet {
-    background-color: red;
+.bucket {
     width: 105px;
     height: 35px;
-    border: 1px solid red;
-    color: white; 
-    border-radius: 3px;
 }
 
 .sign {
@@ -25,14 +21,11 @@
     height:100%;
 }
 
-.container {
-    /* height: 100%;
-    overflow: auto; */
-}
-
 .quant {
-    width: 35px;
+    width: 50px;
     height: 35px;
+    font-weight:600;
+    text-align:right;
 }
 
 .text-align-center {

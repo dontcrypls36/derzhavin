@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.mt-60 {
+    margin-top: 60px;
+}
+
+.btn {
+    background-color: red;
+    border: 1px solid red;
+    color: white; 
+    border-radius: 5px;
+}
