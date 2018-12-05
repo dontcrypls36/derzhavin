@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { PreOrderItem } from '../models/pre-order-item';
 import { PreOrder } from '../models/pre-order';
 import { Observable, of } from 'rxjs';
-
+import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class OrderService {
@@ -11,6 +11,7 @@ export class OrderService {
 
   addItemToOrder(item: PreOrderItem): Observable<PreOrder> {
     const preOrder = JSON.parse(sessionStorage.getItem('preOrder'));
+    item.uuid = uuid();
     preOrder.preOrderItems.push(item);
     preOrder.itemCount++;
     preOrder.amount = preOrder.amount + item.good.price * item.quant;
@@ -37,8 +38,12 @@ export class OrderService {
     return of(preOrder);
   }
 
-  deleteItemFromOrder(item: PreOrderItem): Observable<PreOrder> {
+  deleteItemFromOrder(id: string): Observable<PreOrder> {
     const preOrder = JSON.parse(sessionStorage.getItem('preOrder'));
+    let filtered = [];
+    filtered = preOrder.preOrderItems.filter(
+       o => o.uuid === id);
+    const item = filtered[0];
     const index = preOrder.preOrderItems.indexOf(item);
     if (index > -1) {
       preOrder.preOrderItems.splice(index, 1);

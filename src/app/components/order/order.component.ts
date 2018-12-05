@@ -21,12 +21,16 @@ export class OrderComponent implements OnInit {
     });
   }
 
-  deleteItemFromBucket(item: PreOrderItem) {
-      this.store.dispatch<ActionWithPayload>({type: 'REMOVE_ITEM', payload: item});
-  }
-
   onOrderClean() {
     this.store.dispatch<ActionWithPayload>({type: 'CLEAN_ORDER', payload: null});
+  }
+
+  onItemDelete(item: PreOrderItem) {
+    this.store.dispatch<ActionWithPayload>({type: 'REMOVE_ITEM', payload: item.uuid});
+  }
+
+  onOrderCreate() {
+
   }
 
 }
