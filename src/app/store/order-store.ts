@@ -72,6 +72,16 @@ export class PreOrderEffects {
             }));
         })
     );
+
+    @Effect()
+    cleanOrder: Observable<ActionWithPayload> = this.actions.pipe(
+        ofType('CLEAN_ORDER'),
+        mergeMap<ActionWithPayload, ActionWithPayload>(action => {
+            return this.orderService.cleanOrder().pipe(map(preOrder => {
+                return { type: 'UPDATE', payload: preOrder };
+            }));
+        })
+    );
 }
 
 

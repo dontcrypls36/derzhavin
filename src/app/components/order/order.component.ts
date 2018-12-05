@@ -25,4 +25,8 @@ export class OrderComponent implements OnInit {
       this.store.dispatch<ActionWithPayload>({type: 'REMOVE_ITEM', payload: item});
   }
 
+  onOrderClean() {
+    this.store.dispatch<ActionWithPayload>({type: 'CLEAN_ORDER', payload: null});
+  }
+
 }

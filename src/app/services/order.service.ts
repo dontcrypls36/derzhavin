@@ -48,4 +48,13 @@ export class OrderService {
     }
     return of(preOrder);
   }
+
+  cleanOrder() {
+    const preOrder = JSON.parse(sessionStorage.getItem('preOrder'));
+    preOrder.preOrderItems = [];
+    preOrder.itemCount = 0;
+    preOrder.amount = 0;
+    sessionStorage.setItem('preOrder', JSON.stringify(preOrder));
+    return of(preOrder);
+  }
 }
