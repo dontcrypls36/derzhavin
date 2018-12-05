@@ -1,6 +1,6 @@
 nav.navbar {
     height: 60px;
-    background-color: #850A0A;
+    background-color: #871616;
 }
 
 #search {
@@ -10,8 +10,8 @@ nav.navbar {
 
 #menu {
     border-radius: 50%;
-    background-color: gray;
-    border-color: gray;
+    background-color: #E1DFDF;
+    border-color: #E1DFDF;
     width: 35px;
     height: 35px;
 }
@@ -28,7 +28,7 @@ header {
 }
 
 .order-link {
-    background-color: gray;
+    background-color: #8E3333; 
     color: white;
     border-radius: 5px;
     font-size: 1.5em;

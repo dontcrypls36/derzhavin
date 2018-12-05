@@ -1,5 +1,7 @@
-.divider {
+.item {
     border-bottom: 1px solid #E1DFDF;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .commit {
@@ -35,3 +37,13 @@
     background-color: #E1DFDF;
     margin-top:60px;
 }
+
+.delete-btn {
+    background-color:#FFFFFF;
+    color: red;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+
