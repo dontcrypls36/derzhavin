@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +24,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { OkNoDialogComponent } from './components/ok-no-dialog/ok-no-dialog/ok-no-dialog.component';
+import { MatDialogModule } from '@angular/material';
 
 const appRoutes: Routes = [
   { path: 'good-list', component: GoodListComponent },
@@ -39,12 +41,14 @@ const appRoutes: Routes = [
     RegistrationComponent,
     GoodListComponent,
     GoodDetailsComponent,
-    OrderComponent
+    OrderComponent,
+    OkNoDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatInputModule,
     MatGridListModule,
@@ -52,6 +56,7 @@ const appRoutes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatDividerModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     ScrollToModule.forRoot(),
     RouterModule.forRoot(
@@ -62,6 +67,7 @@ const appRoutes: Routes = [
     EffectsModule.forRoot([PreOrderEffects])
   ],
   providers: [OrderService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [OkNoDialogComponent]
 })
 export class AppModule { }

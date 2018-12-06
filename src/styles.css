@@ -9,3 +9,11 @@
     color: white; 
     border-radius: 5px;
 }
+
+/* body {
+    font-family: 'PT Sans'
+} */
+
+.text-align-center {
+    text-align: center;
+}
