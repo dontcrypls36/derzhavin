@@ -13,11 +13,11 @@
   </div>
   <div class="row" *ngIf="deliveryType==='Курьером'">
     <div class="col-4 font-weight-7">Дата доставки</div>
-    <div class="col-4"><p-dropdown [options]="availableDates" [(ngModel)]="selectedDate"></p-dropdown></div>
+    <div class="col-4"><p-dropdown [options]="availableDates" [(ngModel)]="selectedDate" placeholder="Выберите дату доставки"></p-dropdown></div>
   </div>
   <div class="row" *ngIf="deliveryType==='Самовывоз'">
     <div class="col-4 font-weight-7">Дата доставки</div>
-    <div class="col-4"><p-dropdown [options]="shippingSchedule.pickUpItems" [(ngModel)]="selectedDate" optionLabel="pickupDate"></p-dropdown></div>
+    <div class="col-4"><p-dropdown [options]="shippingSchedule.pickUpItems" [(ngModel)]="selectedDate" optionLabel="pickupDate" placeholder="Выберите дату доставки"></p-dropdown></div>
   </div>
   <div><span class="font-weight-7">Комментарий</span></div>
   <textarea></textarea>

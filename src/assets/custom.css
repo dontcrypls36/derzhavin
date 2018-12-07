@@ -31,3 +31,20 @@ body {
 .mat-menu-item {
     color: #000000;
 }
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: red;
+}
+
+.mat-radio-outer-circle {
+    border-color: red;
+}
+
+/* .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    background-color: red;
+} */
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: red;
+}
+
