@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { OkNoDialogDataModel } from '../../../models/ok-no-dialog-data-model';
+import { OkNoDialogDataModel } from '../../models/ok-no-dialog-data-model';
 
 @Component({
   selector: 'app-ok-no-dialog',

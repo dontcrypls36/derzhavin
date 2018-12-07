@@ -1,6 +1,33 @@
-/* Custom styles fo here */
+/* Custom styles go here */
 
 .mat-dialog-container {
     background-color: #FFFFFF;
+    color: #000000;
+}
+
+.mat-divider {
+    border-top-color: #E1DFDF;
+}
+
+.font-weight-7 {
+    font-weight: 700;
+}
+
+.common-link {
+    color: red !important;
+    text-decoration: none;
+    font-size: 10pt;
+    cursor: pointer;
+}
+
+body {
+    font-family: 'PT Sans' !important;
+}
+
+.mat-menu-panel {
+    background-color: #FFFFFF;
+}
+
+.mat-menu-item {
     color: #000000;
 }

@@ -8,11 +8,9 @@
     border: 1px solid red;
     color: white; 
     border-radius: 5px;
+    text-transform: uppercase;
+    font-size: 10pt;
 }
-
-/* body {
-    font-family: 'PT Sans'
-} */
 
 .text-align-center {
     text-align: center;

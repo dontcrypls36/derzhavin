@@ -18,13 +18,6 @@
     font-weight: 600;
 }
 
-.clean-link {
-    color: red !important;
-    text-decoration: none;
-    font-size: 10pt;
-    cursor: pointer;
-}
-
 .container-fluid {
     width: 90%;
     position: relative;

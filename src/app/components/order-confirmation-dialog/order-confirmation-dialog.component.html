@@ -1,0 +1,28 @@
+<div class="dialog {{ deliveryType==='Курьером' ? 'higher' : '' }}">
+  <h5>Оформление заказа</h5>
+  <mat-divider></mat-divider>
+  <div><span class="font-weight-7">Способ доставки</span></div>
+  <mat-radio-group class="delivery-radio-group" [(ngModel)]="deliveryType">
+     <mat-radio-button class="delivery-radio-button" *ngFor="let type of deliveryTypes" [value]="type">
+       {{type}}
+     </mat-radio-button>
+  </mat-radio-group>
+  <div class="row" *ngIf="deliveryType==='Курьером'">
+    <div class="col-4"><span class="font-weight-7">Пункт назначения</span></div>
+    <div class="col-4"><p-dropdown [options]="shippingSchedule.outletsItems" [(ngModel)]="selectedOutlet" optionLabel="description" (change)="onOutletChange()"></p-dropdown></div>
+  </div>
+  <div class="row" *ngIf="deliveryType==='Курьером'">
+    <div class="col-4 font-weight-7">Дата доставки</div>
+    <div class="col-4"><p-dropdown [options]="availableDates" [(ngModel)]="selectedDate"></p-dropdown></div>
+  </div>
+  <div class="row" *ngIf="deliveryType==='Самовывоз'">
+    <div class="col-4 font-weight-7">Дата доставки</div>
+    <div class="col-4"><p-dropdown [options]="shippingSchedule.pickUpItems" [(ngModel)]="selectedDate" optionLabel="pickupDate"></p-dropdown></div>
+  </div>
+  <div><span class="font-weight-7">Комментарий</span></div>
+  <textarea></textarea>
+  <div class="row">
+    <div class="col-5"><button class="btn" (click)="onOk()">Оформить заказ</button></div>
+    <div class="col-5 text-align-center"><a class="common-link" (click)="onCancel()">Отмена</a></div>
+  </div>
+</div>

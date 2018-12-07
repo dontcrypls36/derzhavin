@@ -3,9 +3,10 @@ import { PreOrderItem } from '../../models/pre-order-item';
 import { Store } from '@ngrx/store';
 import { PreOrder } from '../../models/pre-order';
 import { ActionWithPayload } from '../../store/order-store';
-import { OkNoDialogComponent } from '../ok-no-dialog/ok-no-dialog/ok-no-dialog.component';
+import { OkNoDialogComponent } from '../ok-no-dialog/ok-no-dialog.component';
 import { MatDialog } from '@angular/material';
 import { OkNoDialogDataModel } from '../../models/ok-no-dialog-data-model';
+import { OrderConfirmationDialogComponent } from '../order-confirmation-dialog/order-confirmation-dialog.component';
 
 @Component({
   selector: 'app-order',
@@ -64,6 +65,17 @@ export class OrderComponent implements OnInit {
   }
 
   onOrderCreate() {
+    const dialogRef = this.dialog.open(OrderConfirmationDialogComponent,
+      {
+        data: null
+      }
+    );
+
+    dialogRef.afterClosed().subscribe(res => {
+      if (!res) {
+        return;
+      }
+    });
 
   }
 

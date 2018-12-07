@@ -3,10 +3,10 @@
     <div class="row table-header mb-2">
       <div class="col-lg-2"></div>
       <div class="col-lg-3">Наименование</div>
-      <div class="col-lg-1">Сумма</div>
+      <div class="col-lg-1">Цена</div>
       <div class="col-lg-2">Грузовых мест</div>
       <div class="col-lg-2">Вес, кг</div>
-      <div class="col-lg-1">Заказ</div>
+      <div class="col-lg-1">Сумма</div>
   </div>
   <div class="row item" *ngFor="let item of preOrder.preOrderItems">
     <div class="col-lg-2"></div>
@@ -21,7 +21,7 @@
     <div class="col-lg-2"><span class="summary">Итого: {{ preOrder.amount | number: '1.2-2' }} р.</span></div>
     <div class="col-lg-2"><button class="btn" (click)="onOrderCreate()">К оформлению</button></div>
     <div class="col-lg-6"></div>
-    <div class="col-lg-2"><a class="clean-link" (click)="onOrderClean()">Очистить корзину</a></div>
+    <div class="col-lg-2"><a class="common-link" (click)="onOrderClean()">Очистить корзину</a></div>
   </div>
   <ng-template #notification>
     <div class="row">

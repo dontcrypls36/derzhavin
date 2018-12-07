@@ -24,8 +24,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { OkNoDialogComponent } from './components/ok-no-dialog/ok-no-dialog/ok-no-dialog.component';
+import { OkNoDialogComponent } from './components/ok-no-dialog/ok-no-dialog.component';
 import { MatDialogModule } from '@angular/material';
+import { OrderConfirmationDialogComponent } from './components/order-confirmation-dialog/order-confirmation-dialog.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { DropdownModule } from 'primeng/dropdown';
 
 const appRoutes: Routes = [
   { path: 'good-list', component: GoodListComponent },
@@ -42,7 +45,8 @@ const appRoutes: Routes = [
     GoodListComponent,
     GoodDetailsComponent,
     OrderComponent,
-    OkNoDialogComponent
+    OkNoDialogComponent,
+    OrderConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +61,8 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatDividerModule,
     MatDialogModule,
+    MatRadioModule,
+    DropdownModule,
     BrowserAnimationsModule,
     ScrollToModule.forRoot(),
     RouterModule.forRoot(
@@ -68,6 +74,6 @@ const appRoutes: Routes = [
   ],
   providers: [OrderService],
   bootstrap: [AppComponent],
-  entryComponents: [OkNoDialogComponent]
+  entryComponents: [OkNoDialogComponent, OrderConfirmationDialogComponent]
 })
 export class AppModule { }

@@ -33,7 +33,8 @@
               "node_modules/material-icons/css/material-icons.css",
               "node_modules/material-icons/css/material-icons.min.css",
               "node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "src/assets/custom.css"
+              "src/assets/custom.css",
+              "src/assets/fonts/pt_sans/ptsans.css"
             ],
             "scripts": []
           },
