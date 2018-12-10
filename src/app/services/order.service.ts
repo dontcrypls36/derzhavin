@@ -82,7 +82,15 @@ export class OrderService extends GlobalService<any> {
   }
 
   confirmOrder(order: Order) {
-
+    const creds = {
+        tel: '+79529516710',
+        VersionApp: '1.2.1',
+        DeviceDescr: 'GenymotionSamsung Galaxy S7 - 8.0 - API 26 - 1440x2560 SDK 26',
+        pass: 'eaded9424b3f5b63',
+        DeviceId: 'android'
+    };
+    const body = {...creds, ...order};
+    return this.getHttp().post('/api/v100/UpdateOrder', body);
   }
 
   getShippingSchedule(): Observable<ShippingSchedule> {

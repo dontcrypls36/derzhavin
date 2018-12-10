@@ -1,3 +1,3 @@
 export class PickupItem {
-    pickupDate: number;
+    pickupDate: string;
 }

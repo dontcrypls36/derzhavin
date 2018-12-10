@@ -29,6 +29,7 @@ import { MatDialogModule } from '@angular/material';
 import { OrderConfirmationDialogComponent } from './components/order-confirmation-dialog/order-confirmation-dialog.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { DropdownModule } from 'primeng/dropdown';
+import { DatePipe } from '@angular/common';
 
 const appRoutes: Routes = [
   { path: 'good-list', component: GoodListComponent },
@@ -72,7 +73,7 @@ const appRoutes: Routes = [
     StoreModule.forRoot({ itemCounter: itemCounterReducer, preOrder: preOrderReducer}),
     EffectsModule.forRoot([PreOrderEffects])
   ],
-  providers: [OrderService],
+  providers: [OrderService, DatePipe],
   bootstrap: [AppComponent],
   entryComponents: [OkNoDialogComponent, OrderConfirmationDialogComponent]
 })
