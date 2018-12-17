@@ -39,3 +39,7 @@ header {
 .order-span {
     font-size: 0.8em;
 }
+
+button {
+    outline: none;
+}

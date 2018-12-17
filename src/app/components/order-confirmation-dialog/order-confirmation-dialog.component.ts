@@ -19,7 +19,7 @@ export class OrderConfirmationDialogComponent implements OnInit {
   shippingSchedule: ShippingSchedule = new ShippingSchedule();
   deliveryTypes: string[] = ['Самовывоз', 'Курьером'];
   deliveryType = 'Самовывоз';
-  selectedDate: PickupItem;
+  selectedDate: PickupItem = null;
   selectedOutlet: OutletsItem;
   courierDates: SelectItem[] = [];
   pickupDates: SelectItem[] = [];
@@ -58,6 +58,7 @@ export class OrderConfirmationDialogComponent implements OnInit {
 
   onOutletChange() {
     let filtered = [];
+    this.selectedDate = null;
     filtered = this.shippingSchedule.shippingScheduleItems.filter(
       item => item.routeUUID === this.selectedOutlet.routeId
     );
@@ -69,5 +70,13 @@ export class OrderConfirmationDialogComponent implements OnInit {
           };
         this.courierDates.push(select);
       });
+    }
+
+    isConfirmDisabled() {
+      return this.selectedDate === null || this.comment === undefined || this.comment.length === 0;
+    }
+
+    onDeliveryTypeChange() {
+      this.selectedDate = null;
     }
 }

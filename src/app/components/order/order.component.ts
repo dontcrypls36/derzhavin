@@ -21,8 +21,8 @@ export class OrderComponent implements OnInit {
 
   preOrder: PreOrder;
 
-  clientUUID = '';
-  clientDescription = '';
+  clientUUID = '82145abf-a324-11e4-bd31-001e671a3b56';
+  clientDescription = 'Test user';
 
   constructor(private store: Store<PreOrder>,
     private dialog: MatDialog,
@@ -87,12 +87,17 @@ export class OrderComponent implements OnInit {
         order.CreateDate = new Date().toISOString();
         order.PickUp = res.outlet === null;
         order.ShipDate = res.date;
+        // order.OutletUUID = res.outlet === null ? this.user.clientUUID : res.outlet.uuid;
+        // order.OutletDescription =  res.outlet === null ? this.user.clientDescription : res.outlet.description;
         order.OutletUUID = res.outlet === null ? this.clientUUID : res.outlet.uuid;
         order.OutletDescription =  res.outlet === null ? this.clientDescription : res.outlet.description;
         order.TotalOrderSumma = this.preOrder.amount;
         order.TotalOrderQuant = this.getPreOrderQuant();
         order.OrderGoodsItems = this.createOrderItems();
-        this.orderService.confirmOrder(order);
+        this.orderService.getAllOrders().subscribe(res2 =>
+          console.log(res2));
+        // this.orderService.confirmOrder(order).subscribe(res1 =>
+        //   console.log(res1));
       }
     });
 

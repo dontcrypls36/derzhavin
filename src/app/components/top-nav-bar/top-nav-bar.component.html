@@ -8,8 +8,9 @@
         <button mat-icon-button [matMenuTriggerFor]="menu" id="menu">
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item *ngFor="let category of categories">
-            <span [ngx-scroll-to]="category.descr" [ngx-scroll-to-duration]="0">{{ category.descr }}</span>
+          <button mat-menu-item *ngFor="let category of categories" routerLink="good-list">
+            <!-- [ngx-scroll-to]="category.descr" [ngx-scroll-to-duration]="0" -->
+            <span (click)="onAnchorClick(category.uuid)">{{ category.descr }}</span>
           </button>
         </mat-menu>
       </div>
@@ -17,7 +18,22 @@
         <input id="search" type="text" placeholder="Поиск">
       </div>
       <div class="col-lg-3"><a routerLink="order" class="order-link"><i class="fa fa-shopping-cart"></i><span class="order-span">{{ '  '+ orderItemCount + ' тов.  ' + (orderAmount | number : '1.2-2') + ' р.'}}</span></a></div>
-      <div class="col-lg-2"><a class="profile-link" routerLink="profile" routerLinkActive="router-link-active" ><i class="fa fa-address-card"></i></a></div>
+      <div class="col-lg-2">
+        <button mat-icon-button [matMenuTriggerFor]="profile" id="profile" class="profile-link" >
+          <i class="fa fa-address-card"></i>
+        </button>
+        <mat-menu #profile="matMenu">
+          <button mat-menu-item routerLink="order-list">
+            Список заказов
+          </button>
+          <button mat-menu-item routerLink="calculations">
+           Акт сверки
+          </button>
+          <button mat-menu-item routerLink="news">
+           Новости
+          </button>
+        </mat-menu>
+        </div>
     </div>
   </nav>
 </header>

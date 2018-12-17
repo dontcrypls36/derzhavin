@@ -30,11 +30,14 @@ import { OrderConfirmationDialogComponent } from './components/order-confirmatio
 import { MatRadioModule } from '@angular/material/radio';
 import { DropdownModule } from 'primeng/dropdown';
 import { DatePipe } from '@angular/common';
+import { OrderListComponent } from './components/order-list/order-list.component';
+import { NewsComponent } from './components/news/news.component';
+import { CalculationsComponent } from './components/calculations/calculations.component';
 
 const appRoutes: Routes = [
   { path: 'good-list', component: GoodListComponent },
   { path: 'order', component: OrderComponent },
-  { path: 'profile', component: LoginComponent }
+  { path: 'order-list', component: OrderListComponent }
 ];
 
 @NgModule({
@@ -47,7 +50,10 @@ const appRoutes: Routes = [
     GoodDetailsComponent,
     OrderComponent,
     OkNoDialogComponent,
-    OrderConfirmationDialogComponent
+    OrderConfirmationDialogComponent,
+    OrderListComponent,
+    NewsComponent,
+    CalculationsComponent
   ],
   imports: [
     BrowserModule,

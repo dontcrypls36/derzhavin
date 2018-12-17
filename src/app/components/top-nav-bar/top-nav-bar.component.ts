@@ -36,9 +36,9 @@ export class TopNavBarComponent implements OnInit {
   }
 
   onAnchorClick(tag: string) {
-    const x = document.querySelector('#' + tag);
+    const x = document.querySelector('#uuid' + tag);
     if (x) {
-        x.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        x.scrollIntoView();
     }
   }
 

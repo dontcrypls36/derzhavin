@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { GoodService } from '../../services/good.service';
 import { PreOrderItem } from '../../models/pre-order-item';
 import { Store } from '@ngrx/store';
@@ -12,7 +12,7 @@ import { CategoryService } from '../../services/category.service';
   templateUrl: './good-list.component.html',
   styleUrls: ['./good-list.component.css']
 })
-export class GoodListComponent implements OnInit {
+export class GoodListComponent implements OnInit, AfterViewInit {
 
 
   public preOrderItems: PreOrderItem[] = [];
@@ -25,6 +25,10 @@ export class GoodListComponent implements OnInit {
 
   ngOnInit() {
     this.getRestOfGoods();
+  }
+
+  ngAfterViewInit(): void {
+    console.log('I am ready');
   }
 
   getRestOfGoods() {

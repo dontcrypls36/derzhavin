@@ -81,7 +81,7 @@ export class OrderService extends GlobalService<any> {
     return of(preOrder);
   }
 
-  confirmOrder(order: Order) {
+  confirmOrder(order: Order): Observable<any> {
     const creds = {
         tel: '+79529516710',
         VersionApp: '1.2.1',
@@ -89,8 +89,14 @@ export class OrderService extends GlobalService<any> {
         pass: 'eaded9424b3f5b63',
         DeviceId: 'android'
     };
+    // const creds = {
+    //     ClientUUID: '82145abf-a324-11e4-bd31-001e671a3b56',
+    //     VersionApp: '1.2.1',
+    //     DeviceId: 'android'
+    // };
     const body = {...creds, ...order};
-    return this.getHttp().post('/api/v100/UpdateOrder', body);
+    return this.getHttp().post<any>('/api/v2/UpdateOrder', body)
+    .pipe(map((item: any) => console.log(item)));
   }
 
   getShippingSchedule(): Observable<ShippingSchedule> {
@@ -103,6 +109,17 @@ export class OrderService extends GlobalService<any> {
     };
     return this.getHttp().post('/api/v2/GetShippingSchedule', body)
     .pipe(map((item: any) => this.parseSchedule(item)));
+  }
+
+  getAllOrders(): Observable<any> {
+    const body = {
+        tel: '+79529516710',
+        VersionApp: '1.2.1',
+        DeviceDescr: 'GenymotionSamsung Galaxy S7 - 8.0 - API 26 - 1440x2560 SDK 26',
+        pass: 'eaded9424b3f5b63',
+        DeviceId: 'android'
+    };
+    return this.getHttp().post('/api/v2/GetOrders', body);
   }
 
   parseSchedule(item: any): ShippingSchedule {
