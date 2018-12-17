@@ -68,7 +68,18 @@ export class OrderComponent implements OnInit {
       if (!res) {
         return;
       }
-      this.store.dispatch<ActionWithPayload>({type: 'REMOVE_ITEM', payload: item.uuid});
+      const index = this.preOrder.preOrderItems.indexOf(item);
+      this.preOrder.preOrderItems.splice(index, 1);
+      this.calculateChars();
+      this.store.dispatch<ActionWithPayload>({type: 'SET_ITEMS', payload: this.preOrder});
+    });
+  }
+
+  calculateChars() {
+    this.preOrder.amount = 0;
+    this.preOrder.itemCount = this.preOrder.preOrderItems.length;
+    this.preOrder.preOrderItems.map( item => {
+        this.preOrder.amount = this.preOrder.amount + item.quantPacking * item.good.price;
     });
   }
 
@@ -87,6 +98,7 @@ export class OrderComponent implements OnInit {
         order.CreateDate = new Date().toISOString();
         order.PickUp = res.outlet === null;
         order.ShipDate = res.date;
+        // по идее когда будет юзер, должно быть что то вроде этого
         // order.OutletUUID = res.outlet === null ? this.user.clientUUID : res.outlet.uuid;
         // order.OutletDescription =  res.outlet === null ? this.user.clientDescription : res.outlet.description;
         order.OutletUUID = res.outlet === null ? this.clientUUID : res.outlet.uuid;
@@ -123,7 +135,6 @@ export class OrderComponent implements OnInit {
     });
     return result;
   }
-
 
 
 }

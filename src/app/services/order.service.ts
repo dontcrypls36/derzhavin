@@ -72,6 +72,12 @@ export class OrderService extends GlobalService<any> {
     return of(preOrder);
   }
 
+  setOrderItems(preOrder: PreOrder): Observable<PreOrder> {
+    sessionStorage.removeItem('preOrder');
+    sessionStorage.setItem('preOrder', JSON.stringify(preOrder));
+    return of(preOrder);
+  }
+
   cleanOrder() {
     const preOrder = JSON.parse(sessionStorage.getItem('preOrder'));
     preOrder.preOrderItems = [];

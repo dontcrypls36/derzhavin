@@ -82,6 +82,16 @@ export class PreOrderEffects {
             }));
         })
     );
+
+    @Effect()
+    setOrderItems: Observable<ActionWithPayload> = this.actions.pipe(
+        ofType('SET_ITEMS'),
+        mergeMap<ActionWithPayload, ActionWithPayload>(action => {
+            return this.orderService.setOrderItems(action.payload).pipe(map(preOrder => {
+                return { type: 'UPDATE', payload: preOrder };
+            }));
+        })
+    );
 }
 
 
