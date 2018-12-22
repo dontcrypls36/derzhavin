@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -33,12 +33,16 @@ import { DatePipe } from '@angular/common';
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { NewsComponent } from './components/news/news.component';
 import { CalculationsComponent } from './components/calculations/calculations.component';
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
 
 const appRoutes: Routes = [
   { path: 'good-list', component: GoodListComponent },
   { path: 'order', component: OrderComponent },
   { path: 'order-list', component: OrderListComponent }
 ];
+
+registerLocaleData(localeRu);
 
 @NgModule({
   declarations: [
@@ -79,7 +83,7 @@ const appRoutes: Routes = [
     StoreModule.forRoot({ itemCounter: itemCounterReducer, preOrder: preOrderReducer}),
     EffectsModule.forRoot([PreOrderEffects])
   ],
-  providers: [OrderService, DatePipe],
+  providers: [OrderService, DatePipe, {provide: LOCALE_ID, useValue: 'ru'}],
   bootstrap: [AppComponent],
   entryComponents: [OkNoDialogComponent, OrderConfirmationDialogComponent]
 })

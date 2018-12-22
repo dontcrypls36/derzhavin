@@ -1,3 +1,11 @@
 <div class="container mt-60">
   <h4>Заказы</h4>
+  <div *ngFor="let order of orders">
+    <div class="row">
+      <div class="col-lg-3">{{ order.Number }}</div>
+      <div class="col-lg-3">{{ order.Status }}</div>
+      <div class="col-lg-3">{{ order.ShipDate | date: 'dd MMMM' }}</div>
+      <div class="col-lg-3">Сумма: {{ order.TotalFactSumma }}</div>
+    </div>
+  </div>
 </div>

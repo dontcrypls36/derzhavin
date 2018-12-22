@@ -11,6 +11,7 @@ import { ShippingSchedule } from '../models/shipping-schedule';
 import { OutletsItem } from '../models/outlets-item';
 import { ShippingScheduleItem } from '../models/shipping-schedule-item';
 import { PickupItem } from '../models/pickup-item';
+import { OrderResponse } from '../models/order-response';
 
 @Injectable()
 export class OrderService extends GlobalService<any> {
@@ -125,8 +126,10 @@ export class OrderService extends GlobalService<any> {
         pass: 'eaded9424b3f5b63',
         DeviceId: 'android'
     };
-    return this.getHttp().post('/api/v2/GetOrders', body);
+    return this.getHttp().post('/api/v2/GetOrders', body)
+    .pipe(map((item: any) => item));
   }
+
 
   parseSchedule(item: any): ShippingSchedule {
     const schedule = new ShippingSchedule();
