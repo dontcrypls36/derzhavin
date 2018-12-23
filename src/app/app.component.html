@@ -1,2 +1,10 @@
 <app-top-nav-bar></app-top-nav-bar>
-<router-outlet></router-outlet>
+
+<section class="forms">
+      <div class="spinner-wrapper" style="display: flex; justify-content: center; align-items: center;" [hidden]="spinnerService.hidden">
+        <div>
+          <i class="fa fa-circle-o-notch fa-spin" style="font-size:96px; color: red;"></i>
+        </div>
+      </div>
+        <router-outlet></router-outlet>
+  </section>

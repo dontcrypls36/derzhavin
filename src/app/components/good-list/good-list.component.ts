@@ -6,13 +6,14 @@ import { PreOrder } from '../../models/pre-order';
 import { ActionWithPayload } from '../../store/order-store';
 import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
+import { SpinnerServiceService } from '../../services/spinner-service.service';
 
 @Component({
   selector: 'app-good-list',
   templateUrl: './good-list.component.html',
   styleUrls: ['./good-list.component.css']
 })
-export class GoodListComponent implements OnInit, AfterViewInit {
+export class GoodListComponent implements OnInit {
 
 
   public preOrderItems: PreOrderItem[] = [];
@@ -21,14 +22,30 @@ export class GoodListComponent implements OnInit, AfterViewInit {
 
   constructor(private goodService: GoodService,
     private store: Store<PreOrder>,
-    private categoryService: CategoryService) { }
+    private categoryService: CategoryService,
+    private spinner: SpinnerServiceService) { }
 
   ngOnInit() {
-    this.getRestOfGoods();
+    this.load();
   }
 
-  ngAfterViewInit(): void {
-    console.log('I am ready');
+  async load() {
+    this.spinner.show();
+    let goods, categories;
+    try {
+      await Promise.all([
+        ( async () => goods =  await this.goodService.getRestOfGoods().toPromise())(),
+        ( async () => categories = await this.categoryService.getCategories().toPromise())()
+      ]);
+      for (const good of goods) {
+          const preOrderItem = new PreOrderItem();
+          preOrderItem.good = good;
+          this.preOrderItems.push(preOrderItem);
+      }
+      this.categories = categories;
+    } finally {
+      this.spinner.hide();
+    }
   }
 
   getRestOfGoods() {
