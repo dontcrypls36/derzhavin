@@ -35,6 +35,7 @@ import { NewsComponent } from './components/news/news.component';
 import { CalculationsComponent } from './components/calculations/calculations.component';
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
+import { QuantityChangerComponent } from './components/quantity-changer/quantity-changer.component';
 
 const appRoutes: Routes = [
   { path: 'good-list', component: GoodListComponent },
@@ -57,7 +58,8 @@ registerLocaleData(localeRu);
     OrderConfirmationDialogComponent,
     OrderListComponent,
     NewsComponent,
-    CalculationsComponent
+    CalculationsComponent,
+    QuantityChangerComponent
   ],
   imports: [
     BrowserModule,

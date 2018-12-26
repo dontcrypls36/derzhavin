@@ -1,0 +1,28 @@
+.count-btn {
+    background-color: white;
+    width: 35px;
+    height: 35px;
+    border: 1px solid red;
+    color: red; 
+    border-radius: 5px;
+    text-align: center;
+    font-size: 2rem; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+}
+
+.sign {
+    position:relative;
+    top: -11px;
+    height:100%;
+}
+
+.quant {
+    width: 50px;
+    height: 35px;
+    font-weight:600;
+    text-align:right;
+}
+
+.text-align-center {
+    text-align: center;
+}

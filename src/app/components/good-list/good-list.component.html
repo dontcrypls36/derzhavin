@@ -16,22 +16,10 @@
         <div class="col-lg-3">{{ item.good.description }}</div>
         <div class="col-lg-1">{{ item.good.price }}</div>
         <div class="col-lg-2">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-3 text-align-center"><button (click)="changeQuantPacking(item, -1)" class="count-btn"><span class="sign">-</span></button></div>
-              <div class="col-lg-4 text-align-center"><input type="text" class="quant" [value]="item.quantPacking" (change)="onQuantPackingInputChange($event, item)"/></div>
-              <div class="col-lg-3 text-align-center"><button class="count-btn" (click)="changeQuantPacking(item, 1)"><span class="sign">+</span></button></div>
-            </div>
-          </div>
+          <app-quantity-changer (decreaseValue)="changeQuantPacking(item, -1)" (increaseValue)="changeQuantPacking(item, 1)" [value]="item.quantPacking" (changeInputValue)="onQuantPackingInputChange($event, item)"></app-quantity-changer>
         </div>
         <div class="col-lg-2">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-3 text-align-center"><button class="count-btn" (click)="changeQuant(item, -1)"><span class="sign">-</span></button></div>
-              <div class="col-lg-4 text-align-center"><input type="text" class="quant" [ngModel]="item.quant" (ngModelChange)="onQuantInputChange($event, item)"/></div>
-              <div class="col-lg-3 text-align-center"><button class="count-btn" (click)="changeQuant(item, 1)"><span class="sign">+</span></button></div>
-            </div>
-          </div>
+          <app-quantity-changer (decreaseValue)="changeQuant(item, -1)" (increaseValue)="changeQuant(item, 1)" [value]="item.quant" (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer>
         </div>
         <div class="col-lg-1"><button class="btn" (click)="addItemToBucket(item)">В корзину</button></div>
     </div>

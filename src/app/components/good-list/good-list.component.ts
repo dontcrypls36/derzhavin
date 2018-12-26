@@ -97,12 +97,12 @@ export class GoodListComponent implements OnInit {
   }
 
   public onQuantInputChange(event: any, item: PreOrderItem) {
-    item.quantPacking = Math.round(event.target.value / item.good.weight);
+    item.quantPacking = Math.round(event.newValue / item.good.weight);
     item.quant = item.quantPacking * item.good.weight;
   }
 
   public onQuantPackingInputChange(event: any, item: PreOrderItem) {
-    item.quant = event.target.value * item.good.weight;
+    item.quant = event.newValue * item.good.weight;
   }
 
 }
