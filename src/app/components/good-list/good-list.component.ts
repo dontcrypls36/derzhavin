@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GoodService } from '../../services/good.service';
 import { PreOrderItem } from '../../models/pre-order-item';
 import { Store } from '@ngrx/store';
@@ -7,6 +7,8 @@ import { ActionWithPayload } from '../../store/order-store';
 import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
 import { SpinnerServiceService } from '../../services/spinner-service.service';
+import { GoodDetailsComponent } from '../good-details/good-details.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-good-list',
@@ -23,6 +25,7 @@ export class GoodListComponent implements OnInit {
   constructor(private goodService: GoodService,
     private store: Store<PreOrder>,
     private categoryService: CategoryService,
+    private dialog: MatDialog,
     private spinner: SpinnerServiceService) { }
 
   ngOnInit() {
@@ -65,8 +68,19 @@ export class GoodListComponent implements OnInit {
     });
   }
 
-  showItemDialog() {
+  showItemDialog(item: PreOrderItem) {
+    this.dialog.open(GoodDetailsComponent,
+      {
+        data: item
+      }
+    );
 
+    // dialogRef.afterClosed().subscribe(res => {
+    //   if (!res) {
+    //     return;
+    //   }
+    //   this.store.dispatch<ActionWithPayload>({type: 'CLEAN_ORDER', payload: null});
+    // });
   }
 
   filterGoodsByGroup(groupId: string): PreOrderItem[] {

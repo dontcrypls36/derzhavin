@@ -24,5 +24,6 @@ export class Good {
     promotionName: string;
     promotionColor: string;
     hasCert: boolean;
+    greaterOrEqualRest: number;
 
 }

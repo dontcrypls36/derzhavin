@@ -61,6 +61,7 @@ export class GoodService extends GlobalService<Good> {
     good.promotionName = item.GoodPromotionName;
     good.promotionColor = item.GoodPromotionColor;
     good.hasCert = item.GoodHasCert;
+    good.greaterOrEqualRest = item.greateOrEqualRest;
 
     return good;
   }
@@ -68,6 +69,7 @@ export class GoodService extends GlobalService<Good> {
   parseCollection(items: any): Good[] {
     const goods = [];
     for (const item of items.RestOfGoodsItems) {
+      item.greaterOrEqualRest = items.greateOrEqualRest;
       goods.push(this.parseOne(item));
     }
     return goods;

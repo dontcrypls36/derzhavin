@@ -1,3 +1,41 @@
-<p>
-  good-details works!
-</p>
+<div class="row">
+  <div class="col-lg-4">
+  <img *ngIf="item.good.pictCount > 0" src= "{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.good.uuid + '/' + item.good.uuid + '_' + '1_t.jpg' }}">
+  </div>
+  <div class="col-lg-8">
+    <div class="row">
+      {{ item.good.description }}
+    </div>
+    <div class="row">
+      История
+    </div>
+    <div class="row">
+      <div class="col-lg-2">
+        {{ item.good.price + 'р.'}}
+      </div>
+      <div *ngIf="item.good.lastPrice !== 0 && item.good.lastPrice !== undefined" class="col-lg-2" [ngClass]="getDeltaClass()">
+        {{ (getPriceDelta() | number : '1.2-2') + ' р.'}} 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+          Грузовых мест
+      </div>
+      <div class="col-lg-4">
+          Вес, кг
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+          <app-quantity-changer (decreaseValue)="changeQuantPacking(item, -1)" (increaseValue)="changeQuantPacking(item, 1)" [value]="item.quantPacking" (changeInputValue)="onQuantPackingInputChange($event, item)"></app-quantity-changer>
+      </div>
+      <div class="col-lg-4">
+          <app-quantity-changer (decreaseValue)="changeQuant(item, -1)" (increaseValue)="changeQuant(item, 1)" [value]="item.quant" (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer>
+      </div>
+      <div class="col-lg-2"><button class="btn" (click)="addItemToBucket(item)">В корзину</button></div>
+    </div>
+  </div>
+</div>
+<div class="row">{{ getRest() }}</div>
+
+

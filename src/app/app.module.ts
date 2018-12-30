@@ -87,6 +87,6 @@ registerLocaleData(localeRu);
   ],
   providers: [OrderService, DatePipe, {provide: LOCALE_ID, useValue: 'ru'}],
   bootstrap: [AppComponent],
-  entryComponents: [OkNoDialogComponent, OrderConfirmationDialogComponent]
+  entryComponents: [OkNoDialogComponent, OrderConfirmationDialogComponent, GoodDetailsComponent]
 })
 export class AppModule { }
