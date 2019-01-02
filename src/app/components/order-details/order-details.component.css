@@ -1,0 +1,14 @@
+.mh-205 {
+    min-height: 205px;
+}
+.divider {
+    border-bottom: 1px solid gray;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.scrolled {
+    max-height: 750px;
+    overflow-y: scroll;
+}
+

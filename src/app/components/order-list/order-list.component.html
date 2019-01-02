@@ -1,11 +1,19 @@
 <div class="container mt-60">
   <h4>Заказы</h4>
-  <div *ngFor="let order of orders">
+  <div *ngFor="let order of orders" class="mt-3" (click)="showOrderDetails(order)">
     <div class="row">
-      <div class="col-lg-3">{{ order.Number }}</div>
-      <div class="col-lg-3">{{ order.Status }}</div>
-      <div class="col-lg-3">{{ order.ShipDate | date: 'dd MMMM' }}</div>
-      <div class="col-lg-3">Сумма: {{ order.TotalFactSumma }}</div>
+      <div class="col-12 text-align-center bold">Заказ № {{ order.Number }}</div>
     </div>
+    <div class="row">
+      <div class="col-lg-4">Грузополучатель: {{ order.OutletDescription }}</div>
+      <div class="col-lg-4">Дата доставки: {{ order.ShipDate | date: 'dd MMMM' }}</div>
+      <div class="col-lg-4">Статус заказа: {{ order.Status }}</div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">Вес: {{ order.TotalFactQuant }}</div>
+      <div class="col-lg-4">Сумма: {{ order.TotalFactSumma }}</div>
+      <div class="col-lg-4">Комментарий: {{ order.Comment }}</div>
+    </div>
+    <mat-divider class="mb-3"></mat-divider>
   </div>
 </div>
