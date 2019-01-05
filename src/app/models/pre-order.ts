@@ -11,5 +11,11 @@ export class PreOrder {
             this.amount = item.quantPacking * item.good.price;
         });
     }
+
+    public calculateAmount() {
+      this.preOrderItems.map( item => {
+        this.amount = item.quantPacking * item.good.price;
+      });
+    }
 }
 

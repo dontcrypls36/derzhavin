@@ -136,5 +136,43 @@ export class OrderComponent implements OnInit {
     return result;
   }
 
+  changeQuantPacking(item: PreOrderItem, delta: number) {
+    if (item.quantPacking + delta < 0) {
+      return false;
+    }
+    item.quantPacking = item.quantPacking + delta;
+    item.quant = item.quantPacking * item.good.weight;
+    this.calculateAmount();
+    this.updateOrderItems();
+  }
+
+  changeQuant(item: PreOrderItem, sign: number) {
+    if (item.quant + item.good.weight * sign < 0) {
+      return false;
+    }
+    item.quant = item.quant + item.good.weight * sign;
+    item.quantPacking = item.quant / item.good.weight;
+    this.calculateAmount();
+    this.updateOrderItems();
+  }
+
+  public onQuantInputChange(event: any, item: PreOrderItem) {
+    item.quantPacking = Math.round(event.newValue / item.good.weight);
+    item.quant = item.quantPacking * item.good.weight;
+    this.calculateAmount();
+    this.updateOrderItems();
+  }
+
+  calculateAmount() {
+    this.preOrder.amount = 0;
+    this.preOrder.preOrderItems.map( item => {
+      this.preOrder.amount = this.preOrder.amount + item.quantPacking * item.good.price;
+    });
+  }
+
+  updateOrderItems() {
+    this.store.dispatch<ActionWithPayload>({type: 'SET_ITEMS', payload: this.preOrder});
+  }
+
 
 }

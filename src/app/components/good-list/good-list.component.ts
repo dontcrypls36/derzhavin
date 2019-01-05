@@ -69,11 +69,11 @@ export class GoodListComponent implements OnInit {
   }
 
   showItemDialog(item: PreOrderItem) {
-    this.dialog.open(GoodDetailsComponent,
-      {
-        data: item
-      }
-    );
+    // this.dialog.open(GoodDetailsComponent,
+    //   {
+    //     data: item
+    //   }
+    // );
 
     // dialogRef.afterClosed().subscribe(res => {
     //   if (!res) {

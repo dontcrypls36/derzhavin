@@ -12,8 +12,8 @@
     <div class="col-lg-2"></div>
     <div class="col-lg-3">{{ item.good.description }}</div>
     <div class="col-lg-1">{{ item.good.price }}</div>
-    <div class="col-lg-2">{{ item.quantPacking }}</div>
-    <div class="col-lg-2">{{ item.quant }}</div>
+    <div class="col-lg-2"><app-quantity-changer (decreaseValue)="changeQuantPacking(item, -1)" (increaseValue)="changeQuantPacking(item, 1)" [value]="item.quantPacking" (changeInputValue)="onQuantPackingInputChange($event, item)"></app-quantity-changer></div>
+    <div class="col-lg-2"><app-quantity-changer (decreaseValue)="changeQuant(item, -1)" (increaseValue)="changeQuant(item, 1)" [value]="item.quant" (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer></div>
     <div class="col-lg-1">{{ (item.good.price * item.quant) | number : '1.2-2' }}</div>
     <div class="col-lg-1"><button (click)="onItemDelete(item)" class="delete-btn"><i class="fa fa-times"></i></button></div>
   </div>
