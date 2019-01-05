@@ -10,6 +10,7 @@
         <mat-menu #menu="matMenu">
           <button mat-menu-item *ngFor="let category of categories" routerLink="good-list">
             <!-- [ngx-scroll-to]="category.descr" [ngx-scroll-to-duration]="0" -->
+            <img src="{{ 'http://mobile.optvrn.ru:5050/images/category/' + category.uuid +  '.jpg' }}">
             <span (click)="onAnchorClick(category.uuid)">{{ category.descr }}</span>
           </button>
         </mat-menu>

@@ -43,3 +43,7 @@ header {
 button {
     outline: none;
 }
+
+img {
+  margin-right: 5px;
+}

@@ -3,6 +3,7 @@ import { PreOrder } from '../../models/pre-order';
 import { Store } from '@ngrx/store';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-top-nav-bar',
@@ -17,7 +18,8 @@ export class TopNavBarComponent implements OnInit {
   categories: Category[] = [];
 
   constructor(private store: Store<PreOrder>,
-    private categoryService: CategoryService) {
+    private categoryService: CategoryService,
+              private router: Router) {
     this.store.dispatch({type: 'INIT_PRE_ORDER'});
    }
 
@@ -36,10 +38,15 @@ export class TopNavBarComponent implements OnInit {
   }
 
   onAnchorClick(tag: string) {
+  if (this.router.url.includes('good-list')) {
     const x = document.querySelector('#uuid' + tag);
     if (x) {
-        x.scrollIntoView();
+      x.scrollIntoView();
     }
+  } else {
+    this.router.navigate(['/good-list']);
+  }
+
   }
 
   calculateOrderAmount(): number {
