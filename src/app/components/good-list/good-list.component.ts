@@ -69,9 +69,6 @@ export class GoodListComponent implements OnInit {
   }
 
   showItemDialog(event: any, item: PreOrderItem) {
-    if (event.target.localName !== 'div') {
-      return false;
-    }
     this.dialog.open(GoodDetailsComponent,
       {
         data: item
