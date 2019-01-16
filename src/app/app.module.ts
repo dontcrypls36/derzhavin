@@ -39,7 +39,8 @@ import { QuantityChangerComponent } from './components/quantity-changer/quantity
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 const appRoutes: Routes = [
-  { path: 'good-list', component: GoodListComponent },
+  { path: '', redirectTo: 'good-list', pathMatch: 'full'},
+  { path: 'goods/:id', component: GoodListComponent },
   { path: 'order', component: OrderComponent },
   { path: 'order-list', component: OrderListComponent }
 ];

@@ -38,14 +38,14 @@ export class TopNavBarComponent implements OnInit {
   }
 
   onAnchorClick(tag: string) {
-  if (this.router.url.includes('good-list')) {
-    const x = document.querySelector('#uuid' + tag);
-    if (x) {
-      x.scrollIntoView();
-    }
-  } else {
-    this.router.navigate(['/good-list']);
-  }
+  // if (this.router.url.includes('good-list')) {
+  //   const x = document.querySelector('#uuid' + tag);
+  //   if (x) {
+  //     x.scrollIntoView();
+  //   }
+  // } else {
+    this.router.navigate(['/goods', tag]);
+  // }
 
   }
 

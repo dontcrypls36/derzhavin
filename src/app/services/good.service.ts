@@ -71,7 +71,7 @@ export class GoodService extends GlobalService<Good> {
     for (const item of items.RestOfGoodsItems) {
       item.greaterOrEqualRest = items.GreaterOrEqualRest;
       goods.push(this.parseOne(item));
-    }
+    }  
     return goods;
   }
 }

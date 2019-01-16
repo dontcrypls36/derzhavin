@@ -9,6 +9,7 @@ import { CategoryService } from '../../services/category.service';
 import { SpinnerServiceService } from '../../services/spinner-service.service';
 import { GoodDetailsComponent } from '../good-details/good-details.component';
 import { MatDialog } from '@angular/material';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-good-list',
@@ -19,6 +20,8 @@ export class GoodListComponent implements OnInit {
 
 
   public preOrderItems: PreOrderItem[] = [];
+  private filter: string;
+  private category: Category = new Category();
 
   categories: Category[] = [];
 
@@ -26,7 +29,15 @@ export class GoodListComponent implements OnInit {
     private store: Store<PreOrder>,
     private categoryService: CategoryService,
     private dialog: MatDialog,
-    private spinner: SpinnerServiceService) { }
+    private spinner: SpinnerServiceService,
+    private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      this.filter = params.id;
+      if (this.categories.length !== 0) {
+        this.category = this.categories.filter(item => item.uuid === this.filter)[0];
+      }
+    });
+  }
 
   ngOnInit() {
     this.load();
@@ -46,6 +57,7 @@ export class GoodListComponent implements OnInit {
           this.preOrderItems.push(preOrderItem);
       }
       this.categories = categories;
+      this.category = this.categories.filter(item => item.uuid === this.filter)[0];
     } finally {
       this.spinner.hide();
     }
