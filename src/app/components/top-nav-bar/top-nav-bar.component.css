@@ -8,14 +8,6 @@ nav.navbar {
   border-radius: 5px;  
 }
 
-#menu {
-    border-radius: 50%;
-    background-color: #E1DFDF;
-    border-color: #E1DFDF;
-    width: 35px;
-    height: 35px;
-}
-
 header {
     position:relative;
     z-index:999;
@@ -46,4 +38,22 @@ button {
 
 img {
   margin-right: 5px;
+}
+
+.header-button {
+  color: #fff;
+  width: 100% !important;
+  height: 60px;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 15px;
+}
+
+.header-button:hover {
+  background-color: #8e9da5;
+  color: #fff;
+}
+
+#menu:hover {
+  background-color: #8e9da5;
 }

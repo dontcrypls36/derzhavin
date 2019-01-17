@@ -1,40 +1,42 @@
 <header class="header">
   <nav class="navbar fixed-top">
     <div class="container-fluid">
-      <div class="col-lg-1">
-        <a routerLink="good-list">Остатки товаров</a>
-      </div>
-      <div class="col-lg-1">
-        <button mat-icon-button [matMenuTriggerFor]="menu" id="menu">
-        </button>
+      <div class="col-1 header-button" [matMenuTriggerFor]="menu" id="menu">
+          Каталог
         <mat-menu #menu="matMenu">
           <button mat-menu-item *ngFor="let category of categories" (click)="onAnchorClick(category.uuid)">
-            <!-- [ngx-scroll-to]="category.descr" [ngx-scroll-to-duration]="0" -->
             <img src="{{ 'http://mobile.optvrn.ru:5050/images/category/' + category.uuid +  '.jpg' }}">
             <span>{{ category.descr }}</span>
+            <span>Развернуть</span>
           </button>
         </mat-menu>
       </div>
-      <div class="col-lg-4">
+      <div class="col-1 header-button" routerLink="order-list">
+        Заказы
+      </div>
+      <div class="col-2 header-button" routerLink="calculations">
+        Взаиморасчеты
+      </div>
+      <div class="col-4">
         <input id="search" type="text" placeholder="Поиск">
       </div>
-      <div class="col-lg-3"><a routerLink="order" class="order-link"><i class="fa fa-shopping-cart"></i><span class="order-span">{{ '  '+ orderItemCount + ' тов.  ' + (orderAmount | number : '1.2-2') + ' р.'}}</span></a></div>
-      <div class="col-lg-2">
-        <button mat-icon-button [matMenuTriggerFor]="profile" id="profile" class="profile-link" >
-          <i class="fa fa-address-card"></i>
-        </button>
-        <mat-menu #profile="matMenu">
-          <button mat-menu-item routerLink="order-list">
-            Список заказов
-          </button>
-          <button mat-menu-item routerLink="calculations">
-           Акт сверки
-          </button>
-          <button mat-menu-item routerLink="news">
-           Новости
-          </button>
-        </mat-menu>
-        </div>
+      <div class="col-lg-3"><a routerLink="order" class="order-link"><i class="fa fa-shopping-cart"></i><span class="order-span">{{ orderItemCount < 1 ? ' Корзина' : '  '+ orderItemCount + ' тов.  ' + (orderAmount | number : '1.2-2') + ' р.'}}</span></a></div>
+      <!--<div class="col-lg-2">-->
+        <!--<button mat-icon-button [matMenuTriggerFor]="profile" id="profile" class="profile-link" >-->
+          <!--<i class="fa fa-address-card"></i>-->
+        <!--</button>-->
+        <!--<mat-menu #profile="matMenu">-->
+          <!--<button mat-menu-item routerLink="order-list">-->
+            <!--Список заказов-->
+          <!--</button>-->
+          <!--<button mat-menu-item routerLink="calculations">-->
+           <!--Акт сверки-->
+          <!--</button>-->
+          <!--<button mat-menu-item routerLink="news">-->
+           <!--Новости-->
+          <!--</button>-->
+        <!--</mat-menu>-->
+        <!--</div>-->
     </div>
   </nav>
 </header>

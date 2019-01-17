@@ -27,3 +27,13 @@
     font-weight:600;
     text-align:right;
 }
+
+.goods-table {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+img {
+  max-width: 60px;
+  max-height: 60px;
+}
