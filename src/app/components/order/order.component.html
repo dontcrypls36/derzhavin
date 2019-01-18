@@ -1,22 +1,47 @@
-<div class="pseudo-header"></div>
-<div class="container-fluid">
-    <div class="row table-header mb-2">
-      <div class="col-lg-2"></div>
-      <div class="col-lg-3">Наименование</div>
-      <div class="col-lg-1">Цена</div>
-      <div class="col-lg-2">Грузовых мест</div>
-      <div class="col-lg-2">Вес, кг</div>
-      <div class="col-lg-1">Сумма</div>
-  </div>
-  <div class="row item" *ngFor="let item of preOrder.preOrderItems">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-3">{{ item.good.description }}</div>
-    <div class="col-lg-1">{{ item.good.price }}</div>
-    <div class="col-lg-2"><app-quantity-changer (decreaseValue)="changeQuantPacking(item, -1)" (increaseValue)="changeQuantPacking(item, 1)" [value]="item.quantPacking" (changeInputValue)="onQuantPackingInputChange($event, item)"></app-quantity-changer></div>
-    <div class="col-lg-2"><app-quantity-changer (decreaseValue)="changeQuant(item, -1)" (increaseValue)="changeQuant(item, 1)" [value]="item.quant" (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer></div>
-    <div class="col-lg-1">{{ (item.good.price * item.quant) | number : '1.2-2' }}</div>
-    <div class="col-lg-1"><button (click)="onItemDelete(item)" class="delete-btn"><i class="fa fa-times"></i></button></div>
-  </div>
+<!--<div class="pseudo-header"></div>-->
+<!--<div class="container-fluid">-->
+    <!--<div class="row table-header mb-2">-->
+      <!--<div class="col-lg-2"></div>-->
+      <!--<div class="col-lg-3">Наименование</div>-->
+      <!--<div class="col-lg-1">Цена</div>-->
+      <!--<div class="col-lg-2">Грузовых мест</div>-->
+      <!--<div class="col-lg-2">Вес, кг</div>-->
+      <!--<div class="col-lg-1">Сумма</div>-->
+  <!--</div>-->
+  <!--<div class="row item" *ngFor="let item of preOrder.preOrderItems">-->
+    <!--<div class="col-lg-2"></div>-->
+    <!--<div class="col-lg-3">{{ item.good.description }}</div>-->
+    <!--<div class="col-lg-1">{{ item.good.price }}</div>-->
+    <!--<div class="col-lg-2"><app-quantity-changer (decreaseValue)="changeQuantPacking(item, -1)" (increaseValue)="changeQuantPacking(item, 1)" [value]="item.quantPacking" (changeInputValue)="onQuantPackingInputChange($event, item)"></app-quantity-changer></div>-->
+    <!--<div class="col-lg-2"><app-quantity-changer (decreaseValue)="changeQuant(item, -1)" (increaseValue)="changeQuant(item, 1)" [value]="item.quant" (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer></div>-->
+    <!--<div class="col-lg-1">{{ (item.good.price * item.quant) | number : '1.2-2' }}</div>-->
+    <!--<div class="col-lg-1"><button (click)="onItemDelete(item)" class="delete-btn"><i class="fa fa-times"></i></button></div>-->
+  <!--</div>-->
+  <!---->
+ <!--</div>-->
+<div class="mt-60 content-table">
+  <table class="text-align-center">
+    <thead class="table-header">
+      <th width="10%"></th>
+      <th width="50%">Наименование</th>
+      <th width="2.5%">Цена</th>
+      <th width="15%">Грузовых мест</th>
+      <th width="15%">Вес, кг</th>
+      <th width="5%">Сумма</th>
+      <th width="2.5%"></th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of preOrder.preOrderItems" class="table-row">
+      <td><img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.good.uuid + '/' + item.good.uuid + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'"></td>
+      <td class="description">{{ item.good.description }}</td>
+      <td>{{ item.good.price }}</td>
+      <td><app-quantity-changer (decreaseValue)="changeQuantPacking(item, -1)" (increaseValue)="changeQuantPacking(item, 1)" [value]="item.quantPacking" (changeInputValue)="onQuantPackingInputChange($event, item)"></app-quantity-changer></td>
+      <td><app-quantity-changer (decreaseValue)="changeQuant(item, -1)" (increaseValue)="changeQuant(item, 1)" [value]="item.quant" (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer></td>
+      <td>{{ (item.good.price * item.quant) | number : '1.2-2' }}</td>
+      <td><button (click)="onItemDelete(item)" class="delete-btn"><i class="fa fa-times"></i></button></td>
+    </tr>
+    </tbody>
+  </table>
   <div class="row mt-30" *ngIf="preOrder.itemCount > 0; else notification">
     <div class="col-lg-2"><span class="summary">Итого: {{ preOrder.amount | number: '1.2-2' }} р.</span></div>
     <div class="col-lg-2"><button class="btn" (click)="onOrderCreate()">К оформлению</button></div>
@@ -28,4 +53,4 @@
       <div class="col-lg-12">Ваша корзина пуста</div>
     </div>
   </ng-template>
- </div>
+</div>
