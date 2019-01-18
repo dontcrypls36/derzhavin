@@ -47,11 +47,17 @@ img {
   text-align: center;
   vertical-align: middle;
   padding-top: 15px;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .header-button:hover {
   background-color: #8e9da5;
   color: #fff;
+}
+
+.active {
+  background-color: #1cca6f;
 }
 
 #menu:hover {

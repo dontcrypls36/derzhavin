@@ -1,20 +1,19 @@
 <header class="header">
   <nav class="navbar fixed-top">
     <div class="container-fluid">
-      <div class="col-1 header-button" [matMenuTriggerFor]="menu" id="menu">
+      <div class="col-1 header-button" [ngClass]="router.url.includes('goods') ? 'active' : ''" [matMenuTriggerFor]="menu" id="menu">
           Каталог
         <mat-menu #menu="matMenu">
           <button mat-menu-item *ngFor="let category of categories" (click)="onAnchorClick(category.uuid)">
             <img src="{{ 'http://mobile.optvrn.ru:5050/images/category/' + category.uuid +  '.jpg' }}">
             <span>{{ category.descr }}</span>
-            <span>Развернуть</span>
           </button>
         </mat-menu>
       </div>
-      <div class="col-1 header-button" routerLink="order-list">
+      <div class="col-1 header-button" routerLink="order-list" [ngClass]="router.url.includes('order-list') ? 'active' : ''">
         Заказы
       </div>
-      <div class="col-2 header-button" routerLink="calculations">
+      <div class="col-2 header-button" routerLink="calculations" [ngClass]="router.url.includes('calculations') ? 'active' : ''">
         Взаиморасчеты
       </div>
       <div class="col-4">

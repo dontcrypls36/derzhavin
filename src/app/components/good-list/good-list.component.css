@@ -36,4 +36,30 @@
 img {
   max-width: 60px;
   max-height: 60px;
+  min-width: 60px;
+  min-height: 60px;
+}
+
+.table-header {
+  border-bottom: 2px solid lightgrey;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+}
+
+.table-row {
+  border-bottom: 1px solid lightgrey;
+}
+
+.table-row:hover {
+  background-color: #ddfbca;
+}
+
+.description {
+  font-size: 14px;
+}
+
+.reset-margins {
+  margin: 0 !important;
 }
