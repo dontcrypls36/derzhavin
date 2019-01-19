@@ -42,7 +42,7 @@ const appRoutes: Routes = [
   { path: '', redirectTo: 'good-list', pathMatch: 'full'},
   { path: 'goods/:id', component: GoodListComponent },
   { path: 'order', component: OrderComponent },
-  { path: 'order-list', component: OrderListComponent }
+  { path: 'orders', component: OrderListComponent }
 ];
 
 registerLocaleData(localeRu);

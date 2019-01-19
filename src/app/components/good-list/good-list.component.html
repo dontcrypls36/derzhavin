@@ -1,5 +1,4 @@
 <div class="mt-60 content-table">
-  <!--<div *ngFor="let category of categories; let i = index;">-->
     <h1><a id="{{ 'uuid' + category.uuid }}">{{ category.descr }}</a></h1>
     <div *ngFor="let group of category.groups">
       <h4 class="mt-5">{{ group.descr }}</h4>
@@ -15,7 +14,7 @@
         <tbody>
           <tr *ngFor="let item of filterGoodsByGroup(group.uuid)" class="table-row">
             <td><img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.good.uuid + '/' + item.good.uuid + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'"></td>
-            <td class="description">{{ item.good.description }}</td>
+            <td class="description" (click)="showItemDialog($event, item)">{{ item.good.description }}</td>
             <td>{{ item.good.price }}</td>
             <td><app-quantity-changer (decreaseValue)="changeQuantPacking(item, -1)" (increaseValue)="changeQuantPacking(item, 1)" [value]="item.quantPacking" (changeInputValue)="onQuantPackingInputChange($event, item)"></app-quantity-changer></td>
             <td><app-quantity-changer (decreaseValue)="changeQuant(item, -1)" (increaseValue)="changeQuant(item, 1)" [value]="item.quant" (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer></td>
@@ -23,29 +22,6 @@
           </tr>
         </tbody>
       </table>
-      <!--<div class="row text-align-center table-header reset-margins">-->
-        <!--<span class="col-lg-1"></span>-->
-        <!--<span class="col-lg-5">Наименование</span>-->
-        <!--<span class="col-lg-1">Цена</span>-->
-        <!--<span class="col-lg-2">Грузовых мест</span>-->
-        <!--<span class="col-lg-2">Вес, кг</span>-->
-      <!--</div>-->
-      <!--<div *ngFor="let item of filterGoodsByGroup(group.uuid)">-->
-      <!--<div class="row py-2 text-align-center">-->
-        <!--<div class="col-lg-1"><img src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.good.uuid + '/' + item.good.uuid + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'"></div>-->
-        <!--<div class="col-lg-5" (click)="showItemDialog($event, item)">{{ item.good.description }}</div>-->
-        <!--<div class="col-lg-1">{{ item.good.price }}</div>-->
-        <!--<div class="col-lg-2">-->
-          <!--<app-quantity-changer (decreaseValue)="changeQuantPacking(item, -1)" (increaseValue)="changeQuantPacking(item, 1)" [value]="item.quantPacking" (changeInputValue)="onQuantPackingInputChange($event, item)"></app-quantity-changer>-->
-        <!--</div>-->
-        <!--<div class="col-lg-2">-->
-          <!--<app-quantity-changer (decreaseValue)="changeQuant(item, -1)" (increaseValue)="changeQuant(item, 1)" [value]="item.quant" (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer>-->
-        <!--</div>-->
-        <!--<div class="col-lg-1"><button class="bucket-btn" (click)="addItemToBucket(item)"><i class="fa fa-shopping-cart"></i></button></div>-->
-    <!--</div>-->
-    <!--<mat-divider></mat-divider>-->
-    <!--</div>-->
     </div>
-  <!--</div>-->
 </div>
 

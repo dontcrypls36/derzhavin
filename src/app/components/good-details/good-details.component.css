@@ -5,3 +5,84 @@
 .positive {
     color: red;
 }
+
+.description {
+  font-size: 14px;
+}
+
+.header {
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+#header {
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 10px;
+  position: relative;
+  margin-top: 24px;
+}
+
+.big-text {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+img {
+  border: 1px solid lightgrey;
+}
+
+.p-24{
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.pl-24{
+  padding-left: 24px;
+}
+
+.details {
+  width: 100%
+}
+
+.bucket-btn-big {
+  background-color: red;
+  border: 1px solid red;
+  color: white;
+  width: 35px;
+  height: 35px;
+  font-size: 1.3rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+span.bucket-btn-big {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 18px;
+}
+
+.custom-close {
+  display: block;
+  width: 30px;
+  height: 30px;
+  color: red;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-top: -24px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.custom-container {
+  position: relative;
+  padding-bottom: 24px;
+}
+
+

@@ -31,7 +31,7 @@ button {
 }
 
 .minus {
-  padding-left:33px !important;
+  float:right;
 }
 
 .plus {

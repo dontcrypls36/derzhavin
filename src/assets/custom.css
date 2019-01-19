@@ -1,8 +1,9 @@
 /* Custom styles go here */
 
 .mat-dialog-container {
-    background-color: #FFFFFF;
-    color: #000000;
+  background-color: #FFFFFF;
+  color: #000000;
+  padding: 0 !important;
 }
 
 .mat-divider {
@@ -21,7 +22,7 @@
 }
 
 body {
-    font-family: 'PT Sans' !important;
+    font-family: 'Arial' !important;
 }
 
 .mat-menu-panel {

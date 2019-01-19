@@ -83,6 +83,7 @@ export class GoodListComponent implements OnInit {
   showItemDialog(event: any, item: PreOrderItem) {
     this.dialog.open(GoodDetailsComponent,
       {
+        width: '1190px',
         data: item
       }
     );

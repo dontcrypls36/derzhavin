@@ -20,16 +20,8 @@ header {
 }
 
 .order-link {
-    background-color: #8E3333; 
-    color: white;
-    border-radius: 5px;
-    font-size: 1.5em;
-    font-weight: 100;
+  color: #ffffff;
     text-decoration: none;
-}
-
-.order-span {
-    font-size: 0.8em;
 }
 
 button {
@@ -49,6 +41,7 @@ img {
   padding-top: 15px;
   font-size: 18px;
   font-weight: 400;
+  cursor: pointer;
 }
 
 .header-button:hover {

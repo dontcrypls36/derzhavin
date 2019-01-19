@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
-        <div class="col-lg-4 text-align-center reset-paddings minus"><button (click)="onMinusClick()" class="count-btn"><span class="sign">-</span></button></div>
-        <div class="col-lg-4 text-align-center reset-paddings"><input style="width:100%;" type="text" class="quant" [value]="value" (change)="onInputChange($event)"/></div>
-        <div class="col-lg-4 reset-paddings plus"><button class="count-btn" (click)="onPlusClick()"><span class="sign">+</span></button></div>
+        <div class="col-4 text-align-center reset-paddings"><button (click)="onMinusClick()" class="count-btn minus"><span class="sign">-</span></button></div>
+        <div class="col-4 text-align-center reset-paddings"><input style="width:100%;" type="text" class="quant" [value]="value" (change)="onInputChange($event)"/></div>
+        <div class="col-4 reset-paddings plus"><button class="count-btn" (click)="onPlusClick()"><span class="sign">+</span></button></div>
     </div>
   </div>
