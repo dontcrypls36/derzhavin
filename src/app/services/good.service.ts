@@ -37,7 +37,7 @@ export class GoodService extends GlobalService<Good> {
   parseOne(item: any): Good {
     const good = new Good();
     good.uuid = item.UUID;
-    good.category = item.GoodCatergory;
+    good.category = item.GoodCategory;
     good.categoryUuid = item.GoodCategoryUUID;
     good.brand = item.GoodBrand;
     good.code = item.GoodCode;
