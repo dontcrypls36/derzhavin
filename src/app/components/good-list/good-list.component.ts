@@ -1,27 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { GoodService } from '../../services/good.service';
-import { PreOrderItem } from '../../models/pre-order-item';
-import { Store } from '@ngrx/store';
-import { PreOrder } from '../../models/pre-order';
-import { ActionWithPayload } from '../../store/order-store';
-import { Category } from '../../models/category';
-import { CategoryService } from '../../services/category.service';
-import { SpinnerServiceService } from '../../services/spinner-service.service';
-import { GoodDetailsComponent } from '../good-details/good-details.component';
-import { MatDialog } from '@angular/material';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
+import {GoodService} from '../../services/good.service';
+import {PreOrderItem} from '../../models/pre-order-item';
+import {Store} from '@ngrx/store';
+import {PreOrder} from '../../models/pre-order';
+import {ActionWithPayload} from '../../store/order-store';
+import {Category} from '../../models/category';
+import {CategoryService} from '../../services/category.service';
+import {SpinnerServiceService} from '../../services/spinner-service.service';
+import {GoodDetailsComponent} from '../good-details/good-details.component';
+import {MatDialog} from '@angular/material';
 import {ActivatedRoute} from "@angular/router";
+import {GroupForMenuService} from "../../services/group-for-menu.service";
 
 @Component({
   selector: 'app-good-list',
   templateUrl: './good-list.component.html',
   styleUrls: ['./good-list.component.css']
 })
-export class GoodListComponent implements OnInit {
-
+export class GoodListComponent implements OnInit, AfterViewChecked {
 
   public preOrderItems: PreOrderItem[] = [];
   private filter: string;
+  private group: string;
   private category: Category = new Category();
+  private groupFragment: string;
 
   categories: Category[] = [];
 
@@ -29,14 +31,30 @@ export class GoodListComponent implements OnInit {
     private store: Store<PreOrder>,
     private categoryService: CategoryService,
     private dialog: MatDialog,
-    private spinner: SpinnerServiceService,
-    private route: ActivatedRoute) {
+    private spinner: SpinnerServiceService, private route: ActivatedRoute,
+              private groupService: GroupForMenuService) {
     this.route.params.subscribe(params => {
-      this.filter = params.id;
+      this.filter = params.category;
       if (this.categories.length !== 0) {
         this.category = this.categories.filter(item => item.uuid === this.filter)[0];
+        this.route.fragment.subscribe(fr => {
+          if (fr) {
+            this.groupFragment = fr;
+          }
+        });
       }
     });
+
+  }
+
+  ngAfterViewChecked(): void {
+    let x = document.getElementById(this.groupFragment);
+    if (x) {
+      x.scrollIntoView();
+      let y = window.screenY;
+      window.scrollBy(0, y - 60);
+      this.groupFragment = null;
+    }
   }
 
   ngOnInit() {
@@ -58,6 +76,10 @@ export class GoodListComponent implements OnInit {
       }
       this.categories = categories;
       this.category = this.categories.filter(item => item.uuid === this.filter)[0];
+      const x = document.querySelector(this.group);
+      if (x) {
+        x.scrollIntoView();
+      }
     } finally {
       this.spinner.hide();
     }

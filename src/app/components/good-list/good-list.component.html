@@ -1,7 +1,7 @@
 <div class="mt-60 content-table">
     <h1><a id="{{ 'uuid' + category.uuid }}">{{ category.descr }}</a></h1>
     <div *ngFor="let group of category.groups">
-      <h4 class="mt-5">{{ group.descr }}</h4>
+      <h4 class="mt-5" id="{{ 'uuid' + group.uuid }}">{{ group.descr }}</h4>
       <table class="text-align-center">
         <thead class="table-header">
           <th width="10%"></th>
