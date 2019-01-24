@@ -1,3 +1,35 @@
 .bold {
     font-weight: 600;
 }
+
+table {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+th {
+  color: #000000;
+  font-weight: bold;
+}
+
+td {
+  color: #000000;
+}
+
+mat-paginator {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+mat-paginator > * {
+  color: #000000;
+}
+
+button {
+  color: #000000;
+}
+
+.mat-paginator-page-size-label, .mat-paginator-range-label, .mat-icon-button, .mat-icon-button[disabled][disabled] {
+  color: #000000;
+}
+

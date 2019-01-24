@@ -49,3 +49,8 @@ body {
     background-color: red;
 }
 
+.mat-select-value, .mat-paginator-page-size .mat-select-trigger {
+  color: #000000 !important;
+}
+
+

@@ -11,7 +11,7 @@ import {GoodListComponent} from './components/good-list/good-list.component';
 import {GoodDetailsComponent} from './components/good-details/good-details.component';
 import {OrderComponent} from './components/order/order.component';
 import {HttpClientModule} from '@angular/common/http';
-import {MatDialogModule, MatInputModule} from '@angular/material';
+import {MatDialogModule, MatInputModule, MatPaginatorModule, MatTableModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
 import {OrderService} from './services/order.service';
@@ -79,6 +79,8 @@ registerLocaleData(localeRu);
     MatDividerModule,
     MatDialogModule,
     MatRadioModule,
+    MatTableModule,
+    MatPaginatorModule,
     DropdownModule,
     BrowserAnimationsModule,
     ScrollToModule.forRoot(),
