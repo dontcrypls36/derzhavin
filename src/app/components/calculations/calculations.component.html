@@ -1,3 +1,23 @@
-<p>
-  calculations works!
-</p>
+<div class="calculations">
+  <h2>Взаиморасчеты</h2>
+  Начало периода: <input type="date" [ngModel]="startDate | date:'yyyy-MM-dd'" (ngModelChange)="startDate = $event">
+  Конец периода: <input type="date" [ngModel]="endDate | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event">
+  <input type="button" value="Загрузить" (click)="loadActs()">
+</div>
+
+<p-dataView [value]="response.DocForAktItems">
+  <ng-template let-doc pTemplate="listItem">
+    <div class="ui-g-12 ui-md-8 car-details">
+      <div class="ui-g">
+        <div class="ui-g-2 ui-sm-6">Дата: </div>
+        <div class="ui-g-10 ui-sm-6"><b>{{ doc.Date | date : 'dd-MM-yyyy'}}</b></div>
+
+        <div class="ui-g-2 ui-sm-6">Сумма: </div>
+        <div class="ui-g-10 ui-sm-6"><b>{{doc.Debit === 0 ? doc.Credit : doc.Debit}}</b></div>
+
+        <div class="ui-g-2 ui-sm-6">Документ: </div>
+        <div class="ui-g-10 ui-sm-6"><b>{{doc.Description}}</b></div>
+      </div>
+    </div>
+  </ng-template>
+</p-dataView>
