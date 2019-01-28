@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CalculationService} from "../../services/calculation.service";
 import {CalculationResponse} from "../../models/calculation-response";
+import {SpinnerServiceService} from "../../services/spinner-service.service";
 
 @Component({
   selector: 'app-calculations',
@@ -13,7 +14,8 @@ export class CalculationsComponent implements OnInit {
   startDate = new Date();
   endDate = new Date();
 
-  constructor(private calculationService: CalculationService) {
+  constructor(private calculationService: CalculationService,
+              private spinner: SpinnerServiceService) {
     const currentDate = new Date().getUTCDate();
     const delta = currentDate - 1;
     if (delta > 0) {
@@ -26,8 +28,10 @@ export class CalculationsComponent implements OnInit {
   }
 
   loadActs() {
-    this.calculationService.getCalculation(this.startDate.toISOString(), this.endDate.toISOString()).subscribe( res => {
+    this.spinner.show();
+    this.calculationService.getCalculation(new Date(this.startDate).toISOString(), new Date(this.endDate).toISOString()).subscribe( res => {
       this.response = res;
+      this.spinner.hide();
     });
   }
 
