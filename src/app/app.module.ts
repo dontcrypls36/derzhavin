@@ -37,7 +37,7 @@ import {QuantityChangerComponent} from './components/quantity-changer/quantity-c
 import {OrderDetailsComponent} from './components/order-details/order-details.component';
 import {MenuCategoryComponent} from './components/menu-category/menu-category.component';
 import {CollapseModule} from 'ngx-bootstrap/collapse';
-import {DataViewModule} from 'primeng/dataview';
+import {TableModule} from "primeng/table";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'good-list', pathMatch: 'full'},
@@ -85,7 +85,7 @@ registerLocaleData(localeRu);
     MatPaginatorModule,
     DropdownModule,
     BrowserAnimationsModule,
-    DataViewModule,
+    TableModule,
     ScrollToModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,

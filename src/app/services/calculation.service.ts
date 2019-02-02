@@ -42,7 +42,7 @@ export class CalculationService extends GlobalService<CalculationResponse>{
 
   parseOne(item: any): CalculationResponse {
     const calc = new CalculationResponse();
-    calc.SettlementsSumma = item.SettlementSumma;
+    calc.SettlementsSumma = item.SettlementsSumma;
     calc.SettlementsDate = item.SettlementsDate;
     calc.DocForAktItems = this.parseDocForAkts(item.DocForAktItems);
     return calc;

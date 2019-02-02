@@ -1,3 +1,39 @@
 .calculations {
   margin-top: 60px;
 }
+
+.p-table {
+  margin-top: 20px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+tr {
+  height: 40px;
+  border-bottom: 1px solid lightgrey;
+}
+
+tr:hover {
+  background-color: #ddfbca !important;
+}
+
+.date-filter {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+}
+
+button {
+  margin-left: 10px;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}

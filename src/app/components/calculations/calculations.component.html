@@ -1,23 +1,53 @@
 <div class="calculations">
   <h2>Взаиморасчеты</h2>
-  Начало периода: <input type="date" [ngModel]="startDate | date:'yyyy-MM-dd'" (ngModelChange)="startDate = $event">
-  Конец периода: <input type="date" [ngModel]="endDate | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event">
-  <input type="button" value="Загрузить" (click)="loadActs()">
+  <div class="date-filter">
+    Начало периода: <input type="date" [ngModel]="startDate | date:'yyyy-MM-dd'" (ngModelChange)="startDate = $event">
+    Конец периода: <input type="date" [ngModel]="endDate | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event">
+    <button (click)="loadActs()" class="btn">Загрузить</button>
+  </div>
+
+</div>
+<div class="p-table">
+  <!--<table class="text-align-center">-->
+    <!--<thead>-->
+      <!--<th>#</th>-->
+      <!--<th>Дата</th>-->
+      <!--<th>Описание</th>-->
+      <!--<th>Сумма</th>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+      <!--<tr *ngFor="let item of response.DocForAktItems; let i = index;">-->
+        <!--<td>{{ i + 1 }}</td>-->
+        <!--<td>{{ item.Date | date : 'dd-MM-yyyy'}}</td>-->
+        <!--<td>{{ item.Description }}</td>-->
+        <!--<td [ngClass]="getSign(item)">{{ item.Debit === 0 ? item.Credit : item.Debit}}</td>-->
+      <!--</tr>-->
+    <!--</tbody>-->
+  <!--</table>-->
+<p-table [value]="response.DocForAktItems" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="header">
+    <tr>
+      <th width="5%">#</th>
+      <th width="15%">Дата</th>
+      <th>Описание</th>
+      <th width="10%">Сумма</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td>{{ response.DocForAktItems.indexOf(item) + 1 }}</td>
+      <td>{{ item.Date | date : 'dd-MM-yyyy' }}</td>
+      <td>{{ item.Description }}</td>
+      <td [ngClass]="getSign(item)">{{ item.Debit === 0 ? item.Credit : item.Debit }}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <tr>
+      <td colspan="3">Общая задолженность</td>
+      <td>{{ response.SettlementsSumma }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
 </div>
 
-<p-dataView [value]="response.DocForAktItems">
-  <ng-template let-doc pTemplate="listItem">
-    <div class="ui-g-12 ui-md-8 car-details">
-      <div class="ui-g">
-        <div class="ui-g-2 ui-sm-6">Дата: </div>
-        <div class="ui-g-10 ui-sm-6"><b>{{ doc.Date | date : 'dd-MM-yyyy'}}</b></div>
-
-        <div class="ui-g-2 ui-sm-6">Сумма: </div>
-        <div class="ui-g-10 ui-sm-6"><b>{{doc.Debit === 0 ? doc.Credit : doc.Debit}}</b></div>
-
-        <div class="ui-g-2 ui-sm-6">Документ: </div>
-        <div class="ui-g-10 ui-sm-6"><b>{{doc.Description}}</b></div>
-      </div>
-    </div>
-  </ng-template>
-</p-dataView>

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CalculationService} from "../../services/calculation.service";
 import {CalculationResponse} from "../../models/calculation-response";
 import {SpinnerServiceService} from "../../services/spinner-service.service";
+import {DocForAct} from "../../models/doc-for-act";
 
 @Component({
   selector: 'app-calculations',
@@ -33,6 +34,23 @@ export class CalculationsComponent implements OnInit {
       this.response = res;
       this.spinner.hide();
     });
+  }
+
+  getSign(item: DocForAct): string {
+    if (item.Debit === 0 && item.Credit > 0) {
+      return 'positive';
+    }
+    if (item.Debit > 0) {
+      return 'negative';
+    }
+  }
+
+  getDebt(): number {
+    let debt = 0;
+    this.response.DocForAktItems.map( doc => {
+      debt = debt + doc.Debit - doc.Credit;
+    });
+    return debt;
   }
 
 }
