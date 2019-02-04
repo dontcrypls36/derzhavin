@@ -1,5 +1,4 @@
-<div class="orders">
-  <h2>Заказы</h2>
+<div class="orders" *ngIf="showContent">
   <div class="p-table text-align-center">
     <p-table [value]="orders" [paginator]="true" [rows]="15">
       <ng-template pTemplate="header">

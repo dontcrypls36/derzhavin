@@ -13,6 +13,7 @@ import {SpinnerServiceService} from '../../services/spinner-service.service';
 export class OrderListComponent implements OnInit {
 
   orders: OrderResponse[] = [];
+  showContent = false;
 
   constructor(private orderService: OrderService,
               private dialog: MatDialog,
@@ -26,6 +27,7 @@ export class OrderListComponent implements OnInit {
     this.spinner.show();
     this.orderService.getAllOrders().subscribe( res => {
       this.orders = res.OrderItems;
+      this.showContent = true
       this.spinner.hide();
     });
   }
