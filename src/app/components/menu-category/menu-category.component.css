@@ -12,10 +12,6 @@ li {
   margin-top: 5px;
 }
 
-ul {
-  display: inline-block;
-}
-
 .custom-menu {
   font-size: 14px;
   width: auto;
@@ -33,4 +29,22 @@ ul {
   max-height: 25px;
   min-width: 25px;
   min-height: 25px;
+}
+
+.category {
+  min-height: 30px;
+  border-bottom: 1px solid #ddd;
+}
+
+a, .group {
+  cursor: pointer;
+}
+
+.group {
+  margin-left: 50px;
+  min-height: 30px;
+}
+
+.group:hover {
+  background-color: #ffffff;
 }
