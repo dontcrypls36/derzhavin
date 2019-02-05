@@ -3,11 +3,10 @@
     <p-table [value]="orders" [paginator]="true" [rows]="15">
       <ng-template pTemplate="header">
         <tr>
-          <th width="5%">#</th>
-          <th width="10%">Номер заказа</th>
+          <th width="10%">Название</th>
           <th width="20%">Грузополучатель</th>
           <th width="10%">Дата доставки</th>
-          <th width="10%">Статус заказа</th>
+          <th width="10%">Статус</th>
           <th width="10%">Вес, кг</th>
           <th width="10%">Сумма, руб.</th>
           <th>Комментарий</th>
@@ -15,10 +14,9 @@
       </ng-template>
       <ng-template pTemplate="body" let-item>
         <tr (click)="showOrderDetails(item)">
-          <td>{{ orders.indexOf(item) + 1 }}</td>
-          <td>{{ item.Number }}</td>
+          <td>{{ 'Заказ №' + item.Number }}</td>
           <td>{{ item.PickUp ? 'Самовывоз' : item.OutletDescription }}</td>
-          <td>{{ item.ShipDate | date : 'dd-MM-yyyy' }}</td>
+          <td>{{ item.ShipDate | date : 'dd MMM yyyy' }}</td>
           <td>{{ item.Status }}</td>
           <td>{{ item.TotalFactQuant }}</td>
           <td>{{ item.TotalFactSumma }}</td>

@@ -1,11 +1,24 @@
 .divider {
-    border-bottom: 1px solid gray;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+  border-bottom: 1px solid lightgrey;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .scrolled {
-    max-height: 750px;
-    overflow-y: scroll;
+  max-height: 750px;
+  min-height: 500px;
+  width: auto;
+  padding: 20px;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+}
+
+table {
+  width: 100%;
+}
+
+tr {
+  border-bottom: 1px solid lightgrey;
+  background-color: #f4f4f4;
 }
 

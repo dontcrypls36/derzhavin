@@ -36,7 +36,11 @@ export class OrderListComponent implements OnInit {
     if (order.TotalFactQuant <= 0) {
       return;
     }
-    this.dialog.open(OrderDetailsComponent, {data: order});
+    this.dialog.open(OrderDetailsComponent,
+      {
+        width: '1200px',
+        data: order
+      });
   }
 
 }

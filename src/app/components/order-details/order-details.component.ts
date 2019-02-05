@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { OrderResponse } from '../../models/order-response';
-import { OrderItem } from '../../models/order-item';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {Component, Inject, OnInit} from '@angular/core';
+import {OrderResponse} from '../../models/order-response';
+import {OrderItem} from '../../models/order-item';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-order-details',
@@ -28,7 +28,7 @@ export class OrderDetailsComponent implements OnInit {
       return '';
     } else {
       const good = filtered[0];
-      return 'Заказано: ' + good.GoodQuant + good.GoodUnit + ' за ' + good.Summa;
+      return good.GoodQuant + good.GoodUnit + ' за ' + good.Summa;
     }
   }
 

@@ -53,4 +53,9 @@ body {
   color: #000000 !important;
 }
 
+body .ui-paginator {
+  border: none !important;
+}
+
+
 

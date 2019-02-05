@@ -20,3 +20,18 @@ tr:hover {
 .orders{
   margin-top: 80px;
 }
+
+td {
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+}
+
+th {
+  border-right: none !important;
+  border-left: none !important;
+}
+
+body .ui-paginator {
+  border: none !important;
+}
