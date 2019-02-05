@@ -38,7 +38,6 @@ export class OrderListComponent implements OnInit {
     }
     this.dialog.open(OrderDetailsComponent,
       {
-        width: '1200px',
         data: order
       });
   }

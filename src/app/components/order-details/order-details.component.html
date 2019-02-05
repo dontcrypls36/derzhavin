@@ -1,4 +1,14 @@
 <div class="scrolled text-align-center">
+  <h4>Заказ № {{ order.Number }}</h4>
+  <div class="order-header">
+    <div>Грузополучатель: {{ order.OutletDescription }}</div>
+    <div>Дата создания: {{ order.CreateDate | date : 'dd MMM yyyy' }}</div>
+    <div>Дата доставки: {{ order.ShipDate | date : 'dd MMM yyyy' }}</div>
+    <div>Вес: {{ order.TotalFactQuant }}</div>
+    <div>Сумма: {{ order.TotalFactSumma }}</div>
+    <div>Статус: {{ order.Status }}</div>
+    <div>Комментарий: {{ order.Comment }}</div>
+  </div>
   <table>
     <tr>
       <th width="10%">Фото</th>

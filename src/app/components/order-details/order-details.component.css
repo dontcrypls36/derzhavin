@@ -11,14 +11,22 @@
   padding: 20px;
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 14px;
+  overflow-y: hidden;
 }
 
 table {
-  width: 100%;
+  width: 900px;
+  overflow-y: scroll;
+  height: 500px;
+  display: inline-block;
 }
 
 tr {
   border-bottom: 1px solid lightgrey;
   background-color: #f4f4f4;
+}
+
+.order-header {
+  text-align: left;
 }
 
