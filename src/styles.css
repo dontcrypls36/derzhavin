@@ -40,3 +40,7 @@
 .text-align-center {
     text-align: center;
 }
+
+.navbar {
+  padding: 0 !important;
+}

@@ -48,6 +48,11 @@ export class GoodListComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked(): void {
+    this.route.fragment.subscribe(fr => {
+      if (fr) {
+        this.groupFragment = fr;
+      }
+    });
     let x = document.getElementById(this.groupFragment);
     if (x) {
       x.scrollIntoView();
