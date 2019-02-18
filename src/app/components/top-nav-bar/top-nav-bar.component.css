@@ -49,6 +49,10 @@ img {
   color: #fff;
 }
 
+.header-button {
+  outline: none;
+}
+
 .active {
   background-color: #1cca6f;
 }

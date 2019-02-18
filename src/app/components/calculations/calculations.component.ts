@@ -13,7 +13,8 @@ export class CalculationsComponent implements OnInit {
 
   response: CalculationResponse = new CalculationResponse();
   startDate = new Date();
-  endDate = new Date();
+  endDate = new Date()
+  showTable = false;
 
   constructor(private calculationService: CalculationService,
               private spinner: SpinnerServiceService) {
@@ -29,10 +30,12 @@ export class CalculationsComponent implements OnInit {
   }
 
   loadActs() {
+    this.showTable = false;
     this.spinner.show();
     this.calculationService.getCalculation(new Date(this.startDate).toISOString(), new Date(this.endDate).toISOString()).subscribe( res => {
       this.response = res;
       this.spinner.hide();
+      this.showTable = true;
     });
   }
 
