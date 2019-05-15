@@ -1,9 +1,9 @@
 .calculations {
-  margin-top: 60px;
+  margin-top: 80px;
 }
 
-.p-table {
-  margin-top: 20px;
+table {
+  margin-top: 40px;
   width: 60%;
   margin-left: auto;
   margin-right: auto;
@@ -11,7 +11,16 @@
 
 tr {
   height: 40px;
-  border-bottom: 1px solid lightgrey;
+}
+
+table, td, th {
+  border: 1px solid lightgrey;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+}
+
+th {
+  height: 40px;
 }
 
 tr:hover {
@@ -36,4 +45,12 @@ button {
 
 .negative {
   color: red;
+}
+
+.debt {
+  position: fixed;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+
 }

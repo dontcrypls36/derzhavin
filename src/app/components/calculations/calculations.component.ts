@@ -13,8 +13,9 @@ export class CalculationsComponent implements OnInit {
 
   response: CalculationResponse = new CalculationResponse();
   startDate = new Date();
-  endDate = new Date()
+  endDate = new Date();
   showTable = false;
+  frozenRow = [{"Header": "Общая задолженность", "Total": this.response.SettlementsSumma  }];
 
   constructor(private calculationService: CalculationService,
               private spinner: SpinnerServiceService) {
