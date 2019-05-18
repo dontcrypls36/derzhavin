@@ -1,17 +1,16 @@
-import { Injectable } from '@angular/core';
-import { PreOrderItem } from '../models/pre-order-item';
-import { PreOrder } from '../models/pre-order';
-import { Observable, of } from 'rxjs';
-import { v4 as uuid } from 'uuid';
-import { Order } from '../models/order';
-import { HttpClient } from '@angular/common/http';
-import { GlobalService } from './global.service';
-import { map } from 'rxjs/operators';
-import { ShippingSchedule } from '../models/shipping-schedule';
-import { OutletsItem } from '../models/outlets-item';
-import { ShippingScheduleItem } from '../models/shipping-schedule-item';
-import { PickupItem } from '../models/pickup-item';
-import { OrderResponse } from '../models/order-response';
+import {Injectable} from '@angular/core';
+import {PreOrderItem} from '../models/pre-order-item';
+import {PreOrder} from '../models/pre-order';
+import {Observable, of} from 'rxjs';
+import {v4 as uuid} from 'uuid';
+import {Order} from '../models/order';
+import {HttpClient} from '@angular/common/http';
+import {GlobalService} from './global.service';
+import {map} from 'rxjs/operators';
+import {ShippingSchedule} from '../models/shipping-schedule';
+import {OutletsItem} from '../models/outlets-item';
+import {ShippingScheduleItem} from '../models/shipping-schedule-item';
+import {PickupItem} from '../models/pickup-item';
 
 @Injectable()
 export class OrderService extends GlobalService<any> {
@@ -33,7 +32,9 @@ export class OrderService extends GlobalService<any> {
     item.uuid = uuid();
     preOrder.preOrderItems.push(item);
     preOrder.itemCount++;
-    preOrder.amount = preOrder.amount + item.good.price * item.quant;
+    preOrder.amount += item.good.price * item.quant;
+    preOrder.weight += item.quant;
+    preOrder.places += item.quantPacking;
     sessionStorage.setItem('preOrder', JSON.stringify(preOrder));
     return of(preOrder);
   }
@@ -68,6 +69,8 @@ export class OrderService extends GlobalService<any> {
       preOrder.preOrderItems.splice(index, 1);
       preOrder.itemCount--;
       preOrder.amount = preOrder.amount - item.good.price * item.quant;
+      preOrder.weight -= item.quant;
+      preOrder.places -= item.quantPacking;
       sessionStorage.setItem('preOrder', JSON.stringify(preOrder));
     }
     return of(preOrder);
@@ -84,6 +87,8 @@ export class OrderService extends GlobalService<any> {
     preOrder.preOrderItems = [];
     preOrder.itemCount = 0;
     preOrder.amount = 0;
+    preOrder.weight = 0;
+    preOrder.places = 0;
     sessionStorage.setItem('preOrder', JSON.stringify(preOrder));
     return of(preOrder);
   }

@@ -1,11 +1,15 @@
 nav {
-    height: 60px;
-    background-color: #871616;
+  height: 60px;
+  background-color: #871616;
 }
 
 #search {
-  width: 100%;
-  border-radius: 5px;  
+  width: 50%;
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  height: 34px;
+  margin: 12px;
 }
 
 header {
@@ -34,7 +38,6 @@ img {
 
 .header-button {
   color: #fff;
-  width: 100% !important;
   height: 60px;
   text-align: center;
   vertical-align: middle;
@@ -42,15 +45,13 @@ img {
   font-size: 18px;
   font-weight: 400;
   cursor: pointer;
+  outline: none;
+  margin: 0 1px;
 }
 
 .header-button:hover {
   background-color: #8e9da5;
   color: #fff;
-}
-
-.header-button {
-  outline: none;
 }
 
 .active {
@@ -60,3 +61,43 @@ img {
 #menu:hover {
   background-color: #8e9da5;
 }
+
+.catalog {
+  float:left;
+  width: 80px;
+}
+
+.orders {
+  float:left;
+  width: 80px;
+}
+
+.documents {
+  float:left;
+  width: 160px;
+}
+
+.bucket {
+  float:right;
+  margin-right: 10px;
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.search {
+  position: fixed;
+  width: 100%;
+  top: 60px;
+  height: 60px;
+  background-color: #873c40;
+  text-align: center;
+  padding: 12px;
+}
+
+.logo {
+  float: left;
+  width: 100px;
+  height: 60px;
+}
+

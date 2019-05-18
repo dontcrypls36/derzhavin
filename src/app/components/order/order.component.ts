@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { PreOrderItem } from '../../models/pre-order-item';
-import { Store } from '@ngrx/store';
-import { PreOrder } from '../../models/pre-order';
-import { ActionWithPayload } from '../../store/order-store';
-import { OkNoDialogComponent } from '../ok-no-dialog/ok-no-dialog.component';
-import { MatDialog } from '@angular/material';
-import { OkNoDialogDataModel } from '../../models/ok-no-dialog-data-model';
-import { OrderConfirmationDialogComponent } from '../order-confirmation-dialog/order-confirmation-dialog.component';
-import { Order } from '../../models/order';
-import { OrderItem } from '../../models/order-item';
-import { v4 as uuid } from 'uuid';
-import { OrderService } from '../../services/order.service';
+import {Component, OnInit} from '@angular/core';
+import {PreOrderItem} from '../../models/pre-order-item';
+import {Store} from '@ngrx/store';
+import {PreOrder} from '../../models/pre-order';
+import {ActionWithPayload} from '../../store/order-store';
+import {OkNoDialogComponent} from '../ok-no-dialog/ok-no-dialog.component';
+import {MatDialog} from '@angular/material';
+import {OkNoDialogDataModel} from '../../models/ok-no-dialog-data-model';
+import {OrderConfirmationDialogComponent} from '../order-confirmation-dialog/order-confirmation-dialog.component';
+import {Order} from '../../models/order';
+import {OrderItem} from '../../models/order-item';
+import {v4 as uuid} from 'uuid';
+import {OrderService} from '../../services/order.service';
 
 @Component({
   selector: 'app-order',
@@ -77,9 +77,13 @@ export class OrderComponent implements OnInit {
 
   calculateChars() {
     this.preOrder.amount = 0;
+    this.preOrder.weight = 0;
+    this.preOrder.places = 0;
     this.preOrder.itemCount = this.preOrder.preOrderItems.length;
     this.preOrder.preOrderItems.map( item => {
-        this.preOrder.amount = this.preOrder.amount + item.quantPacking * item.good.price;
+        this.preOrder.amount += item.quantPacking * item.good.price;
+        this.preOrder.weight += item.quant;
+        this.preOrder.places += item.quantPacking;
     });
   }
 

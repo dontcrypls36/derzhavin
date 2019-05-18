@@ -43,9 +43,11 @@
     </tbody>
   </table>
   <div class="row mt-30" *ngIf="preOrder.itemCount > 0; else notification">
-    <div class="col-lg-2"><span class="summary">Итого: {{ preOrder.amount | number: '1.2-2' }} р.</span></div>
+    <div class="col-lg-2"><span class="summary">Сумма: {{ preOrder.amount | number: '1.2-2' }} р.</span></div>
+    <div class="col-lg-2"><span class="summary">Общий вес: {{ preOrder.weight | number: '1.2-2' }} кг</span></div>
+    <div class="col-lg-2"><span class="summary">Всего мест: {{ preOrder.places }} </span></div>
     <div class="col-lg-2"><button class="btn" (click)="onOrderCreate()">К оформлению</button></div>
-    <div class="col-lg-6"></div>
+    <div class="col-lg-2"></div>
     <div class="col-lg-2"><a class="common-link" (click)="onOrderClean()">Очистить корзину</a></div>
   </div>
   <ng-template #notification>

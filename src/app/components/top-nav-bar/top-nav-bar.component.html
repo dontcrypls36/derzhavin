@@ -1,7 +1,8 @@
 <header class="header">
-  <nav class="navbar fixed-top">
-    <div class="container-fluid">
-      <div class="col-1 header-button" [ngClass]="router.url.includes('goods') ? 'active' : ''" id="menu" (click)="onCatalogClick()">
+  <nav class="fixed-top">
+    <!--<img width="logo">-->
+    <div class="logo">Логотип</div>
+      <div class="catalog header-button" [ngClass]="router.url.includes('goods') ? 'active' : ''" id="menu" (click)="onCatalogClick()">
           Каталог
 
           <!--<button mat-menu-item *ngFor="let category of categories" (click)="onAnchorClick(category.uuid)">-->
@@ -11,16 +12,14 @@
 
       </div>
       <app-menu-category *ngIf="true"></app-menu-category>
-      <div class="col-1 header-button" routerLink="orders" [ngClass]="router.url.includes('orders') ? 'active' : ''">
+      <div class="orders header-button" routerLink="orders" [ngClass]="router.url.includes('orders') ? 'active' : ''">
         Заказы
       </div>
-      <div class="col-2 header-button" routerLink="calculations" [ngClass]="router.url.includes('calculations') ? 'active' : ''">
+      <div class="documents header-button" routerLink="calculations" [ngClass]="router.url.includes('calculations') ? 'active' : ''">
         Взаиморасчеты
       </div>
-      <div class="col-4">
-        <input id="search" type="text" placeholder="Поиск">
-      </div>
-      <div class="col-2 header-button" routerLink="order" [ngClass]="router.url.includes('order') && !router.url.includes('orders') ? 'active' : ''"><i class="fa fa-shopping-cart"></i><span class="order-span">{{ orderItemCount < 1 ? ' Корзина' : '  '+ orderItemCount + ' тов.  ' + (orderAmount | number : '1.2-2') + ' р.'}}</span></div>
+      <input id="search" type="text" placeholder="Поиск">
+    <div class="bucket header-button" routerLink="order" [ngClass]="router.url.includes('order') && !router.url.includes('orders') ? 'active' : ''"><i class="fa fa-shopping-cart"></i><span class="order-span">{{ orderItemCount < 1 ? ' Корзина' : '  '+ orderItemCount + ' тов.  ' + (orderAmount | number : '1.2-2') + ' р.'}}</span></div>
       <!--<div class="col-lg-2">-->
         <!--<button mat-icon-button [matMenuTriggerFor]="profile" id="profile" class="profile-link" >-->
           <!--<i class="fa fa-address-card"></i>-->
@@ -37,6 +36,6 @@
           <!--</button>-->
         <!--</mat-menu>-->
         <!--</div>-->
-    </div>
   </nav>
+
 </header>

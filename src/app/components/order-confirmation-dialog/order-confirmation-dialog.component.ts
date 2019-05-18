@@ -1,13 +1,13 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, SELECT_ITEM_HEIGHT_EM } from '@angular/material';
-import { ShippingSchedule } from '../../models/shipping-schedule';
-import { OrderService } from '../../services/order.service';
-import { OutletsItem } from '../../models/outlets-item';
-import { DateFormatService } from '../../services/date-format.service';
-import { PickupItem } from '../../models/pickup-item';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {ShippingSchedule} from '../../models/shipping-schedule';
+import {OrderService} from '../../services/order.service';
+import {OutletsItem} from '../../models/outlets-item';
+import {DateFormatService} from '../../services/date-format.service';
+import {PickupItem} from '../../models/pickup-item';
 import {SelectItem} from 'primeng/api';
-import { ShippingScheduleItem } from '../../models/shipping-schedule-item';
-import { OrderRequest } from '../../models/order-request';
+import {ShippingScheduleItem} from '../../models/shipping-schedule-item';
+import {OrderRequest} from '../../models/order-request';
 
 @Component({
   selector: 'app-order-confirmation-dialog',
@@ -36,7 +36,7 @@ export class OrderConfirmationDialogComponent implements OnInit {
       this.shippingSchedule.pickUpItems.map(
         (item: PickupItem) => {
           const select = {
-            label: this.dateFormatter.format(item.pickupDate, DateFormatService.DATE),
+            label: this.dateFormatter.format(item.pickupDate, DateFormatService.DATE_2),
             value: item
           };
           this.pickupDates.push(select);
@@ -65,7 +65,7 @@ export class OrderConfirmationDialogComponent implements OnInit {
     filtered.map(
       (item: ShippingScheduleItem) => {
         const select = {
-            label: this.dateFormatter.format(item.shippingDate, DateFormatService.DATE),
+            label: this.dateFormatter.format(item.shippingDate, DateFormatService.DATE_2),
             value: item
           };
         this.courierDates.push(select);
