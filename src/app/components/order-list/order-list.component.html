@@ -1,6 +1,25 @@
+<div class="filters">
+  <span class="date-filter">
+    Период: <input type="text" [ngModel]="startDate | date:'dd-MMM-yyyy'" (ngModelChange)="startDate = $event" placeholder="От" onfocus="this.type='date'">
+   <input type="text" [ngModel]="endDate | date:'dd-MMM-yyyy'" (ngModelChange)="endDate = $event" placeholder="До" onfocus="this.type='date'">
+  </span>
+  <span class="outlet-filter">
+    Грузополучатель:<p-dropdown [options]="outletsItems" [(ngModel)]="selectedOutlet" optionLabel="description" placeholder="Любой"></p-dropdown>
+  </span>
+  <span>
+    <button (click)="loadOrders()" class="btn">Загрузить</button>
+  </span>
+  <div>
+    <!--Количество записей на странице: <input type="text" [ngModel]="rowsCount" (ngModelChange)="onRowsCountChange($event)">-->
+    <p-dropdown [options]="rowsCountItems" [ngModel]="rowsCount" (ngModelChange)="onRowsCountChange($event)" optionLabel="num"></p-dropdown>
+  </div>
+</div>
+<div>
+
+</div>
 <div class="orders" *ngIf="showContent">
   <div class="p-table text-align-center">
-    <p-table [value]="orders" [paginator]="true" [rows]="15">
+    <p-table [value]="orders" [paginator]="true" [rows]="rowsCount.num">
       <ng-template pTemplate="header">
         <tr>
           <th width="10%">Название</th>

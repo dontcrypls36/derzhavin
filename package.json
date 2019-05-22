@@ -35,6 +35,7 @@
     "ngx-bootstrap": "^3.1.4",
     "primeicons": "^1.0.0",
     "primeng": "^7.0.0",
+    "roboto-fontface": "^0.10.0",
     "rxjs": "~6.3.3",
     "ts-md5": "^1.2.4",
     "webpack-dev-server": "^3.1.10",

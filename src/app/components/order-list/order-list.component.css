@@ -3,7 +3,6 @@
 }
 
 .p-table {
-  margin-top: 20px;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
@@ -18,7 +17,7 @@ tr:hover {
 }
 
 .orders{
-  margin-top: 140px;
+  margin-top: 60px;
 }
 
 td {
@@ -35,3 +34,25 @@ th {
 body .ui-paginator {
   border: none !important;
 }
+
+.filters {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  margin-top: 80px;
+}
+
+span {
+  margin: 0 5px;
+}
+
+.ui-dropdown {
+  width: 150px !important;
+}
+
+.date-filter > input {
+  margin: 0 1px;
+}
+

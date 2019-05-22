@@ -4,6 +4,7 @@ import {OrderResponse} from '../../models/order-response';
 import {MatDialog} from '@angular/material';
 import {OrderDetailsComponent} from '../order-details/order-details.component';
 import {SpinnerServiceService} from '../../services/spinner-service.service';
+import {OutletsItem} from "../../models/outlets-item";
 
 @Component({
   selector: 'app-order-list',
@@ -14,6 +15,15 @@ export class OrderListComponent implements OnInit {
 
   orders: OrderResponse[] = [];
   showContent = false;
+
+  startDate: Date;
+  endDate: Date;
+  outletsItems: OutletsItem[] = [];
+  selectedOutlet: OutletsItem;
+
+  rowsCount = {num: 15};
+
+  rowsCountItems = [{num:5}, {num:10}, {num:15}, {num:20}];
 
   constructor(private orderService: OrderService,
               private dialog: MatDialog,
@@ -27,7 +37,7 @@ export class OrderListComponent implements OnInit {
     this.spinner.show();
     this.orderService.getAllOrders().subscribe( res => {
       this.orders = res.OrderItems;
-      this.showContent = true
+      this.showContent = true;
       this.spinner.hide();
     });
   }
@@ -40,6 +50,14 @@ export class OrderListComponent implements OnInit {
       {
         data: order
       });
+  }
+
+  loadOrders() {
+
+  }
+
+  onRowsCountChange(e : any) {
+    this.rowsCount = e;
   }
 
 }

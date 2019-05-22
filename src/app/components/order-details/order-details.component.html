@@ -1,5 +1,5 @@
+<h4 class="title">Заказ № {{ order.Number }}</h4>
 <div class="scrolled text-align-center">
-  <h4>Заказ № {{ order.Number }}</h4>
   <div class="order-header">
     <div>Грузополучатель: {{ order.OutletDescription }}</div>
     <div>Дата создания: {{ order.CreateDate | date : 'dd MMM yyyy' }}</div>
@@ -18,12 +18,21 @@
       <th width="15%">Отгружено</th>
     </tr>
     <tbody>
-      <tr *ngFor="let good of order.FactOrderGoodsItems" class="mh-205 divider">
+      <tr *ngFor="let good of order.FactOrderGoodsItems" class="mh-205 divider" (click)="showItemDialog($event, item)">
         <td><img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + good.GoodUUID + '/' + good.GoodUUID + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'"></td>
         <td> {{ good.GoodDescription }} </td>
         <td> {{ good.Price }}</td>
-        <td> {{ getGoodOrderInfo(good.GoodUUID) }}</td>
-        <td> {{ good.GoodQuant + good.GoodUnit}} за {{ good.Summa }}</td>
+        <!--<td> {{ getGoodOrderInfo(good.GoodUUID) }}</td>-->
+        <td>
+          <div>{{ getGoodOrderSumma(good.GoodUUID) }}</div>
+          <div>{{ getGoodOrderQuant(good.GoodUUID) }}</div>
+          <div>{{ getGoodOrderQuantPacking(good.GoodUUID) }}</div>
+        </td>
+        <td>
+          <div>{{ good.Summa }}</div>
+          <div>{{ good.GoodQuant + good.GoodUnit}}</div>
+          <div>{{ good.GoodQuantPacking + 'шт' }}</div>
+        </td>
       </tr>
     </tbody>
   </table>
