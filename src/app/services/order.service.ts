@@ -123,14 +123,20 @@ export class OrderService extends GlobalService<any> {
     .pipe(map((item: any) => this.parseSchedule(item)));
   }
 
-  getAllOrders(): Observable<any> {
-    const body = {
+  getOrders(outletId?: string): Observable<any> {
+    const creds: any = {
         tel: '+79529516710',
         VersionApp: '1.2.1',
         DeviceDescr: 'GenymotionSamsung Galaxy S7 - 8.0 - API 26 - 1440x2560 SDK 26',
         pass: 'eaded9424b3f5b63',
         DeviceId: 'android'
     };
+    let body;
+    if (outletId) {
+      body = {...creds, OutletUUID: outletId};
+    } else {
+      body = creds;
+    }
     return this.getHttp().post('/api/v2/GetOrders', body)
     .pipe(map((item: any) => item));
   }

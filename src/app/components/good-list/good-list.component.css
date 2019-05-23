@@ -52,3 +52,9 @@
 .reset-margins {
   margin: 0 !important;
 }
+
+.sticky {
+  position: fixed;
+  top: 60px;
+  width: 100%
+}

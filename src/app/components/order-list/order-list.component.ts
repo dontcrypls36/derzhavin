@@ -30,12 +30,15 @@ export class OrderListComponent implements OnInit {
               private spinner: SpinnerServiceService) { }
 
   ngOnInit() {
-    this.load();
+    this.loadAll();
+    this.orderService.getShippingSchedule().subscribe(res => {
+      this.outletsItems = res.outletsItems;
+    });
   }
 
-  load() {
+  loadAll() {
     this.spinner.show();
-    this.orderService.getAllOrders().subscribe( res => {
+    this.orderService.getOrders().subscribe( res => {
       this.orders = res.OrderItems;
       this.showContent = true;
       this.spinner.hide();
@@ -52,8 +55,28 @@ export class OrderListComponent implements OnInit {
       });
   }
 
-  loadOrders() {
-
+  loadOrdersWithFilters() {
+    this.showContent = false;
+    this.spinner.show();
+    this.orderService.getOrders(this.selectedOutlet?this.selectedOutlet.uuid : null).subscribe(res => {
+      this.orders = res.OrderItems;
+      if (this.startDate) {
+        this.orders = this.orders.filter(item => {
+          let formatedShipDate = new Date(item.ShipDate);
+          let formatedStartDate = new Date(this.startDate);
+          return formatedShipDate >= formatedStartDate;
+        });
+      }
+      if (this.endDate) {
+        this.orders = this.orders.filter(item => {
+          let formatedShipDate = new Date(item.ShipDate);
+          let formatedEndDate = new Date(this.endDate);
+          return formatedShipDate <= formatedEndDate;
+        });
+      }
+      this.showContent = true;
+      this.spinner.hide();
+    });
   }
 
   onRowsCountChange(e : any) {

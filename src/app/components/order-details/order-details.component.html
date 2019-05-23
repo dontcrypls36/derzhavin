@@ -18,7 +18,7 @@
       <th width="15%">Отгружено</th>
     </tr>
     <tbody>
-      <tr *ngFor="let good of order.FactOrderGoodsItems" class="mh-205 divider" (click)="showItemDialog($event, item)">
+      <tr *ngFor="let good of order.FactOrderGoodsItems" class="mh-205 divider" (click)="showItemDialog($event, good.GoodUUID)">
         <td><img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + good.GoodUUID + '/' + good.GoodUUID + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'"></td>
         <td> {{ good.GoodDescription }} </td>
         <td> {{ good.Price }}</td>

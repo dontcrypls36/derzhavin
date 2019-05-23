@@ -4,6 +4,7 @@ import {OrderItem} from '../../models/order-item';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {PreOrderItem} from "../../models/pre-order-item";
 import {GoodDetailsComponent} from "../good-details/good-details.component";
+import {GoodService} from "../../services/good.service";
 
 @Component({
   selector: 'app-order-details',
@@ -15,8 +16,10 @@ export class OrderDetailsComponent implements OnInit {
   order: OrderResponse;
 
   constructor(public dialogRef: MatDialogRef<OrderDetailsComponent>,
-  @Inject(MAT_DIALOG_DATA) public data: OrderResponse,
-              private dialog: MatDialog) { }
+              @Inject(MAT_DIALOG_DATA) public data: OrderResponse,
+              private dialog: MatDialog,
+              private goodService: GoodService) {
+  }
 
   ngOnInit() {
     this.order = this.data;
@@ -74,20 +77,19 @@ export class OrderDetailsComponent implements OnInit {
     }
   }
 
-  showItemDialog(event: any, item: PreOrderItem) {
-    this.dialog.open(GoodDetailsComponent,
-      {
-        width: '1190px',
-        data: item
+  showItemDialog(event: any, goodId: string) {
+    this.goodService.getRestOfGoods([goodId]).subscribe(res => {
+      if (res.length > 0) {
+        let preOrderItem = new PreOrderItem();
+        preOrderItem.good = res[0];
+        this.dialogRef.close();
+        this.dialog.open(GoodDetailsComponent,
+          {
+            width: '1190px',
+            data: preOrderItem
+        });
       }
-    );
-
-    // dialogRef.afterClosed().subscribe(res => {
-    //   if (!res) {
-    //     return;
-    //   }
-    //   this.store.dispatch<ActionWithPayload>({type: 'CLEAN_ORDER', payload: null});
-    // });
+    });
   }
-
 }
+

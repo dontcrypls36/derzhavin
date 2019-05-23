@@ -4,10 +4,10 @@
    <input type="text" [ngModel]="endDate | date:'dd-MMM-yyyy'" (ngModelChange)="endDate = $event" placeholder="До" onfocus="this.type='date'">
   </span>
   <span class="outlet-filter">
-    Грузополучатель:<p-dropdown [options]="outletsItems" [(ngModel)]="selectedOutlet" optionLabel="description" placeholder="Любой"></p-dropdown>
+    Грузополучатель:<p-dropdown [options]="outletsItems" [showClear]="true" [(ngModel)]="selectedOutlet" optionLabel="description" placeholder="Любой"></p-dropdown>
   </span>
   <span>
-    <button (click)="loadOrders()" class="btn">Загрузить</button>
+    <button (click)="loadOrdersWithFilters()" class="btn">Загрузить</button>
   </span>
   <div>
     <!--Количество записей на странице: <input type="text" [ngModel]="rowsCount" (ngModelChange)="onRowsCountChange($event)">-->
