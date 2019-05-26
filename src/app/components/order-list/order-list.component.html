@@ -1,25 +1,23 @@
 <div class="filters">
   <span class="date-filter">
-    Период: <input type="text" [ngModel]="startDate | date:'dd-MMM-yyyy'" (ngModelChange)="startDate = $event" placeholder="От" onfocus="this.type='date'">
-   <input type="text" [ngModel]="endDate | date:'dd-MMM-yyyy'" (ngModelChange)="endDate = $event" placeholder="До" onfocus="this.type='date'">
+    Период: <p-calendar [(ngModel)]="startDate" placeholder="От" [locale]="ru" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-calendar>
+    <!--<input type="text" [ngModel]="startDate | date:'dd-MMM-yyyy'" (ngModelChange)="startDate = $event" placeholder="От" onfocus="this.type='date'">-->
+    <p-calendar [(ngModel)]="endDate" placeholder="До" [locale]="ru" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-calendar>
+   <!--<input type="text" [ngModel]="endDate | date:'dd-MMM-yyyy'" (ngModelChange)="endDate = $event" placeholder="До" onfocus="this.type='date'">-->
   </span>
   <span class="outlet-filter">
-    Грузополучатель:<p-dropdown [options]="outletsItems" [showClear]="true" [(ngModel)]="selectedOutlet" optionLabel="description" placeholder="Любой"></p-dropdown>
+    Грузополучатель:<p-dropdown [options]="outletsItems" id="outlets" [showClear]="true" [(ngModel)]="selectedOutlet" optionLabel="description" placeholder="Любой"></p-dropdown>
   </span>
   <span>
     <button (click)="loadOrdersWithFilters()" class="btn">Загрузить</button>
   </span>
-  <div>
-    <!--Количество записей на странице: <input type="text" [ngModel]="rowsCount" (ngModelChange)="onRowsCountChange($event)">-->
-    <p-dropdown [options]="rowsCountItems" [ngModel]="rowsCount" (ngModelChange)="onRowsCountChange($event)" optionLabel="num"></p-dropdown>
-  </div>
 </div>
 <div>
 
 </div>
 <div class="orders" *ngIf="showContent">
   <div class="p-table text-align-center">
-    <p-table [value]="orders" [paginator]="true" [rows]="rowsCount.num">
+    <p-table [value]="slicedOrders" [paginator]="false">
       <ng-template pTemplate="header">
         <tr>
           <th width="10%">Название</th>
@@ -43,6 +41,7 @@
         </tr>
       </ng-template>
     </p-table>
+    <p-paginator [rows]="rowsCount" [totalRecords]="orders.length" [rowsPerPageOptions]="rowsCountItems" (onPageChange)="onRowsCountChange($event)"></p-paginator>
   </div>
 </div>
 

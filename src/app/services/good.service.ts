@@ -33,6 +33,8 @@ export class GoodService extends GlobalService<Good> {
     let body;
     if (goods) {
       body = {...creds, GoodsItems: goods};
+    } else {
+      body = creds;
     }
     return this.getHttp().post<Good[]>('/api/v2/RestOfGoods', body)
       .pipe(map((items: any) => this.parseCollection(items)));

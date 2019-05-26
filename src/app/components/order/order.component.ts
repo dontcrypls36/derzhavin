@@ -110,7 +110,7 @@ export class OrderComponent implements OnInit {
         order.TotalOrderSumma = this.preOrder.amount;
         order.TotalOrderQuant = this.getPreOrderQuant();
         order.OrderGoodsItems = this.createOrderItems();
-        this.orderService.getAllOrders().subscribe(res2 =>
+        this.orderService.getOrders().subscribe(res2 =>
           console.log(res2));
         // this.orderService.confirmOrder(order).subscribe(res1 =>
         //   console.log(res1));

@@ -45,8 +45,7 @@
                                 [value]="item.quant"
                                 (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer>
         </div>
-        <div class="col-3 bucket-btn-big" (click)="addItemToBucket(item)"><i class="fa fa-shopping-cart"></i><span
-          class="bucket-btn-big">&nbsp; В корзину</span></div>
+        <button class="bucket-btn" (click)="addItemToBucket(item)"><i class="fa fa-shopping-cart"></i></button>
       </div>
     </div>
   </div>
