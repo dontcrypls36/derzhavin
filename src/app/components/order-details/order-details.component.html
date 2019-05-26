@@ -9,31 +9,34 @@
     <div>Статус: {{ order.Status }}</div>
     <div>Комментарий: {{ order.Comment }}</div>
   </div>
-  <table>
-    <tr>
-      <th width="10%">Фото</th>
-      <th width="55%">Товар</th>
-      <th width="5%">Цена</th>
-      <th width="15%">Заказано</th>
-      <th width="15%">Отгружено</th>
-    </tr>
-    <tbody>
-      <tr *ngFor="let good of order.FactOrderGoodsItems" class="mh-205 divider" (click)="showItemDialog($event, good.GoodUUID)">
-        <td><img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + good.GoodUUID + '/' + good.GoodUUID + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'"></td>
-        <td> {{ good.GoodDescription }} </td>
-        <td> {{ good.Price }}</td>
-        <!--<td> {{ getGoodOrderInfo(good.GoodUUID) }}</td>-->
-        <td>
-          <div>{{ getGoodOrderSumma(good.GoodUUID) }}</div>
-          <div>{{ getGoodOrderQuant(good.GoodUUID) }}</div>
-          <div>{{ getGoodOrderQuantPacking(good.GoodUUID) }}</div>
-        </td>
-        <td>
-          <div>{{ good.Summa }}</div>
-          <div>{{ good.GoodQuant + good.GoodUnit}}</div>
-          <div>{{ good.GoodQuantPacking + 'шт' }}</div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+      <p-table [value]="order.FactOrderGoodsItems" [scrollable]="true" scrollHeight="450px">
+        <ng-template pTemplate="header">
+          <tr>
+            <th width="10%">Фото</th>
+            <th width="53%">Товар</th>
+            <th width="7%">Цена</th>
+            <th width="15%">Заказано</th>
+            <th width="15%">Отгружено</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr (click)="showItemDialog($event, item.GoodUUID)">
+            <td width="10%"><img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.GoodUUID + '/' + item.GoodUUID + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'"></td>
+            <td width="53%"> {{ item.GoodDescription }} </td>
+            <td width="7%"> {{ item.Price }}</td>
+            <!--<td> {{ getGoodOrderInfo(good.GoodUUID) }}</td>-->
+            <td width="15%">
+              <div>{{ getGoodOrderSumma(item.GoodUUID) }}</div>
+              <div>{{ getGoodOrderQuant(item.GoodUUID) }}</div>
+              <div>{{ getGoodOrderQuantPacking(item.GoodUUID) }}</div>
+            </td>
+            <td width="15%">
+              <div>{{ item.Summa }}</div>
+              <div>{{ item.GoodQuant + item.GoodUnit}}</div>
+              <div>{{ item.GoodQuantPacking + 'шт' }}</div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <!--<p-paginator [rows]="rowsCount" [totalRecords]="orders.length" [rowsPerPageOptions]="rowsCountItems" (onPageChange)="onRowsCountChange($event)"></p-paginator>-->
 </div>

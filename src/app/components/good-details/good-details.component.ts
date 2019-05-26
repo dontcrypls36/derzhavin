@@ -1,9 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { PreOrderItem } from '../../models/pre-order-item';
-import { ActionWithPayload } from '../../store/order-store';
-import { Store } from '@ngrx/store';
-import { PreOrder } from '../../models/pre-order';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {PreOrderItem} from '../../models/pre-order-item';
+import {ActionWithPayload} from '../../store/order-store';
+import {Store} from '@ngrx/store';
+import {PreOrder} from '../../models/pre-order';
 
 @Component({
   selector: 'app-good-details',
@@ -78,5 +78,12 @@ export class GoodDetailsComponent implements OnInit {
       return 'negative';
     }
     return '';
+  }
+
+  getRestExpression() {
+    if (this.item.good.restQuant === 0) {
+      return ' нет';
+    }
+    return ' ' + (this.item.good.restQuant > this.item.good.greaterOrEqualRest ? '> ' + this.item.good.greaterOrEqualRest : this.item.good.restQuant) + this.item.good.unit
   }
 }

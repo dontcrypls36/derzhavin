@@ -1,6 +1,6 @@
 nav {
   height: 60px;
-  background-color: #871616;
+  background-color: #d62424;
 }
 
 #search {
@@ -101,6 +101,13 @@ img {
   float: left;
   width: 100px;
   height: 60px;
+  margin-left: 10px;
+  padding-top: 2px;
+}
+
+.logo img {
+  border-radius: 56px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
 }
 
 

@@ -38,3 +38,8 @@ tr {
   height: 40px;
 }
 
+tr:hover {
+  background-color: #ddfbca;
+  cursor: pointer;
+}
+
