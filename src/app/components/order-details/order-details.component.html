@@ -21,7 +21,10 @@
         </ng-template>
         <ng-template pTemplate="body" let-item>
           <tr (click)="showItemDialog($event, item.GoodUUID)">
-            <td width="10%"><img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.GoodUUID + '/' + item.GoodUUID + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'"></td>
+            <td width="10%">
+              <img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.GoodUUID + '/' + item.GoodUUID + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'">
+              <div class="rest"><i class="fas fa-warehouse"></i><span>{{ getRestExpression(item.GoodUUID) }}</span></div>
+            </td>
             <td width="53%"> {{ item.GoodDescription }} </td>
             <td width="7%"> {{ item.Price }}</td>
             <!--<td> {{ getGoodOrderInfo(good.GoodUUID) }}</td>-->

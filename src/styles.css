@@ -4,8 +4,8 @@
 }
 
 .bucket-btn {
-  background-color: red;
-  border: 1px solid red;
+  background-color: #d62424;
+  border: 1px solid #d62424;
   color: white;
   width: 35px;
   height: 35px;
@@ -15,8 +15,8 @@
 }
 
 .btn {
-  background-color: red;
-  border: 1px solid red;
+  background-color: #d62424;
+  border: 1px solid #d62424;
   color: white;
   border-radius: 5px;
   text-transform: uppercase;
@@ -52,4 +52,8 @@
 #outlets>.ui-dropdown {
   margin: 0 4px;
   width: 290px !important;
+}
+
+.fa-warehouse {
+  color: gray;
 }

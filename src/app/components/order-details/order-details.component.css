@@ -33,7 +33,7 @@ tr {
 .title {
   text-align: center;
   color: white;
-  background-color: red;
+  background-color: #d62424;
   padding-top: 5px;
   height: 40px;
 }
@@ -41,5 +41,19 @@ tr {
 tr:hover {
   background-color: #ddfbca;
   cursor: pointer;
+}
+
+.rest {
+  text-align: center;
+}
+
+.rest span {
+  color: gray;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.fa-warehouse {
+  font-size: 0.8em;
 }
 

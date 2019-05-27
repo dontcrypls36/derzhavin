@@ -1,4 +1,5 @@
-import { OrderItem } from './order-item';
+import {OrderItem} from './order-item';
+import {Good} from "./good";
 
 export class OrderResponse {
     UUID: string;
@@ -18,4 +19,5 @@ export class OrderResponse {
     TotalFactQuant: number;
     OrderGoodsItems: OrderItem[] = [];
     FactOrderGoodsItems: OrderItem[] = [];
+    goods: Good[] = [];
 }

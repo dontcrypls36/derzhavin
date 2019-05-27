@@ -5,6 +5,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {PreOrderItem} from "../../models/pre-order-item";
 import {GoodDetailsComponent} from "../good-details/good-details.component";
 import {GoodService} from "../../services/good.service";
+import {Good} from "../../models/good";
 
 @Component({
   selector: 'app-order-details',
@@ -15,6 +16,8 @@ export class OrderDetailsComponent implements OnInit {
 
   order: OrderResponse;
 
+  goods: Good[] = [];
+
   constructor(public dialogRef: MatDialogRef<OrderDetailsComponent>,
               @Inject(MAT_DIALOG_DATA) public data: OrderResponse,
               private dialog: MatDialog,
@@ -23,6 +26,10 @@ export class OrderDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.order = this.data;
+    let allGoodIds = this.order.FactOrderGoodsItems.map(item => item.GoodUUID);
+    this.goodService.getRestOfGoods(allGoodIds).subscribe( res => {
+      this.goods = res;
+    });
   }
 
   getGoodOrderInfo(uuid: string): string {
@@ -78,18 +85,24 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   showItemDialog(event: any, goodId: string) {
-    this.goodService.getRestOfGoods([goodId]).subscribe(res => {
-      if (res.length > 0) {
-        let preOrderItem = new PreOrderItem();
-        preOrderItem.good = res[0];
-        this.dialogRef.close();
-        this.dialog.open(GoodDetailsComponent,
-          {
-            width: '1190px',
-            data: preOrderItem
+    let preOrderItem = new PreOrderItem();
+    preOrderItem.good = this.goods.filter(good => good.uuid === goodId)[0];
+    if (preOrderItem.good) {
+      this.dialogRef.close();
+      this.dialog.open(GoodDetailsComponent,
+        {
+          width: '1190px',
+          data: preOrderItem
         });
-      }
-    });
+    }
+  }
+  getRestExpression(id: string) {
+    let good: Good = this.goods.filter(g => g.uuid === id)[0];
+    if (good) {
+      return ' ' + (good.restQuant > good.greaterOrEqualRest ? '> ' + good.greaterOrEqualRest : good.restQuant) + good.unit;
+    } else {
+      return ' нет';
+    }
   }
 }
 
