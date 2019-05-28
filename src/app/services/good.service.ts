@@ -22,19 +22,20 @@ export class GoodService extends GlobalService<Good> {
     return '';
   }
 
-  getRestOfGoods(goods?: string[]): Observable<Good[]> {
-    let creds = {
+  getRestOfGoods(goods?: string[], categoryId?: string): Observable<Good[]> {
+    let creds: any = {
         tel: '+79529516710',
         VersionApp: '1.2.1',
         DeviceDescr: 'GenymotionSamsung Galaxy S7 - 8.0 - API 26 - 1440x2560 SDK 26',
         pass: 'eaded9424b3f5b63',
         DeviceId: 'android'
     };
-    let body;
+    let body = creds;
     if (goods) {
-      body = {...creds, GoodsItems: goods};
-    } else {
-      body = creds;
+      body = {...body, GoodsItems: goods};
+    }
+    if (categoryId) {
+      body = {...body, GoodCategoryUUID: categoryId};
     }
     return this.getHttp().post<Good[]>('/api/v2/RestOfGoods', body)
       .pipe(map((items: any) => this.parseCollection(items)));

@@ -96,6 +96,7 @@ export class OrderDetailsComponent implements OnInit {
         });
     }
   }
+
   getRestExpression(id: string) {
     let good: Good = this.goods.filter(g => g.uuid === id)[0];
     if (good) {

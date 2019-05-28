@@ -38,7 +38,8 @@ import {OrderDetailsComponent} from './components/order-details/order-details.co
 import {MenuCategoryComponent} from './components/menu-category/menu-category.component';
 import {CollapseModule} from 'ngx-bootstrap/collapse';
 import {TableModule} from "primeng/table";
-import {CalendarModule, PaginatorModule} from "primeng/primeng";
+import {CalendarModule, CarouselModule, PaginatorModule} from "primeng/primeng";
+import {AnalogsComponent} from './components/analogs/analogs.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'good-list', pathMatch: 'full'},
@@ -66,7 +67,8 @@ registerLocaleData(localeRu);
     CalculationsComponent,
     QuantityChangerComponent,
     OrderDetailsComponent,
-    MenuCategoryComponent
+    MenuCategoryComponent,
+    AnalogsComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +91,7 @@ registerLocaleData(localeRu);
     TableModule,
     PaginatorModule,
     CalendarModule,
+    CarouselModule,
     ScrollToModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
