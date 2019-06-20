@@ -57,3 +57,23 @@ tr:hover {
   font-size: 0.8em;
 }
 
+.repeat-order {
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#repeat-order {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #d62424;
+  font-size: 2em;
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+

@@ -1,0 +1,11 @@
+.price {
+  font-weight: 600;
+}
+
+.description {
+  font-size: 12px;
+}
+
+table {
+  cursor: pointer;
+}

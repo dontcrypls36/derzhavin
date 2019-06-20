@@ -6,6 +6,9 @@ import {PreOrderItem} from "../../models/pre-order-item";
 import {GoodDetailsComponent} from "../good-details/good-details.component";
 import {GoodService} from "../../services/good.service";
 import {Good} from "../../models/good";
+import {Store} from "@ngrx/store";
+import {PreOrder} from "../../models/pre-order";
+import {ActionWithPayload} from "../../store/order-store";
 
 @Component({
   selector: 'app-order-details',
@@ -21,7 +24,8 @@ export class OrderDetailsComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<OrderDetailsComponent>,
               @Inject(MAT_DIALOG_DATA) public data: OrderResponse,
               private dialog: MatDialog,
-              private goodService: GoodService) {
+              private goodService: GoodService,
+              private store: Store<PreOrder>) {
   }
 
   ngOnInit() {
@@ -104,6 +108,28 @@ export class OrderDetailsComponent implements OnInit {
     } else {
       return ' нет';
     }
+  }
+
+  onOrderRepeat() {
+    let allGoodIds = this.order.FactOrderGoodsItems.map(item => item.GoodUUID);
+    let rests: Good[] = [];
+    this.goodService.getRestOfGoods(allGoodIds).subscribe( res => {
+      rests = res;
+      for (const orderGood of this.order.OrderGoodsItems) {
+        let filtered: Good[] = [];
+        filtered = rests.filter(item => item.uuid === orderGood.GoodUUID);
+        if (filtered.length > 0) {
+          const good = filtered[0];
+          let preOrderItem = new PreOrderItem();
+          preOrderItem.good = good;
+          preOrderItem.quant = good.restQuant >= orderGood.GoodQuant ? orderGood.GoodQuant : good.restQuant;
+          preOrderItem.quantPacking = preOrderItem.quant / good.weight;
+          this.store.dispatch<ActionWithPayload>({type: 'ADD_ITEM', payload: preOrderItem});
+        }
+      }
+    });
+
+
   }
 }
 

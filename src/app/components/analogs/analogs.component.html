@@ -1,0 +1,18 @@
+<p-carousel headerText="Похожие товары" [value]="analogs">
+  <ng-template let-item pTemplate="item">
+    <table (click)="onItemClick(item)">
+      <tr>
+        <td width="30%" class="text-align-center">
+          <img
+          src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.uuid + '/' + item.uuid + '_' + '1_t.jpg' }}"
+          onerror="this.src='assets/default.jpg'" width="120px" height="120px">
+          <div class="rest"><i class="fas fa-warehouse"></i><span>{{ getRestExpression(item) }}</span></div>
+        </td>
+        <td width="70%">
+          <div class="description">{{ item.description }}</div>
+          <div class="price">{{ item.price + ' руб.'}} c НДС</div>
+        </td>
+      </tr>
+    </table>
+  </ng-template>
+</p-carousel>
