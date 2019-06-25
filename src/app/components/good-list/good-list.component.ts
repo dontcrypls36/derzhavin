@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, HostListener, Inject, OnInit} from '@angular/core';
 import {GoodService} from '../../services/good.service';
 import {PreOrderItem} from '../../models/pre-order-item';
 import {Store} from '@ngrx/store';
@@ -10,20 +10,21 @@ import {SpinnerServiceService} from '../../services/spinner-service.service';
 import {GoodDetailsComponent} from '../good-details/good-details.component';
 import {MatDialog} from '@angular/material';
 import {ActivatedRoute} from "@angular/router";
-import {GroupForMenuService} from "../../services/group-for-menu.service";
+import {DOCUMENT} from '@angular/common';
 
 @Component({
   selector: 'app-good-list',
   templateUrl: './good-list.component.html',
   styleUrls: ['./good-list.component.css']
 })
-export class GoodListComponent implements OnInit, AfterViewChecked {
+export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewInit {
 
   public preOrderItems: PreOrderItem[] = [];
   private filter: string;
   private group: string;
   private category: Category = new Category();
   private groupFragment: string;
+  private scrollFlag = false;
 
   categories: Category[] = [];
 
@@ -32,7 +33,8 @@ export class GoodListComponent implements OnInit, AfterViewChecked {
     private categoryService: CategoryService,
     private dialog: MatDialog,
     private spinner: SpinnerServiceService, private route: ActivatedRoute,
-              private groupService: GroupForMenuService) {
+    @Inject(DOCUMENT) private document: Document) {
+    this.scrollFlag = false;
     this.route.params.subscribe(params => {
       this.filter = params.category;
       if (this.categories.length !== 0) {
@@ -47,7 +49,21 @@ export class GoodListComponent implements OnInit, AfterViewChecked {
 
   }
 
+  ngAfterViewInit(): void {
+    let stickies:HTMLCollection = document.getElementsByClassName('followMeBar');
+    Array.from(stickies).forEach(el => {
+      let htmlElement = <HTMLElement> el;
+      el.setAttribute('originalPosition', new String(htmlElement.offsetTop).toString());
+      el.setAttribute('originalHeight', new String(htmlElement.offsetHeight).toString());
+    });
+  }
+
+
+
   ngAfterViewChecked(): void {
+    if (this.scrollFlag) {
+      return;
+    }
     this.route.fragment.subscribe(fr => {
       if (fr) {
         this.groupFragment = fr;
@@ -59,6 +75,7 @@ export class GoodListComponent implements OnInit, AfterViewChecked {
       let y = window.screenY;
       window.scrollBy(0, y - 60);
       this.groupFragment = null;
+      this.scrollFlag = true;
     }
   }
 
@@ -157,6 +174,36 @@ export class GoodListComponent implements OnInit, AfterViewChecked {
 
   public onQuantPackingInputChange(event: any, item: PreOrderItem) {
     item.quant = event.newValue * item.good.weight;
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    let elementFound = false;
+    let stickies:HTMLCollection = document.getElementsByClassName('followMeBar');
+    let scrollTop = this.document.documentElement.scrollTop;
+    let realHeader = this.document.getElementById("stickyHeader");
+    Array.from(stickies).forEach((el, index) => {
+      if (!elementFound) {
+        let htmlElement = <HTMLElement> el;
+        let stickyPosition = +htmlElement.offsetTop;
+        if (stickyPosition >= scrollTop &&
+          stickyPosition <= scrollTop + window.innerHeight / 3) {
+          realHeader.innerHTML = htmlElement.innerHTML;
+          elementFound = true;
+        }
+      }
+    });
+    if (!elementFound){
+      let nearest: HTMLElement = <HTMLElement>stickies[0];
+      Array.from(stickies).forEach((el, index) => {
+        let htmlElement = <HTMLElement> el;
+        if (htmlElement.offsetTop <= scrollTop) {
+          nearest = htmlElement;
+        }
+      });
+      realHeader.innerHTML = nearest.innerHTML;
+    }
+
   }
 
 }

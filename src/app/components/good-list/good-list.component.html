@@ -1,24 +1,27 @@
-<div class="mt-60 content-table">
-    <h1><a id="{{ 'uuid' + category.uuid }}">{{ category.descr }}</a></h1>
-    <div *ngFor="let group of category.groups">
-      <h4 class="mt-5" id="{{ 'uuid' + group.uuid }}">{{ group.descr }}</h4>
+<div id="stickyHeader"></div>
+<div class="content-table">
+    <!--<h1><a id="{{ 'uuid' + category.uuid }}">{{ category.descr }}</a></h1>-->
+  <table class="fixed text-align-center" style="width:100%;">
+    <thead class="table-header">
+    <th width="10%"></th>
+    <th width="50%">Наименование</th>
+    <th width="5%">Цена</th>
+    <th width="15%">Грузовых мест</th>
+    <th width="15%">Вес, кг</th>
+    <th width="5%"></th>
+    </thead>
+  </table>
+    <div class="good-table" *ngFor="let group of category.groups">
+      <h4 class="followMeBar hidden" id="{{ 'uuid' + group.uuid }}">{{ category.descr }} -> {{ group.descr }}</h4>
       <table class="text-align-center">
-        <thead class="table-header">
-          <th width="10%"></th>
-          <th width="50%">Наименование</th>
-          <th width="5%">Цена</th>
-          <th width="15%">Грузовых мест</th>
-          <th width="15%">Вес, кг</th>
-          <th width="5%"></th>
-        </thead>
         <tbody>
           <tr *ngFor="let item of filterGoodsByGroup(group.uuid)" class="table-row">
-            <td><img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.good.uuid + '/' + item.good.uuid + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'"></td>
-            <td class="description" (click)="showItemDialog($event, item)">{{ item.good.description }}</td>
-            <td>{{ item.good.price }}</td>
-            <td><app-quantity-changer (decreaseValue)="changeQuantPacking(item, -1)" (increaseValue)="changeQuantPacking(item, 1)" [value]="item.quantPacking" (changeInputValue)="onQuantPackingInputChange($event, item)"></app-quantity-changer></td>
-            <td><app-quantity-changer (decreaseValue)="changeQuant(item, -1)" (increaseValue)="changeQuant(item, 1)" [value]="item.quant" (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer></td>
-            <td><button class="bucket-btn" (click)="addItemToBucket(item)"><i class="fa fa-shopping-cart"></i></button></td>
+            <td width="10%"><img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.good.uuid + '/' + item.good.uuid + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'"></td>
+            <td class="description" (click)="showItemDialog($event, item)" width="50%">{{ item.good.description }}</td>
+            <td width="5%">{{ item.good.price }}</td>
+            <td width="15%"><app-quantity-changer (decreaseValue)="changeQuantPacking(item, -1)" (increaseValue)="changeQuantPacking(item, 1)" [value]="item.quantPacking" (changeInputValue)="onQuantPackingInputChange($event, item)"></app-quantity-changer></td>
+            <td width="15%"><app-quantity-changer (decreaseValue)="changeQuant(item, -1)" (increaseValue)="changeQuant(item, 1)" [value]="item.quant" (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer></td>
+            <td width="5%"><button class="bucket-btn" (click)="addItemToBucket(item)"><i class="fa fa-shopping-cart"></i></button></td>
           </tr>
         </tbody>
       </table>
