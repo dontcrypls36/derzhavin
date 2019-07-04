@@ -57,3 +57,16 @@
 .fa-warehouse {
   color: gray;
 }
+
+.ng-arrow {
+  display: none !important;
+}
+
+.ng-select-container {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+html, body {
+  height: 100%;
+}

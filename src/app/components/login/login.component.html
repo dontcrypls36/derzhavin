@@ -1,3 +1,18 @@
-<p>
-  login works!
-</p>
+<div class="login-container">
+  <form>
+    <div class="login-inputs">
+      <input id="login" type="text" placeholder="Номер телефона"/>
+    </div>
+    <div class="login-inputs">
+      <input id="password" type="password" placeholder="Пароль"/>
+    </div>
+    <div class="login-buttons">
+      <input id="loginAction" type="button" value="Войти" (click)="onLogin()"/>
+      <input id="cancelAction" type="button" value="Отмена"/>
+    </div>
+    <div class="login-links">
+      <a id="restoreLink" routerLink="reset-password">Забыли пароль?</a>
+      <a id="regLink" routerLink="registration">Регистрация</a>
+    </div>
+  </form>
+</div>

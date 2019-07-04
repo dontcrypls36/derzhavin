@@ -110,4 +110,16 @@ img {
   box-shadow: 0 0 8px rgba(0,0,0,0.5);
 }
 
+.header-search {
+  width: 50%;
+  float: left;
+  height: 100%;
+  padding: 10px;
+}
+
+.login {
+  float: right;
+  width: 60px;
+}
+
 

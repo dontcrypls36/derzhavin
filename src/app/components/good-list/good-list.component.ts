@@ -19,6 +19,8 @@ import {DOCUMENT} from '@angular/common';
 })
 export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewInit {
 
+  private readonly APP_ID = '';
+
   public preOrderItems: PreOrderItem[] = [];
   private filter: string;
   private group: string;
@@ -80,6 +82,10 @@ export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewIni
   }
 
   ngOnInit() {
+    (<any>window).Intercom('boot', {
+      app_id: this.APP_ID,
+      //Website visitor so may not have any user related info
+    });
     this.load();
   }
 

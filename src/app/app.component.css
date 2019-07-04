@@ -19,3 +19,7 @@
 .text-align-center {
     text-align: center;
 }
+
+section {
+  height: 100%;
+}

@@ -30,6 +30,7 @@ export class GoodService extends GlobalService<Good> {
         pass: 'eaded9424b3f5b63',
         DeviceId: 'android'
     };
+    // let body = JSON.parse(sessionStorage.getItem('user'));
     let body = creds;
     if (goods) {
       body = {...body, GoodsItems: goods};

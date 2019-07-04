@@ -35,7 +35,8 @@
               "node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "src/assets/custom.css",
               "src/assets/fonts/pt_sans/ptsans.css",
-              "node_modules/roboto-fontface/css/roboto-condensed/roboto-condensed-fontface.css"
+              "node_modules/roboto-fontface/css/roboto-condensed/roboto-condensed-fontface.css",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css"
             ],
             "scripts": []
           },

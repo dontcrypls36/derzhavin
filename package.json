@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+    "@ng-select/ng-select": "^2.20.3",
     "@ngrx/effects": "^6.1.2",
     "@ngrx/store": "^6.1.2",
     "@nicky-lenaers/ngx-scroll-to": "^1.1.1",

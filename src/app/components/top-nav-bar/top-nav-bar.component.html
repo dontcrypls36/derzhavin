@@ -12,14 +12,31 @@
 
       </div>
       <app-menu-category *ngIf="true"></app-menu-category>
-      <div class="orders header-button" routerLink="orders" [ngClass]="router.url.includes('orders') ? 'active' : ''">
+      <div class="orders header-button" routerLink="orders" [ngClass]="router.url.includes('orders') ? 'active' : ''" [hidden]="!isAuthorized()">
         Заказы
       </div>
-      <div class="documents header-button" routerLink="calculations" [ngClass]="router.url.includes('calculations') ? 'active' : ''">
+      <div class="documents header-button" routerLink="calculations" [ngClass]="router.url.includes('calculations') ? 'active' : ''" [hidden]="!isAuthorized()">
         Взаиморасчеты
       </div>
-      <input id="search" type="text" placeholder="Поиск">
-    <div class="bucket header-button" routerLink="order" [ngClass]="router.url.includes('order') && !router.url.includes('orders') ? 'active' : ''"><i class="fa fa-shopping-cart"></i><span class="order-span">{{ orderItemCount < 1 ? ' Корзина' : '  '+ orderItemCount + ' тов.  ' + (orderAmount | number : '1.2-2') + ' р.'}}</span></div>
+    <div class="header-search">
+      <ng-select [items]="filteredGoods"
+                 [loading]="false"
+                 (search)="customSearchFn($event, this)"
+                 [isOpen]="isListOpen"
+                 [(ngModel)]="selectedGood"
+                 bindLabel="description"
+                 placeholder="Поиск..."
+                (change)="onSelect()">
+        <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+          <img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.uuid + '/' + item.uuid + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'">
+          <span style="float:right; margin-top: 20px; vertical-align: middle; font-size: 12px;"> {{item.description}}</span>
+        </ng-template>
+      </ng-select>
+    </div>
+    <div class="login header-button" routerLink="login">Логин</div>
+
+    <!--<p-dropdown [options]="filteredGoods" [(ngModel)]="selectedGood" placeholder="Поиск"></p-dropdown>-->
+    <div class="bucket header-button" [hidden]="!isAuthorized()" routerLink="order" [ngClass]="router.url.includes('order') && !router.url.includes('orders') ? 'active' : ''"><i class="fa fa-shopping-cart"></i><span class="order-span">{{ orderItemCount < 1 ? ' Корзина' : '  '+ orderItemCount + ' тов.  ' + (orderAmount | number : '1.2-2') + ' р.'}}</span></div>
       <!--<div class="col-lg-2">-->
         <!--<button mat-icon-button [matMenuTriggerFor]="profile" id="profile" class="profile-link" >-->
           <!--<i class="fa fa-address-card"></i>-->
