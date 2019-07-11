@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { PreOrder } from './models/pre-order';
-import { SpinnerServiceService } from './services/spinner-service.service';
+import {Component} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {PreOrder} from './models/pre-order';
+import {SpinnerServiceService} from './services/spinner-service.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,12 @@ import { SpinnerServiceService } from './services/spinner-service.service';
   providers: [SpinnerServiceService]
 })
 export class AppComponent {
+  route: string;
   title = 'derzhavin-app';
 
-  constructor(private store: Store<PreOrder>, public spinnerService: SpinnerServiceService) {}
+  constructor(private store: Store<PreOrder>, public spinnerService: SpinnerServiceService,
+  private router: Router) {
+    this.route = this.router.url;
+  }
 
 }

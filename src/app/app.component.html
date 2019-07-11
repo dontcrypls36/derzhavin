@@ -1,4 +1,4 @@
-<app-top-nav-bar></app-top-nav-bar>
+<app-top-nav-bar *ngIf="router.url != '/' && router.url != '/registration'"></app-top-nav-bar>
 
 <section class="forms">
       <div class="spinner-wrapper" style="display: flex; justify-content: center; align-items: center;" [hidden]="spinnerService.hidden">

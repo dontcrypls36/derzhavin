@@ -22,9 +22,6 @@ export class TopNavBarComponent implements OnInit {
   public orderItemCount = 0;
   orderAmount = 0;
   categories: Category[] = [];
-  showMenu: boolean = false;
-  that = this;
-
   filteredGoods: Good[] = [];
   selectedGood: Good;
   isListOpen = false;

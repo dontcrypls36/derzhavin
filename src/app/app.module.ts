@@ -41,13 +41,14 @@ import {TableModule} from "primeng/table";
 import {CalendarModule, CarouselModule, PaginatorModule} from "primeng/primeng";
 import {AnalogsComponent} from './components/analogs/analogs.component';
 import {NgSelectModule} from "@ng-select/ng-select";
+import {LoggerGuard} from "./models/logger-guard";
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'good-list', pathMatch: 'full'},
-  { path: 'goods/:category', component: GoodListComponent },
-  { path: 'order', component: OrderComponent },
-  { path: 'orders', component: OrderListComponent },
-  { path: 'calculations', component: CalculationsComponent},
+  { path: '', component: LoginComponent},
+  { path: 'goods/:category', component: GoodListComponent, canActivate: [LoggerGuard] },
+  { path: 'order', component: OrderComponent, canActivate: [LoggerGuard] },
+  { path: 'orders', component: OrderListComponent, canActivate: [LoggerGuard] },
+  { path: 'calculations', component: CalculationsComponent, canActivate: [LoggerGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'registration', component: RegistrationComponent},
 ];
@@ -106,7 +107,7 @@ registerLocaleData(localeRu);
     EffectsModule.forRoot([PreOrderEffects]),
     CollapseModule.forRoot()
   ],
-  providers: [OrderService, DatePipe, {provide: LOCALE_ID, useValue: 'ru'}],
+  providers: [OrderService, DatePipe, {provide: LOCALE_ID, useValue: 'ru'}, LoggerGuard],
   bootstrap: [AppComponent],
   entryComponents: [OkNoDialogComponent, OrderConfirmationDialogComponent, GoodDetailsComponent, OrderDetailsComponent]
 })

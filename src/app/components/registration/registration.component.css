@@ -1,49 +1,66 @@
-#wrapper {
-    width: 420px;
-      background: #ffffff;
-      padding: 25px;
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-      box-sizing: border-box;
+.login-buttons {
+  display: inline-block;
 }
 
-#myForm {
-    margin-top: 24px;
-    width: 100%;
+form {
+  margin: auto;
+  width: 300px;
+  height: 200px;
 }
 
-p {
-    text-align:center;
+.login-container {
+  display: flex;
+  height: 100%;
 }
 
-	  /*input.form-control,*/
-	  button {
-      margin: 10px auto;
-      width: 206px;
-      display: block;
-      padding: 4px;
-      box-sizing: content-box;
-	  }
-	  /*input.form-control{*/
-	    /*border:0;*/
-	  /*}*/
-	  button {
-      line-height: 1.8em;
-      background: #ed1c24;
-      color: white;
-      margin-top: 27px;
-      border: none;
-      cursor: pointer;
-      border-radius: 3px;
-      }
+.login-inputs {
+  margin: 10px 0 20px 0;
+  text-align: center;
+}
 
-      button[type=submit]:hover {
-      background: #da1d24;
-    }
+.login-buttons > input {
+  font-family: 'Roboto-Condensed', sans-serif;
+}
 
-    button:focus {
-      outline:0;
-      background: #da1d24
-    }
+#sendSms {
+  width: 110px;
+  height: 30px;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #d62424;
+}
+
+.login-buttons {
+  width: 100%;
+  text-align: center;
+}
+
+.login-links {
+  width: 100%;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.login-links > a {
+  margin: 5px;
+  font-family: 'Roboto-Condensed', sans-serif;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-family: 'Roboto-Condensed', sans-serif;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  font-family: 'Roboto-Condensed', sans-serif;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  font-family: 'Roboto-Condensed', sans-serif;
+}
+:-moz-placeholder { /* Firefox 18- */
+  font-family: 'Roboto-Condensed', sans-serif;
+}
+
+
+
+

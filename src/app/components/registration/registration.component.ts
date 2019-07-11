@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { SmsService } from '../../services/sms.service';
+import {Component, OnInit} from '@angular/core';
+import {SmsService} from '../../services/sms.service';
 
 @Component({
   selector: 'app-registration',
@@ -12,7 +12,7 @@ export class RegistrationComponent implements OnInit {
 
   response: string;
 
-  private phoneTemplate = '+7 (9';
+  private phoneTemplate = '+79601087082';
 
   constructor(private smsService: SmsService) { }
 

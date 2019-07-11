@@ -1,11 +1,16 @@
-<div id="wrapper">
-  <form id="myForm">
-    <p>Укажите номер телефона на который будет</p>
-    <p>отправлен СМС с кодом</p>
-    <mat-form-field>
-      <input matInput class="form-control" type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="phoneNumber" (change)="onPhoneNumberChange() "placeholder="Ваш номер телефона"/>
-    </mat-form-field>
-    <button (click)="sendSms()">ПОЛУЧИТЬ SMS КОД</button>
+<div class="login-container">
+  <form>
+    <div class="login-inputs">
+      Укажите номер телефона для дальнейшей регистрации
+      <input id="phoneNumber" type="text" placeholder="Номер телефона" name="phoneNumber" [(ngModel)]="phoneNumber" (change)="onPhoneNumberChange()"/>
+    </div>
+    <div class="login-buttons">
+      <input id="sendSms" type="button" (click)="sendSms()" value="Получить СМС"/>
+    </div>
+    {{ response }}
+    <div class="login-links">
+      <a id="back" routerLink="/">Назад</a>
+    </div>
   </form>
 </div>
-<a href="good-list">Остатки товаров</a>
+
