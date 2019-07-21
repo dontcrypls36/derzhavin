@@ -12,6 +12,14 @@ import {DocForAct} from "../models/doc-for-act";
 })
 export class CalculationService extends GlobalService<CalculationResponse>{
 
+  mockCreds = {
+    tel: '+79529516710',
+    VersionApp: '1.2.1',
+    DeviceDescr: 'GenymotionSamsung Galaxy S7 - 8.0 - API 26 - 1440x2560 SDK 26',
+    pass: 'eaded9424b3f5b63',
+    DeviceId: 'android'
+  };
+
   constructor(private http: HttpClient) {
     super();
   }
@@ -26,16 +34,11 @@ export class CalculationService extends GlobalService<CalculationResponse>{
   }
 
   getCalculation(startDate: string, endDate: string): Observable<CalculationResponse> {
-    const body = {
-      tel: '+79529516710',
-      VersionApp: '1.2.1',
-      DeviceDescr: 'GenymotionSamsung Galaxy S7 - 8.0 - API 26 - 1440x2560 SDK 26',
-      pass: 'eaded9424b3f5b63',
-      DeviceId: 'android',
-      DateFrom: startDate,
-      DateTo: endDate
-    };
-    return this.getHttp().post<Good[]>('/api/v2/GetAkt', body)
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    if (!user) {
+      user = this.mockCreds;
+    }
+    return this.getHttp().post<Good[]>('/api/v2/GetAkt', user)
       .pipe(map((items: any) => this.parseOne(items)));
 
   }

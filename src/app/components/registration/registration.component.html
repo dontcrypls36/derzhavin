@@ -1,15 +1,38 @@
 <div class="login-container">
   <form>
-    <div class="login-inputs">
-      Укажите номер телефона для дальнейшей регистрации
-      <input id="phoneNumber" type="text" placeholder="Номер телефона" name="phoneNumber" [(ngModel)]="phoneNumber" (change)="onPhoneNumberChange()"/>
+    <div *ngIf="!smsSent">
+      <div class="login-inputs" >
+        <div>Укажите номер телефона для дальнейшей регистрации</div>
+        <input id="phoneNumber" type="text" placeholder="Номер телефона" name="phoneNumber" [(ngModel)]="phoneNumber" minlength="3" maxlength="12"/>
+        <!--<p-inputMask id="phoneNumber" type="text" placeholder="Номер телефона" name="phoneNumber" [(ngModel)]="phoneNumber" (ngModelChange)="onPhoneNumberChange()" mask="+7(999)999-99-99" unmask="true"></p-inputMask>-->
+      </div>
+      <div class="login-buttons">
+        <input id="sendSms" type="button" (click)="sendSms()" value="Получить СМС"/>
+      </div>
     </div>
-    <div class="login-buttons">
-      <input id="sendSms" type="button" (click)="sendSms()" value="Получить СМС"/>
+    <div *ngIf="smsSent && smsStatus==='wait_sms'">
+      <div class="notify">Смс отправлено на номер {{ phoneNumber }}</div>
+      <div class="login-inputs">
+        <input type="text" placeholder="Код из СМС" name="smsCode" [(ngModel)]="smsCode"/>
+        <input type="password" placeholder="Пароль" name="password" [(ngModel)]="password"/>
+        <input type="password" placeholder="Повторите пароль" name="passwordConfirmation" [(ngModel)]="passwordConfirm"/>
+        <div *ngIf="password !== passwordConfirm" class="error">Пароли не совпадают</div>
+      </div>
+      <div *ngIf="timer > 0" class="timer">
+        {{ 'Получить СМС ещё раз можно будет через ' + timer + ' сек.'}}
+      </div>
+      <div *ngIf="timer <= 0" class="sms-links">
+        <a id="elseSms" (click)="sendSms()">Получить смс ещё раз</a>
+      </div>
+      <div class="login-buttons">
+        <input id="sendCode" type="button" [disabled]="password === undefined || password !== passwordConfirm" (click)="sendCode()" value="Отправить"/>
+      </div>
     </div>
-    {{ response }}
+    <div *ngIf="smsSent && smsStatus !== 'wait_sms' && smsStatus !== 'ok'" class="call-manager">
+      {{ errorText }}
+    </div>
     <div class="login-links">
-      <a id="back" routerLink="/">Назад</a>
+      <a id="back" routerLink="/login">Назад</a>
     </div>
   </form>
 </div>

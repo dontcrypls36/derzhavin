@@ -1,5 +1,5 @@
 button {
-  background-color: #eee;
+  background-color: #ffffff;
   border:none;
   cursor: pointer;
   outline: none;
@@ -16,12 +16,14 @@ li {
   font-size: 14px;
   width: auto;
   display:inline-block;
-  background: #eee;
-  box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.39);
+  background: #ffffff;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.39);
   position: absolute;
   z-index: 11;
   left: 0;
   top: 60px;
+  margin-left: 110px;
+  border-radius: 8px;
 }
 
 .category-img {
@@ -32,19 +34,21 @@ li {
 }
 
 .category {
-  min-height: 30px;
+  min-height: 40px;
   border-bottom: 1px solid #ddd;
+  padding: 5px 5px;
+
 }
 
-a, .group {
+a, .group, .category {
   cursor: pointer;
 }
 
 .group {
-  margin-left: 50px;
+ padding-left: 50px;
   min-height: 30px;
 }
 
 .group:hover {
-  background-color: #ffffff;
+  background-color: #ddfbca;
 }

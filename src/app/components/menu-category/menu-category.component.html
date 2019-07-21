@@ -1,7 +1,7 @@
 <div class="custom-menu" *ngIf="showMenu">
   <div class="category" *ngFor="let category of categories; let i = index">
     <a (click)="onCategoryClick(category.uuid, $event)"><img class="category-img" onerror="this.src='assets/default.jpg'" src="{{ 'http://mobile.optvrn.ru:5050/images/category/' + category.uuid +  '.jpg' }}"> {{ category.descr }}({{ category.count }})</a>
-    <button class="folder" type="button" (click)="refreshCollapsed(i)" [attr.aria-expanded]="!collapsed[i]" [attr.aria-controls]="'toggle_' + i"><i class="fa fa-folder-open"></i></button>
+    <button class="folder" type="button" (click)="refreshCollapsed(i)" [attr.aria-expanded]="!collapsed[i]" [attr.aria-controls]="'toggle_' + i"><i [ngClass]="collapsed[i] ? upArrowHtml : downArrowHtml"></i></button>
     <div id="toggle_{{ i }}" [collapse]="!collapsed[i]">
         <div class="group" *ngFor="let group of category.groups" (click)="onGroupClick(category.uuid, group)">| {{ group.descr }}({{ group.count }})</div>
     </div>

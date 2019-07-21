@@ -27,6 +27,14 @@ export class OrderService extends GlobalService<any> {
     return '';
   }
 
+  mockCreds = {
+    tel: '+79529516710',
+    VersionApp: '1.2.1',
+    DeviceDescr: 'GenymotionSamsung Galaxy S7 - 8.0 - API 26 - 1440x2560 SDK 26',
+    pass: 'eaded9424b3f5b63',
+    DeviceId: 'android'
+  };
+
   addItemToOrder(item: PreOrderItem): Observable<PreOrder> {
     const preOrder = JSON.parse(sessionStorage.getItem('preOrder'));
     item.uuid = uuid();
@@ -94,48 +102,34 @@ export class OrderService extends GlobalService<any> {
   }
 
   confirmOrder(order: Order): Observable<any> {
-    const creds = {
-        tel: '+79529516710',
-        VersionApp: '1.2.1',
-        DeviceDescr: 'GenymotionSamsung Galaxy S7 - 8.0 - API 26 - 1440x2560 SDK 26',
-        pass: 'eaded9424b3f5b63',
-        DeviceId: 'android'
-    };
-    // const creds = {
-    //     ClientUUID: '82145abf-a324-11e4-bd31-001e671a3b56',
-    //     VersionApp: '1.2.1',
-    //     DeviceId: 'android'
-    // };
-    const body = {...creds, ...order};
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    if (!user) {
+      user = this.mockCreds;
+    }
+    const body = {...user, ...order};
     return this.getHttp().post<any>('/api/v2/UpdateOrder', body)
     .pipe(map((item: any) => console.log(item)));
   }
 
   getShippingSchedule(): Observable<ShippingSchedule> {
-    const body = {
-        tel: '+79529516710',
-        VersionApp: '1.2.1',
-        DeviceDescr: 'GenymotionSamsung Galaxy S7 - 8.0 - API 26 - 1440x2560 SDK 26',
-        pass: 'eaded9424b3f5b63',
-        DeviceId: 'android'
-    };
-    return this.getHttp().post('/api/v2/GetShippingSchedule', body)
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    if (!user) {
+      user = this.mockCreds;
+    }
+    return this.getHttp().post('/api/v2/GetShippingSchedule', user)
     .pipe(map((item: any) => this.parseSchedule(item)));
   }
 
   getOrders(outletId?: string): Observable<any> {
-    const creds: any = {
-        tel: '+79529516710',
-        VersionApp: '1.2.1',
-        DeviceDescr: 'GenymotionSamsung Galaxy S7 - 8.0 - API 26 - 1440x2560 SDK 26',
-        pass: 'eaded9424b3f5b63',
-        DeviceId: 'android'
-    };
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    if (!user) {
+      user = this.mockCreds;
+    }
     let body;
     if (outletId) {
-      body = {...creds, OutletUUID: outletId};
+      body = {...user, OutletUUID: outletId};
     } else {
-      body = creds;
+      body = user;
     }
     return this.getHttp().post('/api/v2/GetOrders', body)
     .pipe(map((item: any) => item));

@@ -18,6 +18,9 @@ export class MenuCategoryComponent implements OnInit {
   private collapsed: boolean[] = [];
   showMenu = false;
 
+  downArrowHtml = 'fas fa-angle-double-down';
+  upArrowHtml = 'fas fa-angle-double-up';
+
   constructor(
     private categoryService: CategoryService,
     private groupService: GroupForMenuService,

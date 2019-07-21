@@ -74,6 +74,17 @@ form {
   font-family: 'Roboto-Condensed', sans-serif;
 }
 
+.error {
+  color: red;
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.login-inputs, .error {
+  font-family: 'Roboto-Condensed', sans-serif;
+}
+
 
 
 

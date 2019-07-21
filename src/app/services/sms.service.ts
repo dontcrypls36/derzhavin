@@ -2,25 +2,22 @@ import {Injectable} from '@angular/core';
 import {GlobalService} from './global.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {RegInfoRequest} from "../models/reg-info-request";
+import sha256 from "sha256";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SmsService extends GlobalService<any> {
 
+  private salt = '84732622333';
+
   constructor(private http: HttpClient) {
     super();
    }
 
-  public sendSms(phoneNumber: string): Observable<string> {
-    // let params = new HttpParams();
-    // params = params.append('tel', phoneNumber)
-    //   .append('DeviceId', '')
-    //   .append('DeviceDescr', 'Browser')
-    //   .append('VersionApp', 'Web')
-    //   .append('hash', 'E56D6E378CA2502CFEDC2CFD2BF4F0611AFFA61F');
-    // const hash = Md5.hashStr(phoneNumber + '.747320622233');
-    const hash = '458ae85baf9a8edac01d262f2d87e52a0130fd4c';
+  public sendSms(phoneNumber: string): Observable<any> {
+    const hash = sha256(phoneNumber + '.' + this.salt);
     const body = {
       tel: phoneNumber,
       DeviceId: '1234',
@@ -37,5 +34,9 @@ export class SmsService extends GlobalService<any> {
 
   getHttp(): HttpClient {
     return this.http;
+  }
+
+  register(regInfoRequest: RegInfoRequest): Observable<any> {
+    return this.http.post<any>('/api/v2/RegInfoClient', regInfoRequest);
   }
 }

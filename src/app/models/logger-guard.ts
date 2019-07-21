@@ -10,7 +10,7 @@ export class LoggerGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (sessionStorage.getItem("user") != null) {
+    if (sessionStorage.getItem('user') != null) {
       return true;
     } else {
       this.router.navigate(['/']);

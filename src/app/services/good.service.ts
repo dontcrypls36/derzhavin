@@ -10,6 +10,14 @@ import {map} from 'rxjs/operators';
 })
 export class GoodService extends GlobalService<Good> {
 
+  mockCreds = {
+    tel: '+79529516710',
+    VersionApp: '1.2.1',
+    DeviceDescr: 'GenymotionSamsung Galaxy S7 - 8.0 - API 26 - 1440x2560 SDK 26',
+    pass: 'eaded9424b3f5b63',
+    DeviceId: 'android'
+  };
+
   constructor(private http: HttpClient) {
     super();
    }
@@ -23,20 +31,16 @@ export class GoodService extends GlobalService<Good> {
   }
 
   getRestOfGoods(goods?: string[], categoryId?: string): Observable<Good[]> {
-    let creds: any = {
-        tel: '+79529516710',
-        VersionApp: '1.2.1',
-        DeviceDescr: 'GenymotionSamsung Galaxy S7 - 8.0 - API 26 - 1440x2560 SDK 26',
-        pass: 'eaded9424b3f5b63',
-        DeviceId: 'android'
-    };
-    // let body = JSON.parse(sessionStorage.getItem('user'));
-    let body = creds;
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    if (!user) {
+      user = this.mockCreds;
+    }
+    let body = user;
     if (goods) {
-      body = {...body, GoodsItems: goods};
+      body = {...user, GoodsItems: goods};
     }
     if (categoryId) {
-      body = {...body, GoodCategoryUUID: categoryId};
+      body = {...user, GoodCategoryUUID: categoryId};
     }
     return this.getHttp().post<Good[]>('/api/v2/RestOfGoods', body)
       .pipe(map((items: any) => this.parseCollection(items)));

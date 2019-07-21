@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
+import {CategoryService} from "../../services/category.service";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-login',
@@ -9,8 +11,9 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  private phoneNum: string;
-  private pass: string;
+  phoneNum: string;
+  pass: string;
+  error = false;
 
   private mockUser: any = {
     tel: '+79529516710',
@@ -21,16 +24,29 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(private userService: UserService,
-              private router: Router) { }
+              private router: Router,
+              private categoryService: CategoryService) { }
 
   ngOnInit() {
   }
 
   onLogin() {
-    //this.userService.login(this.phoneNum, this.pass).subscribe( res => {
-      sessionStorage.setItem('user', JSON.stringify(this.mockUser));
+    let user = new User();
+    user.tel = this.phoneNum;
+    user.pass = this.pass;
+    sessionStorage.setItem('user', JSON.stringify(user));
+    this.categoryService.getCategories().subscribe( _ => {
       this.router.navigate(['/orders']);
-    //});
+    }, _  => {
+      sessionStorage.removeItem('user');
+      this.error = true;
+    });
+  }
+
+  clearForm() {
+    this.phoneNum = "";
+    this.pass = "";
+    this.error = false;
   }
 
 }

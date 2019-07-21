@@ -1,14 +1,17 @@
 <div class="login-container">
   <form>
     <div class="login-inputs">
-      <input id="login" type="text" placeholder="Номер телефона"/>
+      <input id="login" type="text" placeholder="Номер телефона" name="phoneNumber" [(ngModel)]="phoneNum"/>
     </div>
     <div class="login-inputs">
-      <input id="password" type="password" placeholder="Пароль"/>
+      <input id="password" type="password" placeholder="Пароль" name="password" [(ngModel)]="pass"/>
+    </div>
+    <div *ngIf="error" class="error">
+      Неверный логин или пароль.
     </div>
     <div class="login-buttons">
       <input id="loginAction" type="button" value="Войти" (click)="onLogin()"/>
-      <input id="cancelAction" type="button" value="Отмена"/>
+      <input id="cancelAction" type="button" value="Отмена" (click)="clearForm()"/>
     </div>
     <div class="login-links">
       <a id="restoreLink" routerLink="/reset-password">Забыли пароль?</a>

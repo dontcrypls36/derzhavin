@@ -89,6 +89,7 @@ export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewIni
       //Website visitor so may not have any user related info
     });
     this.load();
+
   }
 
   async load() {

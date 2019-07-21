@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { GlobalService } from './global.service';
-import { HttpClient } from '@angular/common/http';
-import { Category } from '../models/category';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { GroupItem } from '../models/group-item';
+import {Injectable} from '@angular/core';
+import {GlobalService} from './global.service';
+import {HttpClient} from '@angular/common/http';
+import {Category} from '../models/category';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {GroupItem} from '../models/group-item';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,8 @@ export class CategoryService extends GlobalService<Category> {
         pass: 'eaded9424b3f5b63',
         DeviceId: 'android'
     };
-     return this.getHttp().post<Category[]>(this.getRestPath() + 'CategoryGoods', body)
+     let user = JSON.parse(sessionStorage.getItem('user'));
+     return this.getHttp().post<Category[]>(this.getRestPath() + 'CategoryGoods', user)
      .pipe(map((item: any) => this.parseCollection(item.CategoryItems)));
    }
 
