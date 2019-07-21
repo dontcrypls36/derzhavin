@@ -42,6 +42,8 @@ import {CalendarModule, CarouselModule, InputMaskModule, PaginatorModule} from "
 import {AnalogsComponent} from './components/analogs/analogs.component';
 import {NgSelectModule} from "@ng-select/ng-select";
 import {LoggerGuard} from "./models/logger-guard";
+import {ProfileMenuComponent} from './components/profile-menu/profile-menu.component';
+import {ProfileComponent} from './components/profile/profile.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
@@ -51,6 +53,7 @@ const appRoutes: Routes = [
   { path: 'calculations', component: CalculationsComponent, canActivate: [LoggerGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'registration', component: RegistrationComponent},
+  { path: 'profile', component: ProfileComponent}
 ];
 
 registerLocaleData(localeRu);
@@ -72,7 +75,9 @@ registerLocaleData(localeRu);
     QuantityChangerComponent,
     OrderDetailsComponent,
     MenuCategoryComponent,
-    AnalogsComponent
+    AnalogsComponent,
+    ProfileMenuComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

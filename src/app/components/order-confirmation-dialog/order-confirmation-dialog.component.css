@@ -5,6 +5,8 @@
 .dialog {
     width: 450px;
     height: 520px;
+  padding: 10px 10px;
+  font-family: 'Roboto-Condensed', sans-serif;
 }
 
 textarea {
@@ -27,4 +29,16 @@ textarea {
 
 h5 {
     font-weight: 600;
+}
+
+.title {
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #d62424;
+  color: #ffffff;
+  height: 30px;
+  font-family: 'Roboto-Condensed', sans-serif;
+  padding: 5px 10px;
+  text-align: center;
 }

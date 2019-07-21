@@ -1,0 +1,30 @@
+.settings-menu {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: #ffffff;
+  font-family: 'Roboto-Condensed', sans-serif;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.39);
+  width: auto;
+  z-index: 11;
+  margin-right: 10px;
+  border-radius: 8px;
+}
+
+.menu-item {
+  min-height: 40px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  padding: 5px 5px;
+}
+.menu-item:hover {
+  background-color: #ddfbca;
+}
+
+span {
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+
+

@@ -1,6 +1,7 @@
+<div class="title">
+  <h4>Оформление заказа</h4>
+</div>
 <div class="dialog {{ deliveryType==='Курьером' ? 'higher' : '' }}">
-  <h5>Оформление заказа</h5>
-  <mat-divider></mat-divider>
   <div><span class="font-weight-7">Способ доставки</span></div>
   <mat-radio-group class="delivery-radio-group" [(ngModel)]="deliveryType" (change)="onDeliveryTypeChange()">
      <mat-radio-button class="delivery-radio-button" *ngFor="let type of deliveryTypes" [value]="type">

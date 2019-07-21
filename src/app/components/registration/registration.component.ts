@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SmsService} from '../../services/sms.service';
 import {Observable, Subscription, timer} from 'rxjs';
 import {RegInfoRequest} from "../../models/reg-info-request";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration',
@@ -32,7 +33,8 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   private phoneTemplate = '+79';
 
-  constructor(private smsService: SmsService) { }
+  constructor(private smsService: SmsService,
+              private router: Router) { }
 
   ngOnInit() {
     this.phoneNumber = this.phoneTemplate;
@@ -68,6 +70,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       if (res) {
         if (res.Message === 'ok') {
           sessionStorage.setItem('user', JSON.stringify(res));
+          this.router.navigate(['/orders']);
         }
         else if (res.Message === 'wrong_smscode'){
           this.errorText = 'Неверный СМС код';

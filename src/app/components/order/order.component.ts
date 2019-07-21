@@ -60,7 +60,9 @@ export class OrderComponent implements OnInit {
     data.cancelBtnText = 'Нет';
     const dialogRef = this.dialog.open(OkNoDialogComponent,
       {
-        data: data
+        data: data,
+        width: '270px'
+
       }
     );
 
@@ -90,7 +92,9 @@ export class OrderComponent implements OnInit {
   onOrderCreate() {
     const dialogRef = this.dialog.open(OrderConfirmationDialogComponent,
       {
-        data: null
+        data: null,
+        width: '500px',
+        height: '620px'
       }
     );
 

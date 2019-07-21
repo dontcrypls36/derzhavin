@@ -10,6 +10,7 @@ import {GoodService} from "../../services/good.service";
 import {PreOrderItem} from "../../models/pre-order-item";
 import {GoodDetailsComponent} from "../good-details/good-details.component";
 import {MatDialog} from "@angular/material";
+import {ProfileMenuComponent} from "../profile-menu/profile-menu.component";
 
 @Component({
   selector: 'app-top-nav-bar',
@@ -27,6 +28,7 @@ export class TopNavBarComponent implements OnInit {
   isListOpen = false;
 
   @ViewChild(MenuCategoryComponent) menu: MenuCategoryComponent;
+  @ViewChild(ProfileMenuComponent) profileMenu: ProfileMenuComponent;
 
   constructor(private store: Store<PreOrder>,
               private categoryService: CategoryService,
@@ -109,5 +111,9 @@ export class TopNavBarComponent implements OnInit {
         data: item
       }
     );
+  }
+
+  onSettingsClick() {
+    this.profileMenu.changeVisibility();
   }
 }

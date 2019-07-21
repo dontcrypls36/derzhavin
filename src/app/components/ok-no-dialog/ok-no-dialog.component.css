@@ -1,8 +1,26 @@
 .dialog {
-    width: 250px;
-    height: 100px;
+  height: 100px;
+  font-family: 'Roboto-Condensed', sans-serif;
+  padding-top: 15px;
 }
 
 button {
-    width: 70px; 
+  width: 70px;
+  outline: none;
+  border: 1px solid #d62424;
 }
+
+.buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#ok {
+  margin-right: 15px;
+}
+
+#cancel {
+  margin-left: 15px;
+}
+
+

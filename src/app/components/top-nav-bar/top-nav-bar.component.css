@@ -119,7 +119,8 @@ img {
 
 .login {
   float: right;
-  width: 60px;
+  width: 90px;
+  margin-right: 10px;
 }
 
 
