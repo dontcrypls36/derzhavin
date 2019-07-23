@@ -24,6 +24,7 @@ li {
   top: 60px;
   margin-left: 110px;
   border-radius: 8px;
+  overflow: hidden;
 }
 
 .category-img {
@@ -35,7 +36,7 @@ li {
 
 .category {
   min-height: 40px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ffffff;
   padding: 5px 5px;
 
 }

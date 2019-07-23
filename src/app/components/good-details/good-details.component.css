@@ -82,6 +82,7 @@ span.bucket-btn-big {
 .custom-container {
   position: relative;
   padding-bottom: 24px;
+  font-family: 'Roboto-Condensed', sans-serif;
 }
 
 .rest {

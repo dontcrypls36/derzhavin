@@ -11,6 +11,7 @@ import {GoodDetailsComponent} from '../good-details/good-details.component';
 import {MatDialog} from '@angular/material';
 import {ActivatedRoute} from "@angular/router";
 import {DOCUMENT} from '@angular/common';
+import {SmsService} from "../../services/sms.service";
 
 @Component({
   selector: 'app-good-list',
@@ -18,8 +19,6 @@ import {DOCUMENT} from '@angular/common';
   styleUrls: ['./good-list.component.css']
 })
 export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewInit {
-
-  private readonly APP_ID = 'atxo6sen';
 
   public preOrderItems: PreOrderItem[] = [];
   private filter: string;
@@ -35,7 +34,8 @@ export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewIni
     private categoryService: CategoryService,
     private dialog: MatDialog,
     private spinner: SpinnerServiceService, private route: ActivatedRoute,
-    @Inject(DOCUMENT) private document: Document) {
+    @Inject(DOCUMENT) private document: Document,
+    private smsService: SmsService) {
     this.scrollFlag = false;
     this.route.params.subscribe(params => {
       this.filter = params.category;
@@ -82,14 +82,7 @@ export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewIni
   }
 
   ngOnInit() {
-    (<any>window).Intercom('boot', {
-      app_id: this.APP_ID,
-      name: 'ИП Лях Татьяна Николаевна',
-      phone: '+79529516710'
-      //Website visitor so may not have any user related info
-    });
     this.load();
-
   }
 
   async load() {

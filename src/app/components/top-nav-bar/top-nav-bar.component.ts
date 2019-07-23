@@ -11,6 +11,8 @@ import {PreOrderItem} from "../../models/pre-order-item";
 import {GoodDetailsComponent} from "../good-details/good-details.component";
 import {MatDialog} from "@angular/material";
 import {ProfileMenuComponent} from "../profile-menu/profile-menu.component";
+import {RegInfoRequest} from "../../models/reg-info-request";
+import {SmsService} from "../../services/sms.service";
 
 @Component({
   selector: 'app-top-nav-bar',
@@ -18,6 +20,8 @@ import {ProfileMenuComponent} from "../profile-menu/profile-menu.component";
   styleUrls: ['./top-nav-bar.component.css']
 })
 export class TopNavBarComponent implements OnInit {
+
+  private readonly APP_ID = 'atxo6sen';
 
   preOrder: PreOrder;
   public orderItemCount = 0;
@@ -34,7 +38,8 @@ export class TopNavBarComponent implements OnInit {
               private categoryService: CategoryService,
               private router: Router,
               private goodsService: GoodService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private smsService: SmsService) {
     this.store.dispatch({type: 'INIT_PRE_ORDER'});
   }
 
@@ -52,7 +57,18 @@ export class TopNavBarComponent implements OnInit {
     });
     this.goodsService.getRestOfGoods().subscribe(res => {
       this.filteredGoods = res;
-    })
+    });
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    let userName;
+    this.smsService.register(new RegInfoRequest(user.tel, user.password, "")).subscribe( res => {
+      userName = res.ClientDescription;
+      (<any>window).Intercom('boot', {
+        app_id: this.APP_ID,
+        name: userName,
+        phone: user.tel
+        //Website visitor so may not have any user related info
+      });
+    });
   }
 
   isAuthorized(): boolean{
