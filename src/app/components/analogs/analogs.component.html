@@ -1,4 +1,4 @@
-<p-carousel headerText="Похожие товары" [value]="analogs">
+<p-carousel *ngIf="analogs" headerText="Похожие товары" [value]="analogs">
   <ng-template let-item pTemplate="item">
     <table (click)="onItemClick(item)">
       <tr>
