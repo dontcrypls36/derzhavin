@@ -23,19 +23,19 @@ export class GoodService extends GlobalService<Good> {
     return '';
   }
 
-  getRestOfGoods(): Observable<Good[]> {
-    // let user = JSON.parse(sessionStorage.getItem('user'));
-    // if (!user) {
-    //   user = this.mockCreds;
-    // }
-    // let body = user;
-    // if (goods) {
-    //   body = {...user, GoodsItems: goods};
-    // }
-    // if (categoryId) {
-    //   body = {...user, GoodCategoryUUID: categoryId};
-    // }
-    return this.getHttp().post<Good[]>('/api/v2/RestOfGoods', Constants.body)
+  getRestOfGoods(goods?: string[], categoryId?: string): Observable<Good[]> {
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    if (!user) {
+     user = Constants.body;
+    }
+    let body = user;
+    if (goods) {
+      body = {...body, GoodsItems: goods};
+    }
+    if (categoryId) {
+      body = {...body, GoodCategoryUUID: categoryId};
+    }
+    return this.getHttp().post<Good[]>('/api/v2/RestOfGoods', body)
       .pipe(map((items: any) => this.parseCollection(items)));
   }
 

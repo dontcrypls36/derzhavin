@@ -3,6 +3,7 @@ import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
 import {CategoryService} from "../../services/category.service";
 import {User} from "../../models/user";
+import {Constants} from "../../models/constants";
 
 @Component({
   selector: 'app-login',
@@ -31,10 +32,8 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    let user = new User();
-    user.tel = this.phoneNum;
-    user.pass = this.pass;
-    sessionStorage.setItem('user', JSON.stringify(user));
+    //todo сохранить реального юзера
+    sessionStorage.setItem('user', JSON.stringify(Constants.body));
     this.categoryService.getCategories().subscribe( _ => {
       this.router.navigate(['/orders']);
     }, _  => {

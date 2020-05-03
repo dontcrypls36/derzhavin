@@ -23,6 +23,7 @@ export class CategoryService extends GlobalService<Category> {
    }
 
    getCategories(): Observable<Category[]> {
+     //todo использовать реального юзера
      let user = JSON.parse(sessionStorage.getItem('user'));
      return this.getHttp().post<Category[]>(this.getRestPath() + 'CategoryGoods', Constants.body)
      .pipe(map((item: any) => this.parseCollection(item.CategoryItems)));

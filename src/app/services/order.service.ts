@@ -122,16 +122,14 @@ export class OrderService extends GlobalService<any> {
     .pipe(map((item: any) => this.parseSchedule(item)));
   }
 
-  getAllOrders(outletId?: string): Observable<any> {
+  getOrders(outletId?: string): Observable<any> {
     let user = JSON.parse(sessionStorage.getItem('user'));
     if (!user) {
       user = Constants.body;
     }
-    let body;
+    let body = user;
     if (outletId) {
-      body = {...user, OutletUUID: outletId};
-    } else {
-      body = user;
+      body = {...body, OutletUUID: outletId};
     }
     return this.getHttp().post('/api/v2/GetOrders', body)
     .pipe(map((item: any) => item));
