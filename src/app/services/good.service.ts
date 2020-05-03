@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Good } from '../models/good';
 import { map } from 'rxjs/operators';
+import {Constants} from "../models/constants";
 
 @Injectable({
   providedIn: 'root'
@@ -23,14 +24,7 @@ export class GoodService extends GlobalService<Good> {
   }
 
   getRestOfGoods(): Observable<Good[]> {
-    const body = {
-        tel: '+79529516710',
-        VersionApp: '1.2.1',
-        DeviceDescr: 'GenymotionSamsung Galaxy S7 - 8.0 - API 26 - 1440x2560 SDK 26',
-        pass: 'eaded9424b3f5b63',
-        DeviceId: 'android'
-    };
-    return this.getHttp().post<Good[]>('/api/v2/RestOfGoods', body)
+    return this.getHttp().post<Good[]>('/api/v2/RestOfGoods', Constants.body)
       .pipe(map((items: any) => this.parseCollection(items)));
   }
 
