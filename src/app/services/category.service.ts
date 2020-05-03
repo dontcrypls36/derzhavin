@@ -1,10 +1,11 @@
-import {Injectable} from '@angular/core';
-import {GlobalService} from './global.service';
-import {HttpClient} from '@angular/common/http';
-import {Category} from '../models/category';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {GroupItem} from '../models/group-item';
+import { Injectable } from '@angular/core';
+import { GlobalService } from './global.service';
+import { HttpClient } from '@angular/common/http';
+import { Category } from '../models/category';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { GroupItem } from '../models/group-item';
+import {Constants} from "../models/constants";
 
 @Injectable({
   providedIn: 'root'
@@ -22,15 +23,8 @@ export class CategoryService extends GlobalService<Category> {
    }
 
    getCategories(): Observable<Category[]> {
-     const body = {
-        tel: '+79529516710',
-        VersionApp: '1.2.1',
-        DeviceDescr: 'GenymotionSamsung Galaxy S7 - 8.0 - API 26 - 1440x2560 SDK 26',
-        pass: 'eaded9424b3f5b63',
-        DeviceId: 'android'
-    };
      let user = JSON.parse(sessionStorage.getItem('user'));
-     return this.getHttp().post<Category[]>(this.getRestPath() + 'CategoryGoods', user)
+     return this.getHttp().post<Category[]>(this.getRestPath() + 'CategoryGoods', Constants.body)
      .pipe(map((item: any) => this.parseCollection(item.CategoryItems)));
    }
 

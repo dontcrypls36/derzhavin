@@ -1,16 +1,18 @@
-import {Injectable} from '@angular/core';
-import {PreOrderItem} from '../models/pre-order-item';
-import {PreOrder} from '../models/pre-order';
-import {Observable, of} from 'rxjs';
-import {v4 as uuid} from 'uuid';
-import {Order} from '../models/order';
-import {HttpClient} from '@angular/common/http';
-import {GlobalService} from './global.service';
-import {map} from 'rxjs/operators';
-import {ShippingSchedule} from '../models/shipping-schedule';
-import {OutletsItem} from '../models/outlets-item';
-import {ShippingScheduleItem} from '../models/shipping-schedule-item';
-import {PickupItem} from '../models/pickup-item';
+import { Injectable } from '@angular/core';
+import { PreOrderItem } from '../models/pre-order-item';
+import { PreOrder } from '../models/pre-order';
+import { Observable, of } from 'rxjs';
+import { v4 as uuid } from 'uuid';
+import { Order } from '../models/order';
+import { HttpClient } from '@angular/common/http';
+import { GlobalService } from './global.service';
+import { map } from 'rxjs/operators';
+import { ShippingSchedule } from '../models/shipping-schedule';
+import { OutletsItem } from '../models/outlets-item';
+import { ShippingScheduleItem } from '../models/shipping-schedule-item';
+import { PickupItem } from '../models/pickup-item';
+import { OrderResponse } from '../models/order-response';
+import {Constants} from "../models/constants";
 
 @Injectable()
 export class OrderService extends GlobalService<any> {
@@ -106,7 +108,7 @@ export class OrderService extends GlobalService<any> {
     if (!user) {
       user = this.mockCreds;
     }
-    const body = {...user, ...order};
+    const body = {...Constants.body, ...order};
     return this.getHttp().post<any>('/api/v2/UpdateOrder', body)
     .pipe(map((item: any) => console.log(item)));
   }
@@ -116,14 +118,14 @@ export class OrderService extends GlobalService<any> {
     if (!user) {
       user = this.mockCreds;
     }
-    return this.getHttp().post('/api/v2/GetShippingSchedule', user)
+    return this.getHttp().post('/api/v2/GetShippingSchedule', Constants.body)
     .pipe(map((item: any) => this.parseSchedule(item)));
   }
 
-  getOrders(outletId?: string): Observable<any> {
+  getAllOrders(outletId?: string): Observable<any> {
     let user = JSON.parse(sessionStorage.getItem('user'));
     if (!user) {
-      user = this.mockCreds;
+      user = Constants.body;
     }
     let body;
     if (outletId) {

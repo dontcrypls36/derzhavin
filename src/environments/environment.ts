@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  rest_path: 'http://mobile.optvrn.ru:5050/api/v1/'
+  rest_path: 'http://app.optvrn.ru:5058/api/v1/'
 };
 
 /*

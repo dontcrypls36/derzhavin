@@ -1,22 +1,15 @@
-import {Injectable} from '@angular/core';
-import {GlobalService} from './global.service';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Good} from '../models/good';
-import {map} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { GlobalService } from './global.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Good } from '../models/good';
+import { map } from 'rxjs/operators';
+import {Constants} from "../models/constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GoodService extends GlobalService<Good> {
-
-  mockCreds = {
-    tel: '+79529516710',
-    VersionApp: '1.2.1',
-    DeviceDescr: 'GenymotionSamsung Galaxy S7 - 8.0 - API 26 - 1440x2560 SDK 26',
-    pass: 'eaded9424b3f5b63',
-    DeviceId: 'android'
-  };
 
   constructor(private http: HttpClient) {
     super();
@@ -30,19 +23,19 @@ export class GoodService extends GlobalService<Good> {
     return '';
   }
 
-  getRestOfGoods(goods?: string[], categoryId?: string): Observable<Good[]> {
-    let user = JSON.parse(sessionStorage.getItem('user'));
-    if (!user) {
-      user = this.mockCreds;
-    }
-    let body = user;
-    if (goods) {
-      body = {...user, GoodsItems: goods};
-    }
-    if (categoryId) {
-      body = {...user, GoodCategoryUUID: categoryId};
-    }
-    return this.getHttp().post<Good[]>('/api/v2/RestOfGoods', body)
+  getRestOfGoods(): Observable<Good[]> {
+    // let user = JSON.parse(sessionStorage.getItem('user'));
+    // if (!user) {
+    //   user = this.mockCreds;
+    // }
+    // let body = user;
+    // if (goods) {
+    //   body = {...user, GoodsItems: goods};
+    // }
+    // if (categoryId) {
+    //   body = {...user, GoodCategoryUUID: categoryId};
+    // }
+    return this.getHttp().post<Good[]>('/api/v2/RestOfGoods', Constants.body)
       .pipe(map((items: any) => this.parseCollection(items)));
   }
 
@@ -83,7 +76,7 @@ export class GoodService extends GlobalService<Good> {
     for (const item of items.RestOfGoodsItems) {
       item.greaterOrEqualRest = items.GreaterOrEqualRest;
       goods.push(this.parseOne(item));
-    }  
+    }
     return goods;
   }
 }
