@@ -6,6 +6,7 @@ import {Observable} from "rxjs";
 import {Good} from "../models/good";
 import {map} from "rxjs/operators";
 import {DocForAct} from "../models/doc-for-act";
+import {Constants} from "../models/constants";
 
 @Injectable({
   providedIn: 'root'
@@ -36,9 +37,10 @@ export class CalculationService extends GlobalService<CalculationResponse>{
   getCalculation(startDate: string, endDate: string): Observable<CalculationResponse> {
     let user = JSON.parse(sessionStorage.getItem('user'));
     if (!user) {
-      user = this.mockCreds;
+      user = Constants.body;
     }
-    return this.getHttp().post<Good[]>('/api/v2/GetAkt', user)
+    let body = {...user, DateFrom : startDate, Date : endDate};
+    return this.getHttp().post<Good[]>('/api/v2/GetAkt', body)
       .pipe(map((items: any) => this.parseOne(items)));
 
   }
