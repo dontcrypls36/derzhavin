@@ -3,7 +3,7 @@ export abstract class Constants {
     DeviceId : "android",
     VersionApp : "1.2.2",
     smscode : "0020",
-    pass : "02002103",
+    pass : "02002119",
     tel : "+79204210002",
     DeviceDescr : "HoneywellEDA50K SDK 25"
   };

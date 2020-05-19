@@ -44,3 +44,13 @@ input {
   border-right: none;
   color: #808080;
 }
+
+#quantity {
+  width: 30%;
+}
+
+.container {
+  /*display: inline-block;*/
+  position: relative;
+  left: 28%;
+}
