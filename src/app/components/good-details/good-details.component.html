@@ -5,40 +5,40 @@
     {{ item.good.category + ' → ' + item.good.group}}
   </div>
   <div class="row details">
-    <div class="col-4 pl-24 text-align-center">
+    <div class="col-6 pl-24 text-align-center">
       <img
-        src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.good.uuid + '/' + item.good.uuid + '_' + '1_t.jpg' }}"
-        onerror="this.src='assets/default.jpg'">
+        src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.good.uuid + '/' + item.good.uuid + '_' + '1.jpg' }}"
+        onerror="this.src='assets/default.jpg'" class="photo">
       <div class="rest"><i class="fas fa-warehouse"></i><span>{{ getRestExpression() }}</span></div>
     </div>
-    <div class="col-8">
+    <div class="col-5" style="margin-left:20px">
       <div class="row big-text">
-        <div class="col-4">
+        <div class="col-6">
           {{ item.good.price + ' руб.'}} c НДС
         </div>
         <div *ngIf="item.good.lastPrice !== 0 && item.good.lastPrice !== undefined" class="col-lg-2"
              [ngClass]="getDeltaClass()">
           {{ (getPriceDelta() | number : '1.2-2') + ' р.'}}
         </div>
-        <div class="col-4">
+        <div class="col-6">
           {{ getRest() }}
         </div>
       </div>
       <div class="row">
-        <div class="col-4 header">
+        <div class="col-5 header">
           Грузовых мест
         </div>
-        <div class="col-4 header">
+        <div class="col-5 header">
           Вес, кг
         </div>
       </div>
       <div class="row">
-        <div class="col-4">
+        <div class="col-5">
           <app-quantity-changer (decreaseValue)="changeQuantPacking(item, -1)"
                                 (increaseValue)="changeQuantPacking(item, 1)" [value]="item.quantPacking"
                                 (changeInputValue)="onQuantPackingInputChange($event, item)"></app-quantity-changer>
         </div>
-        <div class="col-4">
+        <div class="col-5">
           <app-quantity-changer (decreaseValue)="changeQuant(item, -1)" (increaseValue)="changeQuant(item, 1)"
                                 [value]="item.quant"
                                 (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer>

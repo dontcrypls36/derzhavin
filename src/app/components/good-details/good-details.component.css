@@ -102,4 +102,7 @@ span.bucket-btn-big {
   margin-top: 10px;
 }
 
-
+.photo {
+  max-width: 565px;
+  min-width: 565px;
+}

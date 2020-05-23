@@ -50,7 +50,7 @@ input {
 }
 
 .container {
-  /*display: inline-block;*/
-  position: relative;
-  left: 28%;
+  display: inline-block;
+  /*position: relative;*/
+  /*left: 28%;*/
 }
