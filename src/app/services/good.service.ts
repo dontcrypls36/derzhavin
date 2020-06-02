@@ -67,7 +67,7 @@ export class GoodService extends GlobalService<Good> {
     good.promotionColor = item.GoodPromotionColor;
     good.hasCert = item.GoodHasCert;
     good.greaterOrEqualRest = item.greaterOrEqualRest;
-
+    good.priceDecimal = (good.price % 1) * 100;
     return good;
   }
 

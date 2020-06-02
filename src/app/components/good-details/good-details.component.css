@@ -103,6 +103,15 @@ span.bucket-btn-big {
 }
 
 .photo {
-  max-width: 565px;
-  min-width: 565px;
+  max-height: 350px;
+}
+
+.thumb-photo {
+  max-width: 120px;
+  margin: 0 5px 0 5px;
+  max-height: 90px;
+}
+
+.thumbnails {
+  margin: 5px;
 }

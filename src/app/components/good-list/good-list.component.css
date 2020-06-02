@@ -3,7 +3,7 @@
     width: 35px;
     height: 35px;
     border: 1px solid red;
-    color: red; 
+    color: red;
     border-radius: 5px;
     text-align: center;
     font-size: 2rem; /* Set a font size */
@@ -28,49 +28,63 @@
     text-align:right;
 }
 
-.table-header {
+th {
   border-bottom: 2px solid lightgrey;
   font-size: 10px;
   font-weight: bold;
   text-transform: uppercase;
   padding-bottom: 5px;
+  position:sticky;
+  z-index: 1;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  top: 90px;
+  height: 30px;
 }
 
-.table-row {
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+table td {
   border-bottom: 1px solid lightgrey;
 }
 
 .table-row:hover {
-  background-color: #ddfbca;
+  /*background-color: #ddfbca;*/
+  background-color: #f3d8d6;
 }
 
 .description {
    font-size: 14px;
    cursor: pointer;
+  text-align: left;
  }
 
 .reset-margins {
   margin: 0 !important;
 }
 
-.followMeBar {
-  background: #e64a19;
-  padding: 0 20px;
-  position: relative;
-  z-index: 1;
-  color: #fff;
-}
+/*.followMeBar {*/
+/*  background: #e64a19;*/
+/*  padding: 0 20px;*/
+/*  position: relative;*/
+/*  z-index: 1;*/
+/*  color: #fff;*/
+/*}*/
 
 .followMeBar.hidden {
   visibility: hidden;
   height: 0;
+  font-size: 0;
 }
 
 #stickyHeader {
   position: fixed;
   top: 60px;
   height: 30px;
-  background-color: #65c9d6;
+  background-color: rgb(243, 216, 214);
   width: 100%;
   z-index: 1;
   font-family: 'Roboto-Condensed', sans-serif;
@@ -86,6 +100,31 @@ table.fixed {
   top: 90px;
 }
 
-.good-table:first-of-type {
-  margin-top: 102px;
+.content-table {
+  top: 90px;
+  position: relative;
+  font-family: 'Roboto-Condensed', sans-serif;
+}
+
+.decimal-part {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.red-unit {
+  width: 25px;
+  background-color: red;
+  text-align: center;
+  border-radius: 12px;
+  color: white;
+  vertical-align: middle;
+}
+
+.gray-unit {
+  background-color: #eeeeee;
+  width: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  min-width: 35px;
+  text-align: center;
+  margin-left: 3px;
 }

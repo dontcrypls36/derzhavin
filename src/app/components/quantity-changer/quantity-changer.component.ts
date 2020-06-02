@@ -29,4 +29,16 @@ export class QuantityChangerComponent implements OnInit {
     this.changeInputValue.emit({newValue: event.target.value});
   }
 
+  onInputClick(event: any) {
+    if (this.value === 0) {
+      event.target.value = "";
+    }
+  }
+
+  onInputFocusOut(event:any) {
+    if (event.target.value === "") {
+      event.target.value = 0;
+    }
+  }
+
 }

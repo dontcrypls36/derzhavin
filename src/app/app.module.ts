@@ -38,12 +38,13 @@ import {OrderDetailsComponent} from './components/order-details/order-details.co
 import {MenuCategoryComponent} from './components/menu-category/menu-category.component';
 import {CollapseModule} from 'ngx-bootstrap/collapse';
 import {TableModule} from "primeng/table";
-import {CalendarModule, CarouselModule, InputMaskModule, PaginatorModule} from "primeng/primeng";
+import {CalendarModule, CarouselModule, GalleriaModule, InputMaskModule, PaginatorModule} from "primeng/primeng";
 import {AnalogsComponent} from './components/analogs/analogs.component';
 import {NgSelectModule} from "@ng-select/ng-select";
 import {LoggerGuard} from "./models/logger-guard";
 import {ProfileMenuComponent} from './components/profile-menu/profile-menu.component';
 import {ProfileComponent} from './components/profile/profile.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
@@ -95,12 +96,14 @@ registerLocaleData(localeRu);
     MatRadioModule,
     MatTableModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
     DropdownModule,
     BrowserAnimationsModule,
     TableModule,
     PaginatorModule,
     CalendarModule,
     CarouselModule,
+    GalleriaModule,
     NgSelectModule,
     InputMaskModule,
     ScrollToModule.forRoot(),

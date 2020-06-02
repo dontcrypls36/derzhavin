@@ -12,15 +12,16 @@ import {MatDialog, MatDialogRef} from "@angular/material";
 })
 export class AnalogsComponent implements OnInit {
 
-  @Input()
-  subGroupId: string;
+  // @Input()
+  // subGroupId: string;
+  //
+  // @Input()
+  // categoryId: string;
+  //
+  // @Input()
+  // currentGood: Good;
 
   @Input()
-  categoryId: string;
-
-  @Input()
-  currentGood: Good;
-
   analogs: Good[] = [];
 
   constructor(private goodService: GoodService,
@@ -28,16 +29,16 @@ export class AnalogsComponent implements OnInit {
               public dialogRef: MatDialogRef<GoodDetailsComponent>) { }
 
   ngOnInit() {
-    this.goodService.getRestOfGoods(undefined ,this.categoryId).subscribe( res => {
-      this.analogs = res.filter(g => g.subGroupUuid === this.subGroupId);
-      let ind = -1;
-      for (let good of this.analogs) {
-        if (good.uuid === this.currentGood.uuid) {
-          ind = this.analogs.indexOf(good);
-        }
-      }
-      this.analogs.splice(ind, 1);
-    });
+    // this.goodService.getRestOfGoods(undefined ,this.categoryId).subscribe( res => {
+    //   this.analogs = res.filter(g => g.subGroupUuid === this.subGroupId);
+    //   let ind = -1;
+    //   for (let good of this.analogs) {
+    //     if (good.uuid === this.currentGood.uuid) {
+    //       ind = this.analogs.indexOf(good);
+    //     }
+    //   }
+    //   this.analogs.splice(ind, 1);
+    // });
   }
 
   onItemClick(good: Good){

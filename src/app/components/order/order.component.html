@@ -34,7 +34,7 @@
     <tr *ngFor="let item of preOrder.preOrderItems" class="table-row">
       <td><img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.good.uuid + '/' + item.good.uuid + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'"></td>
       <td class="description">{{ item.good.description }}</td>
-      <td>{{ item.good.price }}</td>
+      <td>{{ item.good.price | number : '1.2-2' }}</td>
       <td><app-quantity-changer (decreaseValue)="changeQuantPacking(item, -1)" (increaseValue)="changeQuantPacking(item, 1)" [value]="item.quantPacking" (changeInputValue)="onQuantPackingInputChange($event, item)"></app-quantity-changer></td>
       <td><app-quantity-changer (decreaseValue)="changeQuant(item, -1)" (increaseValue)="changeQuant(item, 1)" [value]="item.quant" (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer></td>
       <td>{{ (item.good.price * item.quant) | number : '1.2-2' }}</td>

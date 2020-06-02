@@ -25,5 +25,6 @@ export class Good {
     promotionColor: string;
     hasCert: boolean;
     greaterOrEqualRest: number;
-
+    priceInt: number;
+    priceDecimal: number;
 }

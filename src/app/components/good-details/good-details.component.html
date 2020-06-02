@@ -8,19 +8,24 @@
     <div class="col-6 pl-24 text-align-center">
       <img
         src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.good.uuid + '/' + item.good.uuid + '_' + '1.jpg' }}"
-        onerror="this.src='assets/default.jpg'" class="photo">
-      <div class="rest"><i class="fas fa-warehouse"></i><span>{{ getRestExpression() }}</span></div>
+        onerror="this.src='assets/default.jpg'" class="photo" id="preview">
+        <div *ngIf="images.length > 1" class="thumbnails">
+          <ng-container *ngFor="let image of images">
+            <img src="{{ image.thumbnail }}" class="thumb-photo" (click)="onThumbnailClick($event)">
+          </ng-container>
+        </div>
+<!--      <div class="rest"><i class="fas fa-warehouse"></i><span>{{ getRestExpression() }}</span></div>-->
     </div>
-    <div class="col-5" style="margin-left:20px">
+    <div class="col-5" style="margin-left:20px; text-align: center">
       <div class="row big-text">
-        <div class="col-6">
-          {{ item.good.price + ' руб.'}} c НДС
+        <div class="col-5">
+          {{ item.good.price | number : '1.2-2' }}₽ c НДС
         </div>
         <div *ngIf="item.good.lastPrice !== 0 && item.good.lastPrice !== undefined" class="col-lg-2"
              [ngClass]="getDeltaClass()">
-          {{ (getPriceDelta() | number : '1.2-2') + ' р.'}}
+          {{ (getPriceDelta() | number : '1.2-2') + '₽ с НДС'}}
         </div>
-        <div class="col-6">
+        <div class="col-5">
           {{ getRest() }}
         </div>
       </div>
@@ -43,12 +48,15 @@
                                 [value]="item.quant"
                                 (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer>
         </div>
-        <button class="bucket-btn" (click)="addItemToBucket(item)"><i class="fa fa-shopping-cart"></i></button>
+        <div class="col-2">
+          <button style="position:relative; top:5px;" class="bucket-btn" value="В КОРЗИНУ" (click)="addItemToBucket(item)" [disabled]="item.quant === 0 || item.quantPacking === 0"><i class="fa fa-shopping-cart"></i></button>
+        </div>
+
       </div>
     </div>
   </div>
-  <div class="analogs">
-    <app-analogs [subGroupId]="item.good.subGroupUuid" [categoryId]="item.good.categoryUuid" [currentGood]="item.good"></app-analogs>
+  <div class="analogs" *ngIf="data.analogs.length > 0">
+    <app-analogs [analogs]="data.analogs"></app-analogs>
   </div>
 </div>
 

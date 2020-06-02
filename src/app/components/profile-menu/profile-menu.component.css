@@ -19,7 +19,8 @@
   padding: 5px 5px;
 }
 .menu-item:hover {
-  background-color: #ddfbca;
+  /*background-color: #ddfbca;*/
+  background-color: #f3d8d6;
 }
 
 span {

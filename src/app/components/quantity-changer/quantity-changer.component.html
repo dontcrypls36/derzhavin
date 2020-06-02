@@ -1,7 +1,9 @@
 <div class="container">
     <div class="row">
-        <div class="text-align-center"><button (click)="onMinusClick()" class="count-btn"><span class="sign">-</span></button></div>
-        <div class="text-align-center" id="quantity"><input style="width:100%;" type="text" class="quant" [value]="value" (change)="onInputChange($event)"/></div>
-        <div><button class="count-btn" (click)="onPlusClick()"><span class="sign">+</span></button></div>
+        <div class="text-align-center"><button (click)="onMinusClick()" class="count-btn minus"><span class="sign">-</span></button></div>
+        <div class="text-align-center" id="quantity">
+          <input style="width:100%;" type="text" class="quant" [value]="value" (change)="onInputChange($event)" (click)="onInputClick($event)" (focusout)="onInputFocusOut($event)"/>
+        </div>
+        <div><button class="count-btn plus" (click)="onPlusClick()"><span class="sign">+</span></button></div>
     </div>
   </div>

@@ -51,5 +51,6 @@ a, .group, .category {
 }
 
 .group:hover {
-  background-color: #ddfbca;
+  /*background-color: #ddfbca;*/
+  background-color: #f3d8d6;
 }

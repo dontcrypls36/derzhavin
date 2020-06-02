@@ -3,6 +3,8 @@ import {Store} from '@ngrx/store';
 import {PreOrder} from './models/pre-order';
 import {SpinnerServiceService} from './services/spinner-service.service';
 import {Router} from "@angular/router";
+import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
+import {ThemePalette} from '@angular/material/core';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,10 @@ import {Router} from "@angular/router";
 export class AppComponent {
   route: string;
   title = 'derzhavin-app';
+  color: ThemePalette = 'warn';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  strokeWidth = 3;
+  value = 100;
 
   constructor(private store: Store<PreOrder>, public spinnerService: SpinnerServiceService,
   private router: Router) {

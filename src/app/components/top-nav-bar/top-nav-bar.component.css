@@ -52,16 +52,19 @@ img {
 }
 
 .header-button:hover {
-  background-color: #8e9da5;
+  /*background-color: #8e9da5;*/
+  background-color: #EB5858;
   color: #fff;
 }
 
 .active {
-  background-color: #1cca6f;
+  /*background-color: #1cca6f;*/
+  background-color: #A13C3C;
 }
 
 #menu:hover {
-  background-color: #8e9da5;
+  /*background-color: #8e9da5;*/
+  background-color: #EB5858;
 }
 
 .catalog {
@@ -111,7 +114,7 @@ img {
 }
 
 .header-search {
-  width: 50%;
+  width: 30%;
   float: left;
   height: 100%;
   padding: 10px;
@@ -121,6 +124,19 @@ img {
   float: right;
   width: 90px;
   margin-right: 10px;
+}
+
+.header-search > input {
+  position: relative;
+  width: 100%;
+  border: none;
+  border-radius: 2px;
+  top: 6px;
+  padding-left: 2px;
+}
+
+#intercom_launcher {
+  display: none;
 }
 
 

@@ -6,6 +6,10 @@
   font-size: 12px;
 }
 
+img {
+ height: 120px;
+}
+
 table {
   cursor: pointer;
 }

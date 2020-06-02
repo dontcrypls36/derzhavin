@@ -23,3 +23,6 @@
 section {
   height: 100%;
 }
+.wrapper {
+  min-width: 1420px;
+}

@@ -41,6 +41,8 @@ export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewIni
       this.filter = params.category;
       if (this.categories.length !== 0) {
         this.category = this.categories.filter(item => item.uuid === this.filter)[0];
+        let sticky = document.getElementById('stickyHeader');
+        sticky.innerText = this.category.descr + " -> " + this.category.groups[0].descr;
         this.route.fragment.subscribe(fr => {
           if (fr) {
             this.groupFragment = fr;
@@ -100,6 +102,8 @@ export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewIni
       }
       this.categories = categories;
       this.category = this.categories.filter(item => item.uuid === this.filter)[0];
+      let sticky = document.getElementById('stickyHeader');
+      sticky.innerText = this.category.descr + " -> " + this.category.groups[0].descr;
       const x = document.querySelector(this.group);
       if (x) {
         x.scrollIntoView();
@@ -127,10 +131,21 @@ export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewIni
   }
 
   showItemDialog(event: any, item: PreOrderItem) {
+    let analogs = this.preOrderItems.map(it => it.good).filter(g => g.subGroupUuid === item.good.subGroupUuid);
+    let ind = -1;
+    for (let good of analogs) {
+      if (good.uuid === item.good.uuid) {
+        ind = analogs.indexOf(good);
+      }
+    }
+    analogs.splice(ind, 1);
     this.dialog.open(GoodDetailsComponent,
       {
         width: '1190px',
-        data: item
+        data: {
+          good: item,
+          analogs: analogs
+        }
       }
     );
 
@@ -167,6 +182,8 @@ export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewIni
 
   addItemToBucket(item: PreOrderItem) {
     this.store.dispatch<ActionWithPayload>({type: 'ADD_ITEM', payload: item});
+    item.quant = 0;
+    item.quantPacking = 0;
   }
 
   public onQuantInputChange(event: any, item: PreOrderItem) {

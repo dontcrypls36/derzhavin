@@ -14,12 +14,24 @@ export class GoodDetailsComponent implements OnInit {
 
   item: PreOrderItem = new PreOrderItem();
 
+  images: any[] = [];
+
   constructor(public dialogRef: MatDialogRef<GoodDetailsComponent>,
   @Inject(MAT_DIALOG_DATA) public data: any,
   private store: Store<PreOrder>) { }
 
   ngOnInit() {
     this.mapItem();
+    let i: number;
+    for (i = 1; i <= this.item.good.pictCount; i++) {
+      this.images.push(
+        {
+          "preview" : "http://mobile.optvrn.ru:5050/images/goods/" + this.item.good.uuid + "/" + this.item.good.uuid + "_" + i + ".jpg",
+          "thumbnail": "http://mobile.optvrn.ru:5050/images/goods/" + this.item.good.uuid + "/" + this.item.good.uuid + "_" + i + "_t.jpg",
+          "title": "title" + i
+        }
+      )
+    }
   }
 
 
@@ -57,7 +69,7 @@ export class GoodDetailsComponent implements OnInit {
   }
 
   mapItem() {
-    this.item.good = this.data.good;
+    this.item.good = this.data.good.good;
   }
 
   getRest(): string {
@@ -85,5 +97,11 @@ export class GoodDetailsComponent implements OnInit {
       return ' нет';
     }
     return ' ' + (this.item.good.restQuant > this.item.good.greaterOrEqualRest ? '> ' + this.item.good.greaterOrEqualRest : this.item.good.restQuant) + this.item.good.unit
+  }
+
+  onThumbnailClick(event:any) {
+    let preview = document.getElementById("preview");
+    let currSrc = event.currentTarget.getAttribute("src");
+    preview.setAttribute("src", currSrc.substr(0, currSrc.length - 6) + ".jpg");
   }
 }

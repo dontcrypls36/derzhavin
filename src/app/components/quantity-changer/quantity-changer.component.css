@@ -23,7 +23,9 @@
 }
 
 button {
-    outline: none;
+  outline: none;
+  position: relative;
+  top: 5px;
 }
 
 .reset-paddings {
@@ -31,11 +33,13 @@ button {
 }
 
 .minus {
-  float:right;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
 }
 
 .plus {
-  padding-right:34px !important;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
 input {
@@ -47,10 +51,15 @@ input {
 
 #quantity {
   width: 30%;
+  position:relative;
+  top: -9px;
 }
 
-.container {
+.row > div {
   display: inline-block;
-  /*position: relative;*/
-  /*left: 28%;*/
+}
+
+div.row {
+  display: inline-block;
+  vertical-align: middle;
 }

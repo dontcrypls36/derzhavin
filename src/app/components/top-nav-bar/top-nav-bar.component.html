@@ -19,25 +19,28 @@
         Взаиморасчеты
       </div>
     <div class="header-search">
-      <ng-select [items]="filteredGoods"
-                 [loading]="false"
-                 (search)="customSearchFn($event, this)"
-                 [isOpen]="isListOpen"
-                 [(ngModel)]="selectedGood"
-                 bindLabel="description"
-                 placeholder="Поиск..."
-                (change)="onSelect()">
-        <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-          <img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.uuid + '/' + item.uuid + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'">
-          <span style="float:right; margin-top: 20px; vertical-align: middle; font-size: 12px;"> {{item.description}}</span>
-        </ng-template>
-      </ng-select>
+      <input placeholder="Поиск..." (change)="onSearchInputChange($event)" />
+<!--      <ng-select [items]="filteredGoods"-->
+<!--                 [loading]="false"-->
+<!--                 (search)="customSearchFn($event, this)"-->
+<!--                 [isOpen]="isListOpen"-->
+<!--                 [(ngModel)]="selectedGood"-->
+<!--                 bindLabel="description"-->
+<!--                 placeholder="Поиск..."-->
+<!--                (change)="onSelect()">-->
+<!--        <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">-->
+<!--          <img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.uuid + '/' + item.uuid + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'">-->
+<!--          <span style="float:right; margin-top: 20px; vertical-align: middle; font-size: 12px;"> {{item.description}}</span>-->
+<!--        </ng-template>-->
+<!--      </ng-select>-->
     </div>
-    <div id="profile-menu" class="login header-button" (click)="onSettingsClick()" [ngClass]="router.url.includes('profile') ? 'active' : ''">Настройки</div>
+    <div id="profile-menu" class="login header-button" (click)="onSettingsClick()" [ngClass]="router.url.includes('profile') ? 'active' : ''">Профиль</div>
     <app-profile-menu></app-profile-menu>
 
     <!--<p-dropdown [options]="filteredGoods" [(ngModel)]="selectedGood" placeholder="Поиск"></p-dropdown>-->
     <div class="bucket header-button" routerLink="order" [ngClass]="router.url.includes('order') && !router.url.includes('orders') ? 'active' : ''"><i class="fa fa-shopping-cart"></i><span class="order-span">{{ orderItemCount < 1 ? ' Корзина' : '  '+ orderItemCount + ' тов.  ' + (orderAmount | number : '1.2-2') + ' р.'}}</span></div>
+
+    <div class="login header-button" id="custom_intercom_launcher">Чат</div>
       <!--<div class="col-lg-2">-->
         <!--<button mat-icon-button [matMenuTriggerFor]="profile" id="profile" class="profile-link" >-->
           <!--<i class="fa fa-address-card"></i>-->
