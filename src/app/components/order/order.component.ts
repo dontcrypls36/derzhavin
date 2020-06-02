@@ -173,8 +173,12 @@ export class OrderComponent implements OnInit {
 
   calculateAmount() {
     this.preOrder.amount = 0;
+    this.preOrder.weight = 0;
+    this.preOrder.places = 0;
     this.preOrder.preOrderItems.map( item => {
       this.preOrder.amount = this.preOrder.amount + item.quantPacking * item.good.price;
+      this.preOrder.weight = this.preOrder.weight + item.quant;
+      this.preOrder.places = this.preOrder.places + item.quantPacking;
     });
   }
 

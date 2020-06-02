@@ -39,9 +39,19 @@ export class OrderService extends GlobalService<any> {
 
   addItemToOrder(item: PreOrderItem): Observable<PreOrder> {
     const preOrder = JSON.parse(sessionStorage.getItem('preOrder'));
-    item.uuid = uuid();
-    preOrder.preOrderItems.push(item);
-    preOrder.itemCount++;
+    let old = preOrder.preOrderItems.filter(old => item.good.uuid === old.good.uuid)[0];
+    if (old) {
+      old.quant += item.quant;
+      old.quantPacking += item.quantPacking;
+    } else {
+      let cloneItem = new PreOrderItem();
+      cloneItem.quantPacking = item.quantPacking;
+      cloneItem.quant = item.quant;
+      cloneItem.uuid = uuid();
+      cloneItem.good = item.good;
+      preOrder.preOrderItems.push(cloneItem);
+      preOrder.itemCount++;
+    }
     preOrder.amount += item.good.price * item.quant;
     preOrder.weight += item.quant;
     preOrder.places += item.quantPacking;
