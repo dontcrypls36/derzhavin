@@ -12,6 +12,8 @@ import {MatDialog} from '@angular/material';
 import {ActivatedRoute} from "@angular/router";
 import {DOCUMENT} from '@angular/common';
 import {SmsService} from "../../services/sms.service";
+import {MenuService} from "../../services/menu.service";
+import {GroupItem} from "../../models/group-item";
 
 @Component({
   selector: 'app-good-list',
@@ -26,8 +28,14 @@ export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewIni
   private category: Category = new Category();
   private groupFragment: string;
   private scrollFlag = false;
+  private search = "";
+
+  stickText = "";
 
   categories: Category[] = [];
+  filteredCategories: Category[] = [];
+  filteredGroups: GroupItem[] = [];
+  filteredItems: PreOrderItem[] = []
 
   constructor(private goodService: GoodService,
     private store: Store<PreOrder>,
@@ -35,14 +43,28 @@ export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewIni
     private dialog: MatDialog,
     private spinner: SpinnerServiceService, private route: ActivatedRoute,
     @Inject(DOCUMENT) private document: Document,
-    private smsService: SmsService) {
+    private smsService: SmsService,
+              private menuService: MenuService) {
     this.scrollFlag = false;
+    this.menuService.getSearch().subscribe(s=>{
+      if ((this.search.length === 3) && (s.length === 2)) {
+        window.scroll(0 , 0);
+        this.stickText = this.category.descr + " -> " + this.category.groups[0].descr;
+      }
+      this.search = s;
+      if (this.search.length >= 3) {
+        this.filteredItems = this.preOrderItems.filter(item => item.good.description.toLowerCase().indexOf(s.toLowerCase()) > -1);
+        this.filteredGroups = this.flatGroup(this.categories.map(cat => cat.groups)).filter(gr => this.filteredItems.map(it => it.good.groupUuid).includes(gr.uuid));
+        this.filteredCategories = this.categories.filter(cat => this.filteredItems.map(it => it.good.categoryUuid).includes(cat.uuid));
+        window.scroll(0 , 0);
+      }
+    })
     this.route.params.subscribe(params => {
       this.filter = params.category;
       if (this.categories.length !== 0) {
         this.category = this.categories.filter(item => item.uuid === this.filter)[0];
         let sticky = document.getElementById('stickyHeader');
-        sticky.innerText = this.category.descr + " -> " + this.category.groups[0].descr;
+        this.stickText = this.category.descr + " -> " + this.category.groups[0].descr;
         this.route.fragment.subscribe(fr => {
           if (fr) {
             this.groupFragment = fr;
@@ -51,6 +73,14 @@ export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewIni
       }
     });
 
+  }
+
+  flatGroup(groups:GroupItem[][]): GroupItem[] {
+    let groupRow: GroupItem[] = [];
+    groups.forEach(groupArray => {
+      groupArray.forEach(gr => groupRow = groupRow.concat(gr));
+    });
+    return groupRow;
   }
 
   ngAfterViewInit(): void {
@@ -103,7 +133,7 @@ export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewIni
       this.categories = categories;
       this.category = this.categories.filter(item => item.uuid === this.filter)[0];
       let sticky = document.getElementById('stickyHeader');
-      sticky.innerText = this.category.descr + " -> " + this.category.groups[0].descr;
+      this.stickText = this.category.descr + " -> " + this.category.groups[0].descr;
       const x = document.querySelector(this.group);
       if (x) {
         x.scrollIntoView();
@@ -201,28 +231,37 @@ export class GoodListComponent implements OnInit, AfterViewChecked, AfterViewIni
     let stickies:HTMLCollection = document.getElementsByClassName('followMeBar');
     let scrollTop = this.document.documentElement.scrollTop;
     let realHeader = this.document.getElementById("stickyHeader");
-    Array.from(stickies).forEach((el, index) => {
-      if (!elementFound) {
-        let htmlElement = <HTMLElement> el;
-        let stickyPosition = +htmlElement.offsetTop;
-        if (stickyPosition >= scrollTop &&
-          stickyPosition <= scrollTop + window.innerHeight / 3) {
-          realHeader.innerHTML = htmlElement.innerHTML;
-          elementFound = true;
-        }
-      }
-    });
-    if (!elementFound){
-      let nearest: HTMLElement = <HTMLElement>stickies[0];
+    if (realHeader) {
       Array.from(stickies).forEach((el, index) => {
-        let htmlElement = <HTMLElement> el;
-        if (htmlElement.offsetTop <= scrollTop) {
-          nearest = htmlElement;
+        if (!elementFound) {
+          let htmlElement = <HTMLElement>el;
+          let stickyPosition = +htmlElement.offsetTop;
+          if (stickyPosition >= scrollTop &&
+            stickyPosition <= scrollTop + window.innerHeight / 3) {
+            this.stickText = htmlElement.innerHTML;
+            elementFound = true;
+          }
         }
       });
-      realHeader.innerHTML = nearest.innerHTML;
+      if (!elementFound){
+        let nearest: HTMLElement = <HTMLElement>stickies[0];
+        Array.from(stickies).forEach((el, index) => {
+          let htmlElement = <HTMLElement> el;
+          if (htmlElement.offsetTop <= scrollTop) {
+            nearest = htmlElement;
+          }
+        });
+        this.stickText = nearest.innerHTML;
+      }
     }
+  }
 
+  filterGroups(category: Category): GroupItem[] {
+    return category.groups.filter(val => this.filteredGroups.includes(val));
+  }
+
+  filterFilteredGoodsByGroup(uuid: string): PreOrderItem[] {
+    return this.filteredItems.filter(it => it.good.groupUuid === uuid);
   }
 
 }

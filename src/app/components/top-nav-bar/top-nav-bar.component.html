@@ -19,7 +19,7 @@
         Взаиморасчеты
       </div>
     <div class="header-search">
-      <input placeholder="Поиск..." (change)="onSearchInputChange($event)" />
+      <input placeholder="Поиск..." (input)="onSearchInputChange($event)"/>
 <!--      <ng-select [items]="filteredGoods"-->
 <!--                 [loading]="false"-->
 <!--                 (search)="customSearchFn($event, this)"-->

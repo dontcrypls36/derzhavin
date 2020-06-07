@@ -14,6 +14,7 @@ import {ProfileMenuComponent} from "../profile-menu/profile-menu.component";
 import {RegInfoRequest} from "../../models/reg-info-request";
 import {SmsService} from "../../services/sms.service";
 import {User} from "../../models/user";
+import {MenuService} from "../../services/menu.service";
 
 @Component({
   selector: 'app-top-nav-bar',
@@ -44,7 +45,8 @@ export class TopNavBarComponent implements OnInit {
               private router: Router,
               private goodsService: GoodService,
               private dialog: MatDialog,
-              private smsService: SmsService) {
+              private smsService: SmsService,
+              private menuService: MenuService) {
     this.store.dispatch({type: 'INIT_PRE_ORDER'});
   }
 
@@ -143,8 +145,6 @@ export class TopNavBarComponent implements OnInit {
 
   onSearchInputChange(event:any) {
     let searchStr = event.target.value;
-    if (searchStr.length >= 3) {
-
-    }
+    this.menuService.setSearch(searchStr);
   }
 }

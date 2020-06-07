@@ -1,26 +1,46 @@
-<div id="stickyHeader"></div>
-<div class="content-table" *ngIf="preOrderItems.length > 0">
+<div id="stickyHeader" *ngIf="search.length < 3" [innerHTML]="stickText"></div>
+<div [ngClass]="search.length < 3 ? 'content-table' : 'content-table-search'" *ngIf="(search.length < 3 && preOrderItems.length > 0)
+                        || (filteredItems.length > 0 && search.length >= 3)">
       <table class="text-align-center">
         <thead class="table-header">
-          <th width="10%"></th>
-          <th width="40%" style="text-align: left">Наименование</th>
-          <th width="10%" style="text-align: right">Цена,₽</th>
-          <th width="15%">Грузовых мест</th>
-          <th width="15%">Вес, кг</th>
-          <th width="5%"></th>
+          <th width="10%" [ngClass]="search.length >= 3 ? 'filteredTable' : ''"></th>
+          <th width="40%" [ngClass]="search.length >= 3 ? 'filteredTable' : ''" style="text-align: left">Наименование</th>
+          <th width="10%" [ngClass]="search.length >= 3 ? 'filteredTable' : ''" style="text-align: right">Цена,₽</th>
+          <th width="15%" [ngClass]="search.length >= 3 ? 'filteredTable' : ''">Грузовых мест</th>
+          <th width="15%" [ngClass]="search.length >= 3 ? 'filteredTable' : ''">Вес, кг</th>
+          <th width="5%" [ngClass]="search.length >= 3 ? 'filteredTable' : ''"></th>
         </thead>
-        <ng-container *ngFor="let group of category.groups">
-          <div class="followMeBar hidden" id="{{ 'uuid' + group.uuid }}">{{ category.descr }} -> {{ group.descr }}</div>
-          <tr *ngFor="let item of filterGoodsByGroup(group.uuid); index as i" class="table-row">
-            <td width="10%" (click)="showItemDialog($event, item)" style="cursor: pointer;"><img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.good.uuid + '/' + item.good.uuid + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'"></td>
-            <td class="description" (click)="showItemDialog($event, item)" width="40%">{{ item.good.description }}</td>
-            <td *ngIf="i % 2 === 0" width="10%" style="text-align: right">{{ item.good.price | number : '1.2-2'}} <label class="red-unit">{{item.good.unit}}</label></td>
-            <td *ngIf="i % 2 != 0" width="10%" style="text-align: right"><span>{{ item.good.price | number : '1.0-0' }}</span>,<span class="decimal-part">{{ item.good.priceDecimal | number : '1.0-0'}} </span><label class="gray-unit">{{item.good.unit}}</label></td>
-            <td width="15%"><app-quantity-changer (decreaseValue)="changeQuantPacking(item, -1)" (increaseValue)="changeQuantPacking(item, 1)" [value]="item.quantPacking" (changeInputValue)="onQuantPackingInputChange($event, item)"></app-quantity-changer></td>
-            <td width="15%"><app-quantity-changer (decreaseValue)="changeQuant(item, -1)" (increaseValue)="changeQuant(item, 1)" [value]="item.quant" (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer></td>
-            <td width="5%" style="text-align: left"><button class="bucket-btn" (click)="addItemToBucket(item)" [disabled]="item.quant === 0 || item.quantPacking === 0"><i class="fa fa-shopping-cart"></i></button></td>
-          </tr>
+        <ng-container *ngIf="search.length < 3; else filteredGoods">
+          <ng-container *ngFor="let group of category.groups">
+            <div class="followMeBar hidden" id="{{ 'uuid' + group.uuid }}">{{ category.descr }} -> {{ group.descr }}</div>
+            <tr *ngFor="let item of filterGoodsByGroup(group.uuid); index as i" class="table-row">
+              <td width="10%" (click)="showItemDialog($event, item)" style="cursor: pointer;"><img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.good.uuid + '/' + item.good.uuid + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'"></td>
+              <td class="description" (click)="showItemDialog($event, item)" width="40%">{{ item.good.description }}</td>
+              <td *ngIf="i % 2 === 0" width="10%" style="text-align: right">{{ item.good.price | number : '1.2-2'}} <label class="red-unit">{{item.good.unit}}</label></td>
+              <td *ngIf="i % 2 != 0" width="10%" style="text-align: right"><span>{{ item.good.price | number : '1.0-0' }}</span>,<span class="decimal-part">{{ item.good.priceDecimal | number : '1.0-0'}} </span><label class="gray-unit">{{item.good.unit}}</label></td>
+              <td width="15%"><app-quantity-changer (decreaseValue)="changeQuantPacking(item, -1)" (increaseValue)="changeQuantPacking(item, 1)" [value]="item.quantPacking" (changeInputValue)="onQuantPackingInputChange($event, item)"></app-quantity-changer></td>
+              <td width="15%"><app-quantity-changer (decreaseValue)="changeQuant(item, -1)" (increaseValue)="changeQuant(item, 1)" [value]="item.quant" (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer></td>
+              <td width="5%" style="text-align: left"><button class="bucket-btn" (click)="addItemToBucket(item)" [disabled]="item.quant === 0 || item.quantPacking === 0"><i class="fa fa-shopping-cart"></i></button></td>
+            </tr>
+          </ng-container>
         </ng-container>
+        <ng-template #filteredGoods>
+          <ng-container *ngFor="let category of filteredCategories">
+            <tr class="category"><td colspan="7">{{ category.descr }}</td></tr>
+            <ng-container *ngFor="let group of filterGroups(category)">
+              <tr class="group"><td colspan="7">{{ group.descr }}</td></tr>
+              <tr *ngFor="let item of filterFilteredGoodsByGroup(group.uuid); index as i" class="table-row">
+                <td width="10%" (click)="showItemDialog($event, item)" style="cursor: pointer;"><img class="img-small" src="{{ 'http://mobile.optvrn.ru:5050/images/goods/' + item.good.uuid + '/' + item.good.uuid + '_' + '1_t.jpg' }}" onerror="this.src='assets/default.jpg'"></td>
+                <td class="description" (click)="showItemDialog($event, item)" width="40%">{{ item.good.description }}</td>
+                <td *ngIf="i % 2 === 0" width="10%" style="text-align: right">{{ item.good.price | number : '1.2-2'}} <label class="red-unit">{{item.good.unit}}</label></td>
+                <td *ngIf="i % 2 != 0" width="10%" style="text-align: right"><span>{{ item.good.price | number : '1.0-0' }}</span>,<span class="decimal-part">{{ item.good.priceDecimal | number : '1.0-0'}} </span><label class="gray-unit">{{item.good.unit}}</label></td>
+                <td width="15%"><app-quantity-changer (decreaseValue)="changeQuantPacking(item, -1)" (increaseValue)="changeQuantPacking(item, 1)" [value]="item.quantPacking" (changeInputValue)="onQuantPackingInputChange($event, item)"></app-quantity-changer></td>
+                <td width="15%"><app-quantity-changer (decreaseValue)="changeQuant(item, -1)" (increaseValue)="changeQuant(item, 1)" [value]="item.quant" (changeInputValue)="onQuantInputChange($event, item)"></app-quantity-changer></td>
+                <td width="5%" style="text-align: left"><button class="bucket-btn" (click)="addItemToBucket(item)" [disabled]="item.quant === 0 || item.quantPacking === 0"><i class="fa fa-shopping-cart"></i></button></td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </ng-template>
       </table>
     </div>
 
