@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CategoryService} from "../../services/category.service";
 import {User} from "../../models/user";
 import {Constants} from "../../models/constants";
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     //todo сохранить реального юзера
     sessionStorage.setItem('user', JSON.stringify(Constants.body));
     this.categoryService.getCategories().subscribe( _ => {
-      this.router.navigate(['/orders']);
+      this.router.navigate(['/categories']);
     }, _  => {
       sessionStorage.removeItem('user');
       this.error = true;

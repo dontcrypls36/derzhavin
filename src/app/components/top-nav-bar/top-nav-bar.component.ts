@@ -3,7 +3,7 @@ import {PreOrder} from '../../models/pre-order';
 import {Store} from '@ngrx/store';
 import {CategoryService} from '../../services/category.service';
 import {Category} from '../../models/category';
-import {Router} from '@angular/router';
+import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
 import {MenuCategoryComponent} from "../menu-category/menu-category.component";
 import {Good} from "../../models/good";
 import {GoodService} from "../../services/good.service";
@@ -33,6 +33,7 @@ export class TopNavBarComponent implements OnInit {
   selectedGood: Good;
   isListOpen = false;
   active = false;
+  showMenu = true;
 
   username: string;
   user: User;
@@ -43,11 +44,15 @@ export class TopNavBarComponent implements OnInit {
   constructor(private store: Store<PreOrder>,
               private categoryService: CategoryService,
               private router: Router,
+              private route: ActivatedRoute,
               private goodsService: GoodService,
               private dialog: MatDialog,
               private smsService: SmsService,
               private menuService: MenuService) {
     this.store.dispatch({type: 'INIT_PRE_ORDER'});
+    this.router.events.subscribe(res =>{
+      console.log("wtf!");
+    })
   }
 
   ngOnInit() {

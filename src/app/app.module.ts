@@ -45,6 +45,7 @@ import {LoggerGuard} from "./models/logger-guard";
 import {ProfileMenuComponent} from './components/profile-menu/profile-menu.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { CategoryPageComponent } from './components/category-page/category-page.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
@@ -54,7 +55,8 @@ const appRoutes: Routes = [
   { path: 'calculations', component: CalculationsComponent, canActivate: [LoggerGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'registration', component: RegistrationComponent},
-  { path: 'profile', component: ProfileComponent}
+  { path: 'profile', component: ProfileComponent},
+  { path: 'categories', component: CategoryPageComponent, canActivate:[LoggerGuard]}
 ];
 
 registerLocaleData(localeRu);
@@ -78,7 +80,8 @@ registerLocaleData(localeRu);
     MenuCategoryComponent,
     AnalogsComponent,
     ProfileMenuComponent,
-    ProfileComponent
+    ProfileComponent,
+    CategoryPageComponent
   ],
   imports: [
     BrowserModule,

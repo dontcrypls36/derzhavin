@@ -2,7 +2,7 @@
   <nav class="fixed-top">
     <!--<img width="logo">-->
     <div class="logo"><img src="assets/Derzhavin_512.png" width="56" height="56"></div>
-      <div class="catalog header-button" [ngClass]="router.url.includes('goods') ? 'active' : ''" id="menu" (click)="onCatalogClick()">
+      <div class="catalog header-button" [ngClass]="router.url.includes('goods') ? 'active' : ''" id="menu" (click)="onCatalogClick()" [hidden]="!showMenu">
           Каталог
 
           <!--<button mat-menu-item *ngFor="let category of categories" (click)="onAnchorClick(category.uuid)">-->
