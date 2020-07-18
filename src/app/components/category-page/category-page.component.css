@@ -35,7 +35,7 @@ li:hover, span:hover {
 }
 
 .img-block {
-  /*float:left;*/
+  min-width: 25px;
 }
 
 .menu-block {
@@ -45,8 +45,4 @@ li:hover, span:hover {
 }
 img {
   width:25px;
-}
-
-.menu-block > div {
-
 }

@@ -1,6 +1,6 @@
 <div class="category-container">
 <div *ngFor="let category of categories" class="menu-block">
-  <div class="img-block"><img class="category-img" src="{{ 'http://mobile.optvrn.ru:5050/images/category/' + category.uuid +  '.jpg' }}"></div>
+  <div class="img-block"><img class="category-img" onerror="this.style.display='none'" src="{{ 'http://mobile.optvrn.ru:5050/images/category/' + category.uuid +  '.jpg' }}"></div>
   <div class="category-block">
     <span (click)="onCategoryClick(category.uuid, $event)">{{ category.descr }}</span>
     <ul>
